@@ -1,13 +1,13 @@
-import {
-  Component,
-  NgModule
-} from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 
-import {
-  BrowserModule
-} from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AgmCoreModule } from '@agm/core';
+
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
 
 
 @Component({
@@ -22,6 +22,35 @@ import { AgmCoreModule } from '@agm/core';
   templateUrl:'app.component.html'
 })
 export class AppComponent {
+
+  user: Observable<firebase.User>;
+  items: FirebaseListObservable<any[]>;
+  msgVal: string = '';
+  database = firebase.database();
+  beacons:any[] = [];
+
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
+    this.beacons = this.displayBeacon();
+    console.log(this.beacons);
+  }
+
+
+  // display all beacons on the screen
+  displayBeacon()
+  {
+    var bacons = [];
+  	// get all the beacons from the database
+  	this.database.ref('/beacon/').once('value').then(function(b)
+  	{
+  		// return b.val();
+  		for (var i in b.val())
+  		{
+        bacons.push(b.val()[i]);
+      }
+  	});
+    return bacons;
+  }
+
   // google maps zoom level
   zoom: number = 13;
 
@@ -46,20 +75,20 @@ export class AppComponent {
     console.log('dragEnd', b, $event);
   }
 
-  beacons: beacon[] = [
-	  {
-		  lat: 43.4724,
-		  lng: -80.526,
-		  course: "NULL",
-		  draggable: false
-	  },
-	  {
-		  lat: 43.4750,
-		  lng: -80.526,
-		  course: "NULL",
-		  draggable: false
-	  },
-  ]
+//   beacons: beacon[] = [
+// 	  {
+// 		  lat: 43.4724,
+// 		  lng: -80.526,
+// 		  course: "NULL",
+// 		  draggable: false
+// 	  },
+// 	  {
+// 		  lat: 43.4750,
+// 		  lng: -80.526,
+// 		  course: "NULL",
+// 		  draggable: false
+// 	  },
+//   ]
 }
 // just an interface for type safety.
 interface beacon {
