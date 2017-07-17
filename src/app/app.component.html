@@ -13,13 +13,13 @@
     </div>
   </div> -->
 <div *ngFor="let beacon of beacons">
-  This is a beacon!
+  This is a beacon! <br/>
   Course: {{beacon.course}} <br/>
   Host: {{beacon.host}} <br/>
+  Lat: {{beacon.lat}} <br/>
+  Lng: {{beacon.lng}} <br/>
   School: {{beacon.school}} <br/><br/>
 </div>
-<!-- this creates a google map on the page with the given lat/lng from -->
-<!-- the component as the initial center of the map: -->
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+
+
+<app-amg-map></app-amg-map>
