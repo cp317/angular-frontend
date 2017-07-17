@@ -6,6 +6,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { WebAPI } from './web-api.service';
+
 import { AppComponent } from './app.component';
 import { BeaconComponent } from './beacon/beacon.component';
 import { AmgMapComponent } from './amg-map/amg-map.component';
@@ -34,7 +36,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [WebAPI],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

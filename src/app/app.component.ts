@@ -2,6 +2,8 @@ import { Component, NgModule } from '@angular/core';
 
 import { BrowserModule } from '@angular/platform-browser';
 
+import { WebAPI } from './web-api.service';
+
 import { AgmCoreModule } from '@agm/core';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -23,23 +25,12 @@ export class AppComponent {
   beacons:any[] = [];
   title: string = "Study Group Finder";
 
-  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.beacons = this.displayBeacon();
-    console.log(this.beacons);
-  }
-
-  // display all beacons on the screen
-  displayBeacon() {
-    var beacons = [];
-  	// get all the beacons from the database
-  	this.database.ref('/beacon/').once('value').then(function(b)
-  	{
-  		// return b.val();
-  		for (var i in b.val()) {
-        beacons.push(b.val()[i]);
-      }
-  	});
-    return beacons;
+  constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
+    // this.beacons = this.displayBeacon();
+    this.webAPI.getBeacons().then(res => {
+      // this.beacons = res.val();
+      console.log(res.val());
+    })
   }
 
   clickedBeacon(label: string, index: number) {
