@@ -8,6 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { BeaconComponent } from './beacon/beacon.component';
+import { AmgMapComponent } from './amg-map/amg-map.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -21,7 +22,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    BeaconComponent
+    BeaconComponent,
+    AmgMapComponent
   ],
   imports: [
     BrowserModule,
