@@ -46,13 +46,19 @@ export class AmgMapComponent implements OnInit {
       this.getBeacons();
     }
 
-     mapClicked($event: any) {
-        this.beacons.push({
+    mapReady($event: any) {
+      console.log("Ready");
+    }
+
+    placeBeacon($event: any){
+    console.log($event.coords.lat);
+    console.log($event.coords.lng);
+    this.beacons.push({
           lat: $event.coords.lat,
           lng: $event.coords.lng,
           course: "CP317",
           draggable: true
         });
-        console.log(this.beacons);
-      }
+  }
 }
+

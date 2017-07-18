@@ -25,12 +25,7 @@ export class AppComponent {
   title: string = "Study Group Finder";
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
-    this.webAPI.getBeacons().then(res => {
-      for (var i in res.val()) {
-        this.beacons.push(res.val()[i]);
-      }
-      //console.log(this.beacons);
-    });
+    //
   }
 
 
