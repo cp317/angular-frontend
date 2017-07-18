@@ -21,13 +21,15 @@
     </agm-info-window>
   </agm-marker>
   
-  <div *ngFor="let beacon of beacons">
-	<agm-marker [latitude] = beacon.lat [longitude] = beacon.lng>
+	<agm-marker
+		*ngFor="let beacon of beacons" 
+		[latitude] = "beacon.lat" 
+		[longitude] = "beacon.lng">
+
 		<agm-info-window [disableAutoPan]="true">
 			{{beacon.course}}
 		</agm-info-window>
 	</agm-marker>
-  </div>
   
 </agm-map>
 </div>
