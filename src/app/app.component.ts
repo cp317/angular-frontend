@@ -11,6 +11,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+//Class Definitions
+import { Beacon } from './beacon';
+
 
 @Component({
   selector: 'app-root',
@@ -21,28 +24,28 @@ export class AppComponent {
   user: Observable<firebase.User>;
   items: FirebaseListObservable<any[]>;
   database = firebase.database();
-  beacons:any[] = [];
+  beacons:Beacon[] = [];
   title: string = "Study Group Finder";
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
-    //
+    this.getBeacons();
   }
 
+  // display all beacons on the screen
+  getBeacons() {
+      this.webAPI.getBeacons().then(res => {
+      for (var key in res.val()) {
+        this.beacons.push(new Beacon(res.val()[key]));
+      }
+      console.log(this.beacons[0].getLat());
+    });
+  }
 
   clickedBeacon(label: string, index: number) {
     console.log(`clicked the beacon: ${label || index}`)
   }
 
-  beaconDragEnd(b: beacon, $event: MouseEvent) {
+  beaconDragEnd(b: Beacon, $event: MouseEvent) {
     console.log('dragEnd', b, $event);
   }
-}
-
-// just an interface for type safety.
-interface beacon {
-	lat: number;
-	lng: number;
-	id?: string;
-	course: string;
-	draggable: boolean;
 }
