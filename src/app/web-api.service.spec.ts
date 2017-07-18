@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { WebAPIService } from './web-api.service';
+import { WebAPI } from './web-api.service';
 
 describe('WebAPIService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [WebAPIService]
+      providers: [WebAPI]
     });
   });
 
-  it('should be created', inject([WebAPIService], (service: WebAPIService) => {
+  it('should be created', inject([WebAPI], (service: WebAPI) => {
     expect(service).toBeTruthy();
   }));
 });

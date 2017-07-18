@@ -20,18 +20,19 @@ export class AppComponent {
 
   user: Observable<firebase.User>;
   items: FirebaseListObservable<any[]>;
-  msgVal: string = '';
   database = firebase.database();
   beacons:any[] = [];
   title: string = "Study Group Finder";
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
-    // this.beacons = this.displayBeacon();
     this.webAPI.getBeacons().then(res => {
-      // this.beacons = res.val();
-      console.log(res.val());
-    })
+      for (var i in res.val()) {
+        this.beacons.push(res.val()[i]);
+      }
+      //console.log(this.beacons);
+    });
   }
+
 
   clickedBeacon(label: string, index: number) {
     console.log(`clicked the beacon: ${label || index}`)

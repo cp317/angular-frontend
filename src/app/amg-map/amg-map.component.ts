@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { WebAPI } from '../web-api.service';
+
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
@@ -25,34 +27,32 @@ export class AmgMapComponent implements OnInit {
     lat: number = 43.4724;
     lng: number = -80.5263;
     
-	constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-		this.beacons = this.displayBeacon();
-		console.log(this.beacons);
+	constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase,  private webAPI:WebAPI) {
+
   }
 
     // display all beacons on the screen
-    displayBeacon() {
-		var beacons = [];
-		// get all the beacons from the database
-		this.database.ref('/beacon/').once('value').then(function(b) {
-			// return b.val();
-			for (var i in b.val())
-  		{
-        beacons.push(b.val()[i]);
+    getBeacons() {
+      this.webAPI.getBeacons().then(res => {
+      for (var key in res.val()) {
+        this.beacons.push(res.val()[key]);
       }
-  	});
-    return beacons;
+      console.log(this.beacons);
+    });
+
   }
 
     ngOnInit() {
+      this.getBeacons();
     }
-  
-    // mapClicked($event: MouseEvent) {
-  //   this.beacons.push({
-  //     lat: $event.coords.lat,
-  //     lng: $event.coords.lng,
-  //     course: "CP317",
-  //     draggable: true
-  //   });
-  // }
+
+     mapClicked($event: any) {
+        this.beacons.push({
+          lat: $event.coords.lat,
+          lng: $event.coords.lng,
+          course: "CP317",
+          draggable: true
+        });
+        console.log(this.beacons);
+      }
 }

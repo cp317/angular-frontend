@@ -2,6 +2,13 @@
   amg-map works!
 </p>
 
+<div *ngFor="let beacon of beacons">
+  	<p>
+  	{{beacon.lat}}<br/>
+  	{{beacon.lng}}
+  	</p>
+</div>
+
 <!-- this creates a google map on the page with the given lat/lng from  the component as the initial center of the map: -->
 <div>
 <!-- Creates the agm-map -->
@@ -10,14 +17,14 @@
   <agm-marker [latitude]="lat" [longitude]="lng">
 		<!-- Creates the marker info-window -->
 	<agm-info-window [disableAutoPan]="true">
-		Hi, this is the content of the <strong>info window</strong>
+	Hi, this is the content of the <strong>info window</strong>
     </agm-info-window>
   </agm-marker>
   
   <div *ngFor="let beacon of beacons">
 	<agm-marker [latitude] = beacon.lat [longitude] = beacon.lng>
 		<agm-info-window [disableAutoPan]="true">
-			beacon.course
+			{{beacon.course}}
 		</agm-info-window>
 	</agm-marker>
   </div>

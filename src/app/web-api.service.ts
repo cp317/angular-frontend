@@ -6,13 +6,14 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class WebAPI {
   database = firebase.database();
+  
   constructor() { }
 
-  getBeacons():firebase.Promise<any>{
-  	// get all the beacons from the database
-  	return this.database.ref('/beacon/').once('value').then( res => {
+  getBeacons(): firebase.Promise<any>{
+  	var promise = this.database.ref('/beacon/').once('value').then( res => {
       return res;
+  	// get all the beacons from the database
   	});
-
+  	return promise;
   }
 }
