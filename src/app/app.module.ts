@@ -9,7 +9,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { WebAPI } from './web-api.service';
 
 import { AppComponent } from './app.component';
-import { BeaconComponent } from './beacon/beacon.component';
 import { AmgMapComponent } from './amg-map/amg-map.component';
 
 export const firebaseConfig = {
@@ -24,7 +23,6 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    BeaconComponent,
     AmgMapComponent
   ],
   imports: [
