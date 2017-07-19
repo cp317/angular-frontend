@@ -18,17 +18,18 @@ export class AmgMapComponent implements OnInit {
 	database = firebase.database();
 	beacons:any[] = [];
 	user: Observable<firebase.User>;
-    items: FirebaseListObservable<any[]>;
+  items: FirebaseListObservable<any[]>;
+  location:any = ""
 
 	// google maps zoom level
 	zoom: number = 13;
 
-    // initial center position for the map
-    lat: number = 43.4724;
-    lng: number = -80.5263;
+  // initial center position for the map
+  lat: number = 0;
+  lng: number = 0;
 
 	constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase,  private webAPI:WebAPI) {
-
+    
   }
 
     // display all beacons on the screen
@@ -37,13 +38,25 @@ export class AmgMapComponent implements OnInit {
         for (var key in res.val()) {
           this.beacons.push(res.val()[key]);
         }
-        console.log(this.beacons);
+        //console.log(this.beacons);
       });
+    }
 
+    getPosition() {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.setPosition.bind(this));
+      }
+    }
+
+    setPosition(position) {
+      this.lat = position.coords.latitude;
+      this.lng = position.coords.longitude;
+      //console.log(position.coords);
     }
 
     ngOnInit() {
       this.getBeacons();
+      this.getPosition();
     }
 
     mapReady($event: any) {
