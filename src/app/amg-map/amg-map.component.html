@@ -5,7 +5,7 @@
 <!-- this creates a google map on the page with the given lat/lng from  the component as the initial center of the map: -->
 <div>
 <!-- Creates the agm-map -->
-<agm-map [latitude]="lat" [longitude]="lng">
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="placeBeacon($event)">
 	<!-- Creates an agm-map marker -->
   <agm-marker [latitude]="lat" [longitude]="lng">
 		<!-- Creates the marker info-window -->
