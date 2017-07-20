@@ -1,39 +1,37 @@
+import * as firebase from 'firebase/app';
+
+
 export class Beacon {
   course:string;
   endTime:number;
   host:string;
   lat:number;
   lng:number;
-  members:string[];
+  members:string[] = [];
 	school:string;
   startTime:number;
   tags:string;
+  database = firebase.database();
 
   constructor(b:any){
     this.course = b.course;
+    this.school = b.school;
     this.endTime = b.endTime;
     this.host = b.host;
     this.lat = b.lat;
     this.lng = b.lng;
+    if (b.members != null)
+    {
     this.members = b.members;
+    }
     this.startTime = b.startTime;
     this.tags = b.tags;
   }
-	
-	constructor(school:string, course:string, host:string, startTime:number, endTime:number, tags:string, lat:number, lng:number)
-	{
-		// set the given attributes to the beacon class instance
-		this.course = course;
-    this.endTime = endTime;
-    this.host = host;
-    this.lat = lat;
-    this.lng = lng;
-    this.members = members;
-    this.startTime = startTime;
-    this.tags = tags;
-		
-		// insert the database object into the database
-		database.ref('/beacon/').push({
+
+  storeBeacon()
+  {
+		// insert the beacon object into the database
+		this.database.ref('/beacon/').push({
 			school: this.school,
 			course: this.course,
 			startTime: this.startTime,
@@ -45,7 +43,7 @@ export class Beacon {
 			lng: this.lng
 		});
 	}
-	
+
   getLat(){
     return this.lat;
   }

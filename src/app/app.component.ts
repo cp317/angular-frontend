@@ -37,9 +37,10 @@ export class AppComponent {
       for (var key in res.val()) {
         this.beacons.push(new Beacon(res.val()[key]));
       }
-      console.log(this.beacons[0].getLat());
     });
   }
+
+
 
   clickedBeacon(label: string, index: number) {
     console.log(`clicked the beacon: ${label || index}`)

@@ -32,6 +32,15 @@ export class AmgMapComponent implements OnInit {
 	constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase,  private webAPI:WebAPI) { }
 
       ngOnInit() {
+
+      //create a random new Beacon for testing purposes
+      this.createBeacon("CP317", "Laurier",
+          new Date().getTime(),
+          new Date().getTime() + 1 +  Math.floor(Math.random() * 21600000),
+          "123456789ABCDEFG",
+          43.4724 + (Math.random()-0.5),
+          -80.526 + (Math.random()-0.5),
+          "0010");
       // gets beacons from firebase
       this.getBeacons();
       // sets initial map position based on user location
@@ -46,6 +55,22 @@ export class AmgMapComponent implements OnInit {
         }
         //console.log(this.beacons);
       });
+    }
+
+    // create a new Beacon, which is first instantiated as a class and then stored in the database
+    createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, lat:number, lng:number, tags:string)
+    {
+      var b = new Beacon({
+        school: school,
+        course: course,
+        startTime: startTime,
+        endTime: endTime,
+        host: host,
+        lat: lat,
+        lng: lng,
+        tags: tags});
+      console.log(b);
+      b.storeBeacon();
     }
 
     // gets the position of user from their browser and calls setPostion()
