@@ -24,8 +24,8 @@ export class AmgMapComponent implements OnInit {
 	private user: Observable<firebase.User>;
   private items: FirebaseListObservable<any[]>;
   private position: any;
-  public searchControl: FormControl;
-  private address: string = "Search for a location";
+  private searchControl: FormControl;
+  private address: string = "None";
 
 
 	// google maps zoom level
@@ -35,7 +35,7 @@ export class AmgMapComponent implements OnInit {
   private lng: number = -98.4444689;
 
   @ViewChild("search")
-  public searchElementRef: ElementRef;
+  private searchElementRef: ElementRef;
 
 	constructor(
     private afAuth: AngularFireAuth, 
@@ -116,7 +116,7 @@ export class AmgMapComponent implements OnInit {
       lat: lat,
       lng: lng,
       tags: tags});
-    console.log(b);
+    //console.log(b);
     b.storeBeacon();
   }
 
@@ -127,6 +127,7 @@ export class AmgMapComponent implements OnInit {
     var address = geocoder.geocode({'location': latlng}, function(results, status) {
         console.log(results[1].formatted_address);
         this.address = results[1].formatted_address;
+        document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
     })
   }
 
@@ -168,7 +169,4 @@ export class AmgMapComponent implements OnInit {
   clickedBeacon(beacon: Beacon, index: number) {
     console.log(`clicked the beacon: ${beacon.course || index}`)
   }
-
-
-
 }

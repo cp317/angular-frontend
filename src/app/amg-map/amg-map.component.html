@@ -1,8 +1,9 @@
 <p>
   amg-map works!
 </p>
+
 <div class="form-group">
-	<input placeholder={{address}} name="search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+	<input placeholder="Search for a location" name="search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
 </div>
 <!-- this creates a google map on the page with the given lat/lng from  the component as the initial center of the map: -->
 <div>
