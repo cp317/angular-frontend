@@ -45,13 +45,13 @@ export class AmgMapComponent implements OnInit {
   ngOnInit() {
 
     //create a random new Beacon for testing purposes
-    this.createBeacon("CP317", "Laurier",
-        new Date().getTime(),
-        new Date().getTime() + 1 +  Math.floor(Math.random() * 21600000),
-        "123456789ABCDEFG",
-        43.4724 + (Math.random()-0.5),
-        -80.526 + (Math.random()-0.5),
-        "0010");
+    // this.createBeacon("CP317", "Laurier",
+    //     new Date().getTime(),
+    //     new Date().getTime() + 1 +  Math.floor(Math.random() * 21600000),
+    //     "123456789ABCDEFG",
+    //     43.4724 + (Math.random()-0.5),
+    //     -80.526 + (Math.random()-0.5),
+    //     "0010");
     // gets beacons from firebase
     this.getBeacons();
     // sets initial map position based on user location
@@ -62,7 +62,7 @@ export class AmgMapComponent implements OnInit {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ["geocode"]
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
