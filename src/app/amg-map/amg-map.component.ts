@@ -25,12 +25,14 @@ export class AmgMapComponent implements OnInit {
   private items: FirebaseListObservable<any[]>;
   private position: any;
   public searchControl: FormControl;
+  private address: string = "Search for a location";
+
 
 	// google maps zoom level
 	private zoom: number = 6;
-  // initial center position for the map
-  private lat: number = 0;
-  private lng: number = 0;
+  // initial center position for the map if location denied
+  private lat: number = 35.1592256;
+  private lng: number = -98.4444689;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -43,7 +45,6 @@ export class AmgMapComponent implements OnInit {
     private ngZone: NgZone) { }
 
   ngOnInit() {
-
     //create a random new Beacon for testing purposes
     // this.createBeacon("CP317", "Laurier",
     //     new Date().getTime(),
@@ -55,12 +56,14 @@ export class AmgMapComponent implements OnInit {
     // gets beacons from firebase
     this.getBeacons();
     // sets initial map position based on user location
-    this.getPosition();
+    this.getPosition()
+
     // creates serach FromControl
     this.searchControl = new FormControl()
 
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
+      
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["geocode"]
       });
@@ -117,6 +120,16 @@ export class AmgMapComponent implements OnInit {
     b.storeBeacon();
   }
 
+  reverseGeocode() {
+    var geocoder = new google.maps.Geocoder();
+    var latlng = this.getMapCenter();
+    console.log(latlng);
+    var address = geocoder.geocode({'location': latlng}, function(results, status) {
+        console.log(results[1].formatted_address);
+        this.address = results[1].formatted_address;
+    })
+  }
+
   // gets the position of user from their browser and calls setPostion()
   getPosition() {
     if(navigator.geolocation) {
@@ -126,16 +139,19 @@ export class AmgMapComponent implements OnInit {
 
   // sets the maps lat and lng attributes given a position
   setPosition(position) {
+    console.log("position set");
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
-    //console.log(position.coords);
+    console.log(this.lat);
+    console.log(this.lng);
+    this.reverseGeocode();
   }
 
   // returns the maps current center latitude and longitude
   getMapCenter() {
     //console.log(this.lat);
     //console.log(this.lng);
-    return this.lat, this.lng;
+    return {lat: this.lat, lng: this.lng};
   }
 
   // logs when the map has loaded
@@ -148,4 +164,11 @@ export class AmgMapComponent implements OnInit {
     console.log($event.coords.lat);
     console.log($event.coords.lng);
   }
+
+  clickedBeacon(beacon: Beacon, index: number) {
+    console.log(`clicked the beacon: ${beacon.course || index}`)
+  }
+
+
+
 }

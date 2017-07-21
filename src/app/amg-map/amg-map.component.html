@@ -2,29 +2,31 @@
   amg-map works!
 </p>
 <div class="form-group">
-	<input placeholder="search for address" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+	<input placeholder={{address}} name="search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
 </div>
 <!-- this creates a google map on the page with the given lat/lng from  the component as the initial center of the map: -->
 <div>
-<!-- Creates the agm-map -->
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="placeBeacon($event)">
-	<!-- Creates an agm-map marker -->
-  <agm-marker [latitude]="lat" [longitude]="lng">
-		<!-- Creates the marker info-window -->
-	<agm-info-window [disableAutoPan]="true">
-	Hi, this is the content of the <strong>info window</strong>
-    </agm-info-window>
-  </agm-marker>
-
-	<agm-marker
-		*ngFor="let beacon of beacons"
-		[latitude] = "beacon.lat"
-		[longitude] = "beacon.lng">
-
+	<!-- Creates the agm-map -->
+	<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="placeBeacon($event)">
+		<!-- Creates an agm-map marker -->
+	  <agm-marker [latitude]="lat" [longitude]="lng">
+			<!-- Creates the marker info-window -->
 		<agm-info-window [disableAutoPan]="true">
-			{{beacon.course}}
-		</agm-info-window>
-	</agm-marker>
+		Hi, this is the content of the <strong>info window</strong>
+	    </agm-info-window>
+	  </agm-marker>
 
-</agm-map>
+		<agm-marker
+			*ngFor="let beacon of beacons; let i = index"
+			(markerClick)="clickedBeacon(beacon, i)"
+			[latitude] = "beacon.lat"
+			[longitude] = "beacon.lng"
+			[markerDraggable]="beacon.draggable">
+
+			<agm-info-window [disableAutoPan]="true">
+				{{beacon.course}}
+			</agm-info-window>
+		</agm-marker>
+
+	</agm-map>
 </div>
