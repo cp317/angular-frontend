@@ -12,12 +12,12 @@ import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
 @Component({
-  selector: 'app-amg-map',
-  templateUrl: './amg-map.component.html',
-  styleUrls: ['./amg-map.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
 
-export class AmgMapComponent implements OnInit {
+export class MapComponent implements OnInit {
 
 	private database = firebase.database();
 	private user: Observable<firebase.User>;
@@ -31,7 +31,6 @@ export class AmgMapComponent implements OnInit {
   // initial center position for the map if location denied
   private lat: number = 13.7244418;
   private lng: number = 100.3522238;
-
   // create reference for the search input bar
   @ViewChild("search")
   private searchElementRef: ElementRef;
