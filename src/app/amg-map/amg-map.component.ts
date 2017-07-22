@@ -20,20 +20,19 @@ import * as firebase from 'firebase/app';
 export class AmgMapComponent implements OnInit {
 
 	private database = firebase.database();
-	private beacons:any[] = [];
 	private user: Observable<firebase.User>;
   private items: FirebaseListObservable<any[]>;
-  private position: any;
   private searchControl: FormControl;
-  private address: string = "None";
-
+  private beacons:any[] = [];
+  private address: string;
 
 	// google maps zoom level
 	private zoom: number = 6;
   // initial center position for the map if location denied
-  private lat: number = 35.1592256;
-  private lng: number = -98.4444689;
+  private lat: number = 13.7244418;
+  private lng: number = 100.3522238;
 
+  // create reference for the search input bar
   @ViewChild("search")
   private searchElementRef: ElementRef;
 
@@ -61,26 +60,27 @@ export class AmgMapComponent implements OnInit {
     // creates serach FromControl
     this.searchControl = new FormControl()
 
-    //load Places Autocomplete
+    // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      
+      // attach Autocomplete to input box using ElementRef
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        // select type of google filter from ["geocode", "address", "establishment"]
         types: ["geocode"]
       });
+      // add listener to the autocomplete text field
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          //get the place result
+          // get the place result
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          //verify result
+          // verify result
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
 
-          //set latitude, longitude and zoom
+          // set latitude, longitude and zoom based on autocomplete suggestion
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
-          this.zoom = 12;
+          this.zoom = 10;
         });
       });
     });
@@ -120,17 +120,6 @@ export class AmgMapComponent implements OnInit {
     b.storeBeacon();
   }
 
-  reverseGeocode() {
-    var geocoder = new google.maps.Geocoder();
-    var latlng = this.getMapCenter();
-    console.log(latlng);
-    var address = geocoder.geocode({'location': latlng}, function(results, status) {
-        console.log(results[1].formatted_address);
-        this.address = results[1].formatted_address;
-        document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
-    })
-  }
-
   // gets the position of user from their browser and calls setPostion()
   getPosition() {
     if(navigator.geolocation) {
@@ -140,12 +129,27 @@ export class AmgMapComponent implements OnInit {
 
   // sets the maps lat and lng attributes given a position
   setPosition(position) {
-    console.log("position set");
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
-    console.log(this.lat);
-    console.log(this.lng);
+    // console.log(this.lat);
+    // console.log(this.lng);
     this.reverseGeocode();
+  }
+
+  // if user allows location, display current address in autocomplete search bar
+  reverseGeocode() {
+    // create new geocoder
+    var geocoder = new google.maps.Geocoder();
+    // get users {lat, lng}
+    var latlng = this.getMapCenter();
+    // console.log(latlng);
+    // get address from geocoder based on {lat, lng}
+    var address = geocoder.geocode({'location': latlng}, function(results, status) {
+        // console.log(results[1].formatted_address);
+        this.address = results[1].formatted_address;
+        // update search bar placeholder
+        document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
+    })
   }
 
   // returns the maps current center latitude and longitude
@@ -160,12 +164,13 @@ export class AmgMapComponent implements OnInit {
     console.log("Ready");
   }
 
-  // places a beacon given an amg-map mapClick $event
+  // logs a beacon lat, lng given (for future functionality)
   placeBeacon($event: any) {
     console.log($event.coords.lat);
     console.log($event.coords.lng);
   }
 
+  // logs each beacon click (for future functionality)
   clickedBeacon(beacon: Beacon, index: number) {
     console.log(`clicked the beacon: ${beacon.course || index}`)
   }
