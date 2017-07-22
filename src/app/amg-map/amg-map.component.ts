@@ -27,7 +27,7 @@ export class AmgMapComponent implements OnInit {
   private address: string;
 
 	// google maps zoom level
-	private zoom: number = 6;
+	private zoom: number = 8;
   // initial center position for the map if location denied
   private lat: number = 13.7244418;
   private lng: number = 100.3522238;
