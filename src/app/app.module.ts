@@ -11,6 +11,8 @@ import { WebAPI } from './web-api.service';
 
 import { AppComponent } from './app.component';
 import { AmgMapComponent } from './amg-map/amg-map.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CardsComponent } from './cards/cards.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -25,6 +27,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     AmgMapComponent,
+    NavbarComponent,
+    CardsComponent,
   ],
   imports: [
     BrowserModule,
