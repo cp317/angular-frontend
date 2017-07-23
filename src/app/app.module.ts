@@ -12,7 +12,8 @@ import { WebAPI } from './web-api.service';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { CardsComponent } from './cards/cards.component';
+import { BeaconCardsComponent } from './beacon-cards/beacon-cards.component';
+import { BeaconSearchComponent } from './beacon-search/beacon-search.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -28,7 +29,8 @@ export const firebaseConfig = {
     AppComponent,
     MapComponent,
     NavbarComponent,
-    CardsComponent,
+    BeaconCardsComponent,
+    BeaconSearchComponent,
   ],
   imports: [
     BrowserModule,
