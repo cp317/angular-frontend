@@ -1,0 +1,16 @@
+.grid{
+	display:flex;
+	height:80vh;
+}
+.card-selection{
+	width:50%;
+}
+.map{
+	width:50%;
+}
+.search-area{
+	height: 30%;
+}
+.card-area{
+	height: 70%;
+}
