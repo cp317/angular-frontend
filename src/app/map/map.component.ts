@@ -36,28 +36,28 @@ export class MapComponent implements OnInit {
   private searchElementRef: ElementRef;
 
 	constructor(
-    private afAuth: AngularFireAuth, 
-    private af: AngularFireDatabase,  
+    private afAuth: AngularFireAuth,
+    private af: AngularFireDatabase,
     private webAPI:WebAPI,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) { }
 
   ngOnInit() {
     //create a random new Beacon for testing purposes
-    // this.createBeacon("CP317", "Laurier",
-    //     new Date().getTime(),
-    //     new Date().getTime() + 1 +  Math.floor(Math.random() * 21600000),
-    //     "123456789ABCDEFG",
-    //     43.4724 + (Math.random()-0.5),
-    //     -80.526 + (Math.random()-0.5),
-    //     "0010");
+    /*this.createBeacon("CP317", "Laurier",
+         new Date().getTime(),
+         new Date().getTime() + 1 +  Math.floor(Math.random() * 21600000),
+         "123456789ABCDEFG",
+         43.4724 + (Math.random()-0.5),
+         -80.526 + (Math.random()-0.5),
+         "0010");*/
     // gets beacons from firebase
     this.getBeacons();
     // sets initial map position based on user location
-    this.getPosition()
+    this.getPosition();
 
     // creates serach FromControl
-    this.searchControl = new FormControl()
+    this.searchControl = new FormControl();
 
     // load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
@@ -88,8 +88,11 @@ export class MapComponent implements OnInit {
   // display all beacons on the screen
   getBeacons() {
       this.webAPI.getBeacons().then(res => {
-      for (var key in res.val()) {
-        this.beacons.push(res.val()[key]);
+      for (var key in res.val())
+      {
+        var b = res.val()[key];
+        var s:string[] = [];
+        this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
       }
       //console.log(this.beacons);
     });
@@ -97,26 +100,17 @@ export class MapComponent implements OnInit {
 
   // create a new Beacon, which is first instantiated as a class and then stored in the database
   createBeacon(
-    course:string, 
-    school:string, 
-    startTime:number, 
-    endTime:number, 
-    host:string, 
-    lat:number, 
-    lng:number, 
+    course:string,
+    school:string,
+    startTime:number,
+    endTime:number,
+    host:string,
+    lat:number,
+    lng:number,
     tags:string)
   {
-    var b = new Beacon({
-      school: school,
-      course: course,
-      startTime: startTime,
-      endTime: endTime,
-      host: host,
-      lat: lat,
-      lng: lng,
-      tags: tags});
-    //console.log(b);
-    b.storeBeacon();
+    var s:string[] = [];
+    var b = new Beacon(course, school, startTime, endTime, host, s, tags, lat, lng, null);
   }
 
   // gets the position of user from their browser and calls setPostion()

@@ -33,11 +33,15 @@ export class AppComponent {
 
   // display all beacons on the screen
   getBeacons() {
-      this.webAPI.getBeacons().then(res => {
-      for (var key in res.val()) {
-        this.beacons.push(new Beacon(res.val()[key]));
-      }
-    });
+      this.webAPI.getBeacons().then(res =>
+      {
+        for (var key in res.val())
+        {
+          var b = res.val()[key];
+          var s:string[] = [];
+          this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
+        }
+      });
   }
 
 
