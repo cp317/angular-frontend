@@ -27,10 +27,15 @@ export class AppComponent {
   database = firebase.database();
   beacons:Beacon[] = [];
   title: string = "Study Group Finder";
+
+   // currentUser can be of the type GuestUser or RegisteredUser
+   // to get userId, use currentUser.User.userId
   currentUser:any;
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
     this.getBeacons();
+    this.createGuestUser(); //you are a guest before you are registered
+    console.log(this.currentUser.userId);
   }
 
   // display all beacons on the screen
@@ -52,6 +57,24 @@ export class AppComponent {
 	{
 
 	}
+
+  // get the user with the given email
+  login(email:string)
+  {
+    //this.currentUser = ;
+  }
+
+  // logout
+  logout()
+  {
+    this.createGuestUser();
+  }
+
+  // create GuestUser
+  createGuestUser()
+  {
+    this.currentUser = new GuestUser();
+  }
 
 	// updates references to the guest user to point to the newly registered user
 	// zhan5990@mylaurier.ca
