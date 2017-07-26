@@ -13,6 +13,7 @@ import * as firebase from 'firebase/app';
 
 //Class Definitions
 import { Beacon } from './beacon';
+import {User, RegisteredUser, GuestUser} from './user';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class AppComponent {
   database = firebase.database();
   beacons:Beacon[] = [];
   title: string = "Study Group Finder";
+  currentUser:any;
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
     this.getBeacons();
@@ -43,19 +45,19 @@ export class AppComponent {
         }
       });
   }
-	
+
 	//check if the email is already in use
 	// hanx1980@mylaurier.ca
 	checkEmail(email:string)
 	{
-		
+
 	}
-	
+
 	// updates references to the guest user to point to the newly registered user
 	// zhan5990@mylaurier.ca
-	updateUserRef(userId:string, user:registeredUser)
+	updateUserRef(userId:string, user:RegisteredUser)
 	{
-		
+
 	}
 
   clickedBeacon(label: string, index: number) {

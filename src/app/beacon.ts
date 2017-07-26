@@ -1,4 +1,5 @@
 import * as firebase from 'firebase/app';
+import {User, RegisteredUser, GuestUser} from './user';
 
 
 export class Beacon {
@@ -68,26 +69,26 @@ export class Beacon {
         });
     }
 	}
-	
+
 	// updates the beacons attributes to match it's values in the database
 	// liux6433@mylaurier.ca
 	updateBeacon()
 	{
-		
+
 	}
-	
+
 	// for every user attending the beacon (plus the host), removes this beacon from their list of beacons
 	// hanx1980@mylaurier.ca
 	removeBeaconRef()
 	{
-	
+
 	}
-	
+
 	// returns true if the given user is the host, and false otherwise
 	// zihua wang
-	checkHost(user:registeredUser)
+	checkHost(user:RegisteredUser)
 	{
-	
+
 	}
 
   getLat(){
