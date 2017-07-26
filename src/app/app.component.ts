@@ -43,8 +43,20 @@ export class AppComponent {
         }
       });
   }
-
-
+	
+	//check if the email is already in use
+	// hanx1980@mylaurier.ca
+	checkEmail(email:string)
+	{
+		
+	}
+	
+	// updates references to the guest user to point to the newly registered user
+	// zhan5990@mylaurier.ca
+	updateUserRef(userId:string, user:registeredUser)
+	{
+		
+	}
 
   clickedBeacon(label: string, index: number) {
     console.log(`clicked the beacon: ${label || index}`)
