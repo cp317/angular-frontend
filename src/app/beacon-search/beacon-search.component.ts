@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Beacon } from '../beacon';
+import { WebAPI } from '../web-api.service';
 
 @Component({
   selector: 'app-beacon-search',
@@ -8,10 +9,11 @@ import { Beacon } from '../beacon';
 })
 
 export class BeaconSearchComponent implements OnInit {
+  	private webAPI:WebAPI
+    beacons:Beacon[] = [];
+
 	schoolName: string = "";
 	courseName: string = "";
-	startTime: number;
-	endTime: number;
 	timeRemaining: number = 0;
 	hasWifi: boolean;
 	hasComputers: boolean;
@@ -19,14 +21,13 @@ export class BeaconSearchComponent implements OnInit {
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
 	tags: string = "";
-
-	//for testing
-  	//clickMessage = "";
   	
+  	//When filter apply is done
   	onApply(){ 
-  		//this.clickMessage = this.schoolName + " " + this.courseName + " ";
+  		//reset tags string
   		this.tags = "";
 
+  		//build the tags string
   		if (this.hasComputers){
   			this.tags += "1";
   		}else{
@@ -56,18 +57,28 @@ export class BeaconSearchComponent implements OnInit {
   		}else{
   			this.tags += "0";
   		}
-  		
   	}
 
-  	//function for checking the filters and then sorting the array of beacons
-  	//then send that to display
+  	//Gets all beacons within filter
+  	getFilterBeacons() {
+  		this.webAPI.getBeacons().then(res => 
+  			{
+	      	for (var key in res.val()){
+	      		var b = res.val()[key];
+	        	var s:string[] = [];
 
-  	//do by first making empty beacon array
-  	//then get an array of beacons from the database
-  	//ompare each beacon in the array with the properties listed above
-  	//put matching in array
-  	//send array to display
-
+	        	//compare to filter
+	        	if(((b.course === this.courseName) || (this.courseName === ""))
+	        	 && ((b.school === this.schoolName) || (this.schoolName === ""))
+	        	 && ((b.tags === this.tags) || (this.tags === ""))
+	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60))) //milliseconds to hours
+	        	 ){
+	        		this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
+	        	}
+	     	}
+      //console.log(this.beacons);
+    	})
+ 	 }
 
   	constructor() { }
 
