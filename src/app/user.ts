@@ -57,16 +57,13 @@ export class User
 	{
     //connect to firebase
         var database = firebase.database();
-        //get user's user object from database
-        var user=this.user
         //get users unique id
-        var userid= this.userId
         var id = "userId=";
         //concat userid into the cookie string and add to the user's cookie
-        document.cookie=id.concat(userId);
+        document.cookie=id.concat(this.userId);
         var activeBeacons="beacons=";
         //get user's list of active beacons
-        var beacons=database.ref('/User/'+user+'/Beacons/');
+        var beacons=database.ref('/User/'+this.userId+'/Beacons/');
         //loop through users active beacons and concat them into a single comma seperated string 
         for(var i in beacons)
             {
@@ -77,7 +74,7 @@ export class User
          document.cookie=activeBeacons;
         //check if user is a registereduser
         if(user.isRegistered){
-            var chats=database.ref('/user/'+u+'/Chats/').once
+            var chats=database.ref('/user/'+this.userId+'/Chats/')
             var chatCookie='chats=';
             for(var a in chats)
                 {
