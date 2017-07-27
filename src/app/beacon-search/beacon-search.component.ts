@@ -20,7 +20,7 @@ export class BeaconSearchComponent implements OnInit {
 	hasOutlets: boolean;
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
-	tags: string = "";
+	tags: string = "00000";
   	
   	//When filter apply is done
   	onApply(){ 
@@ -70,7 +70,7 @@ export class BeaconSearchComponent implements OnInit {
 	        	//compare to filter
 	        	if(((b.course === this.courseName) || (this.courseName === ""))
 	        	 && ((b.school === this.schoolName) || (this.schoolName === ""))
-	        	 && ((b.tags === this.tags) || (this.tags === ""))
+	        	 && ((b.tags === this.tags) || (this.tags === "00000"))
 	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60))) //milliseconds to hours
 	        	 ){
 	        		this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));

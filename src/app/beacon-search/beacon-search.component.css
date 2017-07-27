@@ -4,12 +4,9 @@
 	text-align: center;
 }
 
-label[for="userInputed"]{
-	font-size: 18px;
-}
-
-label[for="checkbox"]{
+label{
 	font-size: 14px;
+	display: inline-block;
 }
 
 button{
