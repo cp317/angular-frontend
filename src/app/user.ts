@@ -73,16 +73,16 @@ export class User
         //push active beacons into the cookie
          document.cookie=activeBeacons;
         //check if user is a registereduser
-        if(this.User.isRegistered){
-            var chats=database.ref('/user/'+this.userId+'/chats/')
-            var chatCookie='chats=';
-            for(var a in chats)
-                {
-                    chatCookie.concat(this.chats[a].chatId);
-                    chatCookie.concat(',');
-                }
-            document.cookie=chatCookie;
-        }
+   //     if(this.isRegistered()){
+ //           var chats=database.ref('/user/'+this.userId+'/chats/')
+  //          var chatCookie='chats=';
+           // for(var a in chats)
+        //        {
+        //            chatCookie.concat(this.chats[a].chatId);
+        //            chatCookie.concat(',');
+        //        }
+       //     document.cookie=chatCookie;
+ //     }
 
 	}
 
@@ -101,6 +101,7 @@ export class RegisteredUser {
 	firstName:string;
 	lastName:string;
 	email:string;
+ //   chats: Chat[]=[];
 
   constructor(user:User, firstName:string, lastName:string, email:string)
 	{
