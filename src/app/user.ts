@@ -78,7 +78,7 @@ export class User
             var chatCookie='chats=';
             for(var a in chats)
                 {
-                    chatCookie.concat(a.chatId);
+                    chatCookie.concat(this.chats[a].chatId);
                     chatCookie.concat(',');
                 }
             document.cookie=chatCookie;
