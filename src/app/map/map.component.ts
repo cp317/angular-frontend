@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
   private searchControl: FormControl;
   private beacons:any[] = [];
   private address: string;
+  private type: any;
 
 	// google maps zoom level
 	private zoom: number = 8;
@@ -75,6 +76,7 @@ export class MapComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
+
 
           // set latitude, longitude and zoom based on autocomplete suggestion
           this.lat = place.geometry.location.lat();
@@ -158,9 +160,32 @@ export class MapComponent implements OnInit {
   }
 
   // logs a beacon lat, lng given (for future functionality)
-  placeBeacon($event: any) {
+  placeBeacon($event: any ) {
+    var type;
     console.log($event.coords.lat);
     console.log($event.coords.lng);
+    // create new geocoder
+    var geocoder = new google.maps.Geocoder();
+    // get users {lat, lng}
+    var latlng = {lat: $event.coords.lat, lng: $event.coords.lng}
+    // console.log(latlng);
+    // get type from geocoder based on {lat, lng}
+    var place = geocoder.geocode({'location': latlng}, function(results, status) {
+      if (status[0] == "O") {
+        var address_components = results[1].address_components;
+        console.log(address_components.length);
+        if (address_components.length <= 3) {
+          console.log("water")
+          type = "water";
+        }
+        else
+          console.log("land")
+          type = "land"
+      }
+      else
+        console.log("water")
+      type = "water";
+    })
   }
 
   // logs each beacon click (for future functionality)
