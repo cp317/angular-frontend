@@ -55,6 +55,37 @@ export class User
 	// parr8740@mylaurier.ca
 	storeCookie()
 	{
+    //connect to firebase
+        var database = firebase.database();
+        //get user's user object from database
+        var user=this.user
+        //get users unique id
+        var userid= this.userId
+        var id = "userId=";
+        //concat userid into the cookie string and add to the user's cookie
+        document.cookie=id.concat(userId);
+        var activeBeacons="beacons=";
+        //get user's list of active beacons
+        var beacons=database.ref('/User/'+user+'/Beacons/');
+        //loop through users active beacons and concat them into a single comma seperated string 
+        for(var i in beacons)
+            {
+                activeBeacons.concat(i);
+                activeBeacons.concat(",");
+            }
+        //push active beacons into the cookie
+         document.cookie=activeBeacons;
+        //check if user is a registereduser
+        if(user.isRegistered){
+            var chats=database.ref('/user/'+u+'/Chats/').once
+            var chatCookie='chats=';
+            for(var a in chats)
+                {
+                    chatCookie.concat(a);
+                    chatCookie.concat(',');
+                }
+            document.cookie=chatCookie;
+        }
 
 	}
 
