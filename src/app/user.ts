@@ -74,11 +74,11 @@ export class User
          document.cookie=activeBeacons;
         //check if user is a registereduser
         if(user.isRegistered){
-            var chats=database.ref('/user/'+this.userId+'/Chats/')
+            var chats=database.ref('/user/'+this.userId+'/chats/')
             var chatCookie='chats=';
             for(var a in chats)
                 {
-                    chatCookie.concat(a);
+                    chatCookie.concat(a.chatId);
                     chatCookie.concat(',');
                 }
             document.cookie=chatCookie;
