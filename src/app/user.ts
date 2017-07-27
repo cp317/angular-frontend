@@ -93,6 +93,9 @@ export class User
 		//this.userId = ...
 		// return true if cookie is used and false otherwise
 	}
+    isRegistered(){
+        
+    }
 }
 
 export class RegisteredUser {
