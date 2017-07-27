@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Beacon } from '../beacon';
-import { WebAPI } from '../web-api.service';
 
 @Component({
   selector: 'app-beacon-search',
@@ -9,11 +8,10 @@ import { WebAPI } from '../web-api.service';
 })
 
 export class BeaconSearchComponent implements OnInit {
-  	private webAPI:WebAPI
-    beacons:Beacon[] = [];
-
 	schoolName: string = "";
 	courseName: string = "";
+	startTime: number;
+	endTime: number;
 	timeRemaining: number = 0;
 	hasWifi: boolean;
 	hasComputers: boolean;
@@ -26,6 +24,7 @@ export class BeaconSearchComponent implements OnInit {
   	//clickMessage = "";
   	
   	onApply(){ 
+  		//this.clickMessage = this.schoolName + " " + this.courseName + " ";
   		this.tags = "";
 
   		if (this.hasComputers){
@@ -57,29 +56,18 @@ export class BeaconSearchComponent implements OnInit {
   		}else{
   			this.tags += "0";
   		}
-
-  		this.getFilterBeacons();
+  		
   	}
 
-  	//Gets all beacons within filter
-  	getFilterBeacons() {
-  		this.webAPI.getBeacons().then(res => 
-  			{
-	      	for (var key in res.val()){
-	      		var b = res.val()[key];
-	        	var s:string[] = [];
-	        	//compare to filter
-	        	if(((b.course === this.courseName) || (this.courseName === ""))
-	        	 && ((b.school === this.schoolName) || (this.schoolName === ""))
-	        	 && ((b.tags === this.tags) || (this.tags === ""))
-	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60)))
-	        	 ){
-	        		this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
-	        	}
-	     	}
-      //console.log(this.beacons);
-    	})
- 	 }
+  	//function for checking the filters and then sorting the array of beacons
+  	//then send that to display
+
+  	//do by first making empty beacon array
+  	//then get an array of beacons from the database
+  	//ompare each beacon in the array with the properties listed above
+  	//put matching in array
+  	//send array to display
+
 
   	constructor() { }
 
