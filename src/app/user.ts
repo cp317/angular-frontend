@@ -73,7 +73,7 @@ export class User
         //push active beacons into the cookie
          document.cookie=activeBeacons;
         //check if user is a registereduser
-        if(user.isRegistered){
+        if(this.User.isRegistered){
             var chats=database.ref('/user/'+this.userId+'/chats/')
             var chatCookie='chats=';
             for(var a in chats)
