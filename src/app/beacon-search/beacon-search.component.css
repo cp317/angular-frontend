@@ -7,10 +7,20 @@
 label{
 	font-size: 14px;
 	display: inline-block;
+	//border: black solid 1px;
+}
+
+.tags{
+	display:inline-block;
+	//border: black solid 1px;
+}
+
+.mdl-switch{
+	width: 50%;
 }
 
 button{
 	font-size: 20px;
 	background-color: #D3D3D3;
-	border: 1px solid #000000;
+	border: black 1px solid;
 }
