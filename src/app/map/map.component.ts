@@ -2,7 +2,7 @@ import { ElementRef, NgZone, ViewChild, Component, OnInit } from '@angular/core'
 import { WebAPI } from '../web-api.service';
 import { Beacon } from '../beacon';
 import { MapsAPILoader } from '@agm/core';
-import {} from '@types/googlemaps';
+import { } from '@types/googlemaps';
 
 import { FormControl } from '@angular/forms';
 
@@ -88,9 +88,9 @@ export class MapComponent implements OnInit {
   // display all beacons on the screen
   getBeacons() {
       this.webAPI.getBeacons().then(res => {
-      for (var key in res.val())
+      for (var key in res)
       {
-        var b = res.val()[key];
+        var b = res[key];
         var s:string[] = [];
         this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
       }

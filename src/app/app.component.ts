@@ -8,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import * as firebase from 'firebase/app';
 
 //Class Definitions
@@ -33,9 +33,17 @@ export class AppComponent {
   currentUser:any;
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
-    this.getBeacons();
+    Observable.forkJoin([
+      Observable.fromPromise(webAPI.getBeacons()),
+      Observable.fromPromise(webAPI.getUserByEmail("MattMurdock96@gmail.com"))
+    ]).subscribe(data => {
+      this.beacons = data[0];
+      this.currentUser = data[1].val();
+      console.log(this.currentUser);
+      console.log(this.beacons);
+    });
+    // this.getBeacons();
     this.createGuestUser(); //you are a guest before you are registered
-    console.log(this.currentUser.userId);
   }
 
   // display all beacons on the screen
@@ -48,7 +56,12 @@ export class AppComponent {
           var s:string[] = [];
           this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
         }
+        console.log(this.beacons);
       });
+  }
+
+  getUser(email){
+    this.webAPI.getUserByEmail(email);
   }
 
 	//check if the email is already in use
