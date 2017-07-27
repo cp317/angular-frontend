@@ -1,12 +1,14 @@
 //Class Definitions
 import * as firebase from 'firebase/app';
 import { Beacon } from './beacon';
+import { Chat } from './chat';
 
 export class User
 {
 	userId:string;
 	beacons:Beacon[] = [];
 	profileImageURL:string;
+    chats: Chat[]=[];
 	database = firebase.database();
 
   constructor(userId:string)
@@ -49,7 +51,10 @@ export class User
 	// parr8740@mylaurier.ca
 	setImage()
 	{
-		// set image URL at profileImageURL
+        var randNum=Math.floor(Math.random()*3)+1;
+        this.profileImageURL='defaultImage';
+        this.profileImageURL.concat(String(randNum));
+        this.profileImageURL.concat('.png');
 	}
 
 	// parr8740@mylaurier.ca
@@ -65,24 +70,25 @@ export class User
         //get user's list of active beacons
         var beacons=database.ref('/User/'+this.userId+'/Beacons/');
         //loop through users active beacons and concat them into a single comma seperated string 
-        for(var i in beacons)
+        for(var i in this.beacons)
             {
-                activeBeacons.concat(i);
+                activeBeacons.concat(this.beacons[i].beaconId);
                 activeBeacons.concat(",");
             }
         //push active beacons into the cookie
          document.cookie=activeBeacons;
         //check if user is a registereduser
-   //     if(this.isRegistered()){
- //           var chats=database.ref('/user/'+this.userId+'/chats/')
-  //          var chatCookie='chats=';
-           // for(var a in chats)
-        //        {
-        //            chatCookie.concat(this.chats[a].chatId);
-        //            chatCookie.concat(',');
-        //        }
-       //     document.cookie=chatCookie;
- //     }
+        if(this.isRegistered()){
+            var chats=database.ref('/user/'+this.userId+'/chats/')
+            var chatCookie='chats=';
+            //loop through user's active chats and concat them together
+            for(var a in this.chats)
+                {
+                    chatCookie.concat(this.chats[a].chatId);
+                    chatCookie.concat(',');
+                }
+            document.cookie=chatCookie;
+      }
 
 	}
 
@@ -104,7 +110,7 @@ export class RegisteredUser {
 	firstName:string;
 	lastName:string;
 	email:string;
- //   chats: Chat[]=[];
+
 
   constructor(user:User, firstName:string, lastName:string, email:string)
 	{
