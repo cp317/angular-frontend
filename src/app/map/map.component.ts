@@ -88,7 +88,7 @@ export class MapComponent implements OnInit {
   // display all beacons on the screen
   getBeacons()
   {
-    this.webAPI.getBeacons(null).then(res =>
+    this.webAPI.getBeacons("Laurier").then(res =>
     {
       console.log(res);
       for (var key in res)

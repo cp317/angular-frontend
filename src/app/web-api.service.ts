@@ -16,21 +16,24 @@ export class WebAPI {
       this.database.ref('/beacon/').once('value').then( res =>
       {
         var beacons = [];
-        var validSchoolNames:string[] = [];
+        var validSchoolNames = [];
         if (school != null)
         {
           validSchoolNames.push(school);
-          this.getSchoolNameSubstr(school, function(s)
-          {
-            for (var i in s)
+          this.getSchoolNameSubstr(school).then(schoolNames => {
+            var x = 0;
+            for (var i in schoolNames)
             {
-              validSchoolNames.push(s[i]);
+              x++;
+              validSchoolNames.push(schoolNames[i]);
             }
-          });
+            console.log(x);
+          })
+          console.log(validSchoolNames);
 
-          for (var i in validSchoolNames)
+          for (var i = 0; i < validSchoolNames.length; i++)
           {
-            console.log(i + " " + validSchoolNames[i]);
+            console.log(validSchoolNames[i]);
           }
         }
         if (school != null)
@@ -42,7 +45,7 @@ export class WebAPI {
               beacons.push(res.val()[key]);
             }
           }
-          console.log(beacons);
+          // console.log(beacons);
         }
         else
         {
@@ -58,46 +61,49 @@ export class WebAPI {
 
   // function 1: get any school name that contains the given school name or is contained within the given school name
   // ex. ("Laurier" == "wilfrid laurier university")
-  getSchoolNameSubstr(school_name, callback)
+  getSchoolNameSubstr(school_name)
   {
-  	var s=this.database.ref('/beacon/').once('value').then(function(b)
-    {
-  		var uppcase=school_name.toUpperCase();                                          // make the parameter uppercase and its called uppcase
-  		var len=uppcase.length;
-  		var camp;
-  		var t =[];
-  		var temp;
-  		var flag = false;
-  		//alert('agg');
-  		if (uppcase !='university' && uppcase != 'of')
-      {                                 // make sure when the user input university and of, it return nothing.
-  			for(var i in b.val())
-        {
-  				if (b.val()[i].school != undefined)
+    return new Promise((resolve,reject)=>{
+      var s=this.database.ref('/beacon/').once('value').then(function(b)
+      {
+        var uppcase=school_name.toUpperCase();                                          // make the parameter uppercase and its called uppcase
+        var len=uppcase.length;
+        var camp;
+        var t =[];
+        var temp;
+        var flag = false;
+        //alert('agg');
+        if (uppcase !='university' && uppcase != 'of')
+        {                                 // make sure when the user input university and of, it return nothing.
+          for(var i in b.val())
           {
-  					camp=b.val()[i].school.toUpperCase();                                // making the string to uppercase
-  					if (camp==uppcase)
+            if (b.val()[i].school != undefined)
             {
-  						flag= true;
+              camp=b.val()[i].school.toUpperCase();                                // making the string to uppercase
+              if (camp==uppcase)
+              {
+                flag= true;
+              }
+              temp=camp.split(' ');                                                // splitting the string
+              for (var tx in temp)
+              {
+                if (temp[tx].toUpperCase()==uppcase)
+                {                            // comparing the string
+                  flag = true;
+                }
+              }
+              if (flag == true)
+              {                                                     // if string contains the given school name, then this string will be pushed into array.
+                t.push(b.val()[i].school);
+                flag = false;
+              }
             }
-  					temp=camp.split(' ');                                                // splitting the string
-  					for (var tx in temp)
-            {
-  						if (temp[tx].toUpperCase()==uppcase)
-              {                            // comparing the string
-  							flag = true;
-  						}
-  					}
-  					if (flag == true)
-            {                                                     // if string contains the given school name, then this string will be pushed into array.
-  						t.push(b.val()[i].school);
-  						flag = false;
-  					}
-  				}
-  			}
-  		}
-  		callback(t);
-  	});
+          }
+        }
+        console.log("t", t);
+        resolve(t);
+      });
+    })
   }
 
   getUserById(id:string){
