@@ -25,7 +25,7 @@ export class BeaconCardsComponent implements OnInit {
   }
 
   getBeacons() {
-    this.webAPI.getBeacons().then(res => {
+    this.webAPI.getBeacons(null).then(res => {
     for (var key in res)
     {
       var b = res[key];
