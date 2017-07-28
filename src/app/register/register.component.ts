@@ -22,7 +22,7 @@ registerModule = (function() {
   }
 
   function getEmailError() {
-    return getElementById("emailError");
+    return getElementById("registrationEmailError");
   }
 
   function getPassword() {
@@ -30,7 +30,7 @@ registerModule = (function() {
   }
 
   function getPasswordError() {
-    return getElementById("passwordError");
+    return getElementById("registrationPasswordError");
   }
 
   function getRegister() {
@@ -138,7 +138,6 @@ registerModule = (function() {
     clearEmail();
     clearPassword();
     disable(getRegister());
-    emailFocus();
   }
 
   document.addEventListener("DOMContentLoaded", function() {
