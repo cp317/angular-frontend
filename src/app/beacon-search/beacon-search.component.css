@@ -4,16 +4,23 @@
 	text-align: center;
 }
 
-label[for="userInputed"]{
-	font-size: 18px;
+label{
+	font-size: 14px;
+	display: inline-block;
+	//border: black solid 1px;
 }
 
-label[for="checkbox"]{
-	font-size: 14px;
+.tags{
+	display:inline-block;
+	//border: black solid 1px;
+}
+
+.mdl-switch{
+	width: 50%;
 }
 
 button{
 	font-size: 20px;
 	background-color: #D3D3D3;
-	border: 1px solid #000000;
+	border: black 1px solid;
 }

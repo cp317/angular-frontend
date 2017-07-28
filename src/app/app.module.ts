@@ -16,6 +16,8 @@ import { BeaconCardsComponent } from './beacon-cards/beacon-cards.component';
 import { BeaconSearchComponent } from './beacon-search/beacon-search.component';
 import { BeaconListComponent } from './beacon-list/beacon-list.component';
 import { BeaconPageComponent } from './beacon-page/beacon-page.component';
+import { RouterModule} from '@angular/router'
+import { Component, OnInit } from '@angular/core';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -38,6 +40,9 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+        RouterModule.forRoot([
+        {path: 'map', component: MapComponent}
+    ]),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk',
       libraries: ["places"]

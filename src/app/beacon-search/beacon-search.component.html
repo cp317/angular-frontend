@@ -1,18 +1,17 @@
 <!-- This is only a temporary class to help me construct the parent class feel free to chjange it later -->
-{{tags}} 
 <div class ="search">
-	<h5>Search Filter</h5>
-	<form>
+	<h5>Filter Beacons</h5>
 
+	<form action="#">
 		<!--School filters -->
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" type="text" name="schoolFilter" [(ngModel)]='schoolName' placeholder="School Name">
+			<input class="mdl-textfield__input" type="text" name="schoolFilter" [(ngModel)]='schoolName'>
     		<label class="mdl-textfield__label" for="schoolFilter">School Name</label>
 		</div>
 		
 		<!--Course filters -->
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" type="text" name="courseFilter" [(ngModel)]='courseName' placeholder="Course Name">
+			<input class="mdl-textfield__input" type="text" name="courseFilter" [(ngModel)]='courseName'>
     		<label class="mdl-textfield__label" for="courseFilter">Course Name</label>
 		</div>
 
@@ -24,16 +23,45 @@
 		</div>
 
 		<!--Tags-->
-		<div>	
-			<label for="checkbox">
-				<img src="https://image.flaticon.com/icons/svg/149/149193.svg" style="width:30px;height:30px"> Wifi: <input type="checkbox" name="hasWifi" [(ngModel)]="hasWifi">
-				<img src="https://image.flaticon.com/icons/svg/263/263082.svg" style="width:30px;height:30px"> Computers: <input type="checkbox" name="hasComputers" [(ngModel)]="hasComputers">
-				<img src="https://image.flaticon.com/icons/svg/125/125639.svg" style="width:30px;height:30px"> Outlets: <input type="checkbox" name="hasOutlets" [(ngModel)]="hasOutlets">
-				<img src="https://image.flaticon.com/icons/svg/43/43232.svg" style="width:30px;height:30px"> Whiteboard: <input type="checkbox" name="hasWhiteboard" [(ngModel)]="hasWhiteboard">
-				<img src="https://image.flaticon.com/icons/svg/462/462388.svg" style="width:30px;height:30px"> Projector: <input type="checkbox" name="hasProjector" [(ngModel)]="hasProjector">
+		<div class="tags">
+			<img src="https://image.flaticon.com/icons/svg/149/149193.svg" style="width:30px;height:30px"> Wifi
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="wifiSwitch">
+ 				<input type="checkbox" id="wifiSwitch" name="hasWifi" [(ngModel)]='hasWifi' class="mdl-switch__input" checked>
 			</label>
+		</div>
+
+		<div class="tags">
+			<img src="https://image.flaticon.com/icons/svg/263/263082.svg" style="width:30px;height:30px"> Computers
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="computerSwitch">
+ 				<input type="checkbox" id="computerSwitch" name="hasComputers" [(ngModel)]='hasComputers' class="mdl-switch__input" checked>
+			</label>
+		</div>
+
+		<div class="tags">
+			<img src="https://image.flaticon.com/icons/svg/125/125639.svg" style="width:30px;height:30px"> Outlets
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="outletSwitch">
+ 				<input type="checkbox" id="outletSwitch" name="hasOutlets" [(ngModel)]='hasOutlets' class="mdl-switch__input" checked>
+			</label>
+		</div>
+
+		<div class="tags">
+			<img src="https://image.flaticon.com/icons/svg/43/43232.svg" style="width:30px;height:30px"> Whiteboard
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="whiteboardSwitch">
+ 				<input type="checkbox" id="whiteboardSwitch" name="hasWhiteboard" [(ngModel)]='hasWhiteboard' class="mdl-switch__input" checked>
+			</label>
+		</div>
+
+		<div class="tags">
+			<img src="https://image.flaticon.com/icons/svg/462/462388.svg" style="width:30px;height:30px"> Projector
+			<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="projectorSwitch">
+ 				<input type="checkbox" id="projectorSwitch" name="hasProjector" [(ngModel)]='hasProjector' class="mdl-switch__input" checked>
+			</label>
+		</div>
+
+		<!--Button-->
+		<div>
 			<button  class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="onApply()">Apply</button>
 		</div>
+
 	</form>
-	{{clickMessage}}
 </div>
