@@ -18,6 +18,7 @@ import { BeaconListComponent } from './beacon-list/beacon-list.component';
 import { BeaconPageComponent } from './beacon-page/beacon-page.component';
 import { RouterModule} from '@angular/router'
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from './login/login.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -37,6 +38,7 @@ export const firebaseConfig = {
     BeaconSearchComponent,
     BeaconListComponent,
     BeaconPageComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
