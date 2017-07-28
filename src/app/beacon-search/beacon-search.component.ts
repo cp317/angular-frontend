@@ -61,7 +61,7 @@ export class BeaconSearchComponent implements OnInit {
 
   	//Gets all beacons within filter
   	getFilterBeacons() {
-  		this.webAPI.getBeacons().then(res => 
+  		this.webAPI.getBeacons(null).then(res => 
   			{
 	      	for (var key in res.val()){
 	      		var b = res.val()[key];

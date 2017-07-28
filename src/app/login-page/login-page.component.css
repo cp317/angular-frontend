@@ -1,0 +1,10 @@
+.grid{
+    display:flex;
+    height:80vh;
+}
+.login{
+    width:50%;
+}
+.register{
+    width:50%;
+}

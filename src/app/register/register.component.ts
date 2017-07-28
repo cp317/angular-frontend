@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
   }
 
-loginModule = (function() {
+registerModule = (function() {
   function getElementById(id) {
     return document.getElementById(id);
   }
 
   function getEmail() {
-    return <HTMLInputElement>getElementById("email");
+    return <HTMLInputElement>getElementById("register-email");
   }
 
   function getEmailError() {
@@ -26,15 +26,15 @@ loginModule = (function() {
   }
 
   function getPassword() {
-    return <HTMLInputElement>getElementById("password");
+    return <HTMLInputElement>getElementById("register-password");
   }
 
   function getPasswordError() {
     return getElementById("passwordError");
   }
 
-  function getLogin() {
-    return <HTMLInputElement>getElementById("login");
+  function getRegister() {
+    return <HTMLInputElement>getElementById("register");
   }
 
   function emailFocus() {
@@ -45,8 +45,8 @@ loginModule = (function() {
     getPassword().focus();
   }
 
-  function getForgot() {
-    return getElementById("forgot");
+  function getGuest() {
+    return getElementById("guest");
   }
 
   function disable(element) {
@@ -101,11 +101,6 @@ loginModule = (function() {
   function emailKeyUp() {
     window.setTimeout(function() {
       getEmailError().textContent = null;
-      if (getEmail().value) {
-        enable(getForgot());
-      } else {
-        disable(getForgot());
-      }
     }, getKeyupTimeout());
   }
 
@@ -113,9 +108,9 @@ loginModule = (function() {
     window.setTimeout(function() {
       getPasswordError().textContent = null;
       if (getEmail().value && getPassword().value) {
-        enable(getLogin());
+        enable(getRegister());
       } else {
-        disable(getLogin());
+        disable(getRegister());
       }
     }, getKeyupTimeout());
   }
@@ -128,26 +123,21 @@ loginModule = (function() {
     getPassword().value = null;
   }
 
-  function login() {
+  function register() {
     if (isValidEmail() && isValidPassword()) {
-      console.log('login: ' + getEmail().value);
+      console.log('register: ' + getEmail().value);
       reset();
     }
   }
 
-  function forgot() {
-    if (isValidEmail()) {
-      console.log('forgot: ' + getEmail().value);
-      clearPassword();
-      passwordFocus();
-    }
+  function asGuest() {
+    console.log('sign in as guest: guestxxx');
   }
 
   function reset() {
     clearEmail();
     clearPassword();
-    disable(getLogin());
-    disable(getForgot());
+    disable(getRegister());
     emailFocus();
   }
 
@@ -163,12 +153,12 @@ loginModule = (function() {
       passwordKeyUp();
     });
 
-    getLogin().addEventListener('click', function() {
-      login();
+    getRegister().addEventListener('click', function() {
+      register();
     });
 
-    getForgot().addEventListener('click', function() {
-      forgot();
+    getGuest().addEventListener('click', function() {
+      asGuest();
     });
   });
 })();
