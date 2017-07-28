@@ -76,8 +76,6 @@ export class MapComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-
-
           // set latitude, longitude and zoom based on autocomplete suggestion
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
