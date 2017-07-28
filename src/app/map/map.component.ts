@@ -2,7 +2,7 @@ import { ElementRef, NgZone, ViewChild, Component, OnInit } from '@angular/core'
 import { WebAPI } from '../web-api.service';
 import { Beacon } from '../beacon';
 import { MapsAPILoader } from '@agm/core';
-import {} from '@types/googlemaps';
+import { } from '@types/googlemaps';
 
 import { FormControl } from '@angular/forms';
 
@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
   private searchControl: FormControl;
   private beacons:any[] = [];
   private address: string;
+  private type: any;
 
 	// google maps zoom level
 	private zoom: number = 8;
@@ -76,6 +77,7 @@ export class MapComponent implements OnInit {
             return;
           }
 
+
           // set latitude, longitude and zoom based on autocomplete suggestion
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
@@ -88,9 +90,9 @@ export class MapComponent implements OnInit {
   // display all beacons on the screen
   getBeacons() {
       this.webAPI.getBeacons().then(res => {
-      for (var key in res.val())
+      for (var key in res)
       {
-        var b = res.val()[key];
+        var b = res[key];
         var s:string[] = [];
         this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
       }
@@ -158,9 +160,32 @@ export class MapComponent implements OnInit {
   }
 
   // logs a beacon lat, lng given (for future functionality)
-  placeBeacon($event: any) {
+  placeBeacon($event: any ) {
+    var type;
     console.log($event.coords.lat);
     console.log($event.coords.lng);
+    // create new geocoder
+    var geocoder = new google.maps.Geocoder();
+    // get users {lat, lng}
+    var latlng = {lat: $event.coords.lat, lng: $event.coords.lng}
+    // console.log(latlng);
+    // get type from geocoder based on {lat, lng}
+    var place = geocoder.geocode({'location': latlng}, function(results, status) {
+      if (status[0] == "O") {
+        var address_components = results[1].address_components;
+        console.log(address_components.length);
+        if (address_components.length <= 3) {
+          console.log("water")
+          type = "water";
+        }
+        else
+          console.log("land")
+          type = "land"
+      }
+      else
+        console.log("water")
+      type = "water";
+    })
   }
 
   // logs each beacon click (for future functionality)

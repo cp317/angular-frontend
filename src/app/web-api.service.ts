@@ -6,14 +6,30 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class WebAPI {
   database = firebase.database();
-  
+
   constructor() { }
 
   getBeacons(): firebase.Promise<any>{
-  	var promise = this.database.ref('/beacon/').once('value').then( res => {
-      return res;
-  	// get all the beacons from the database
-  	});
-  	return promise;
+    return new Promise((resolve,reject) => {
+      this.database.ref('/beacon/').once('value').then( res => {
+        var beacons = [];
+        for (let key in res.val()){
+          beacons.push(res.val()[key])
+        }
+        resolve(beacons);
+      });
+    }).catch(err => console.log(err))
+  }
+
+  getUserById(id:string){
+
+  }
+
+  getUserByEmail(email:string):Promise<any>{
+    return new Promise((resolve,reject) => {
+      this.database.ref("user").orderByChild("email").equalTo(email).on("child_added", function(snapshot) {
+        resolve(snapshot);
+      });
+    }).catch(err => console.log(err))
   }
 }

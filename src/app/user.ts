@@ -1,12 +1,14 @@
 //Class Definitions
 import * as firebase from 'firebase/app';
 import { Beacon } from './beacon';
+import { Chat } from './chat';
 
 export class User
 {
 	userId:string;
 	beacons:Beacon[] = [];
 	profileImageURL:string;
+    chats: Chat[]=[];
 	database = firebase.database();
 
   constructor(userId:string)
@@ -49,12 +51,51 @@ export class User
 	// parr8740@mylaurier.ca
 	setImage()
 	{
-		// set image URL at profileImageURL
+        var randNum=Math.floor(Math.random()*3)+1;
+        this.profileImageURL='defaultImage';
+        this.profileImageURL.concat(String(randNum));
+        this.profileImageURL.concat('.png');
 	}
 
 	// parr8740@mylaurier.ca
 	storeCookie()
 	{
+    //connect to firebase
+        var database = firebase.database();
+        //get users unique id
+        var cookieStr = "userId=";
+        //concat userid into the cookie string and add to the user's cookie
+        cookieStr.concat(this.userId);
+        cookieStr.concat(';');
+        cookieStr.concat("beacons=");
+        //get user's list of active beacons
+        var beacons=database.ref('/User/'+this.userId+'/Beacons/');
+        //loop through users active beacons and concat them into a single comma seperated string 
+        for(var i in this.beacons)
+            {
+                cookieStr.concat(this.beacons[i].beaconId);
+                cookieStr.concat(",");
+            }
+        cookieStr.concat(";");
+
+
+        //check if user is a registereduser
+        if(this.isRegistered()){
+            var chats=database.ref('/user/'+this.userId+'/chats/')
+            cookieStr.concat("chats=");
+            //loop through user's active chats and concat them together
+            for(var a in this.chats)
+                {
+                    cookieStr.concat(this.chats[a].chatId);
+                    cookieStr.concat(',');
+                }
+            cookieStr.concat(';')
+      }
+        var d = new Date();
+        d.setMonth(d.getMonth()+1);
+        cookieStr.concat(d.toUTCString());
+        cookieStr.concat(';');
+        document.cookie=cookieStr;
 
 	}
 
@@ -65,6 +106,9 @@ export class User
 		//this.userId = ...
 		// return true if cookie is used and false otherwise
 	}
+    isRegistered(){
+        
+    }
 }
 
 export class RegisteredUser {
@@ -73,6 +117,7 @@ export class RegisteredUser {
 	firstName:string;
 	lastName:string;
 	email:string;
+
 
   constructor(user:User, firstName:string, lastName:string, email:string)
 	{
