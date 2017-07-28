@@ -37,14 +37,23 @@ export class User
 	// kang8390@mylaurier.ca
   joinBeacon(b:Beacon)
 	{
-
+		this.beacons.push(b);
   }
 
 	// remove a beacon to the users array of beacons
 	// kang8390@mylaurier.ca
   leaveBeacon(b:Beacon)
 	{
-
+		//find the beacon in the beacon array
+		for(var i in this.beacons)
+		{
+				//delete if found
+				if(this.beacons[i].beaconId===b.beaconId)
+				{
+						this.beacons.splice(Number(i),1);
+						break;
+				}
+	}
   }
 
 	// get a gravitar image for the user, if non exists use a random icon from \src\assets\profileIcons
