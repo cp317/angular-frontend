@@ -86,15 +86,18 @@ export class MapComponent implements OnInit {
   }
 
   // display all beacons on the screen
-  getBeacons() {
-      this.webAPI.getBeacons().then(res => {
+  getBeacons()
+  {
+    this.webAPI.getBeacons(null).then(res =>
+    {
+      console.log(res);
       for (var key in res)
       {
         var b = res[key];
         var s:string[] = [];
         this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
       }
-      //console.log(this.beacons);
+    //console.log(this.beacons);
     });
   }
 
