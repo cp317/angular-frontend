@@ -105,6 +105,12 @@ export class User
 	{
 		//this.userId = ...
 		// return true if cookie is used and false otherwise
+        
+        var decodeCookie= decodeURIComponent(document.cookie);
+        var cookieStr= decodeCookie.split(';');
+       // for(var i;cookieStr.length();i++){
+            
+      //  }
 	}
     isRegistered(){
         
