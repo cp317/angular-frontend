@@ -63,32 +63,39 @@ export class User
     //connect to firebase
         var database = firebase.database();
         //get users unique id
-        var id = "userId=";
+        var cookieStr = "userId=";
         //concat userid into the cookie string and add to the user's cookie
-        document.cookie=id.concat(this.userId);
-        var activeBeacons="beacons=";
+        cookieStr.concat(this.userId);
+        cookieStr.concat(';');
+        cookieStr.concat("beacons=");
         //get user's list of active beacons
         var beacons=database.ref('/User/'+this.userId+'/Beacons/');
         //loop through users active beacons and concat them into a single comma seperated string 
         for(var i in this.beacons)
             {
-                activeBeacons.concat(this.beacons[i].beaconId);
-                activeBeacons.concat(",");
+                cookieStr.concat(this.beacons[i].beaconId);
+                cookieStr.concat(",");
             }
-        //push active beacons into the cookie
-         document.cookie=activeBeacons;
+        cookieStr.concat(";");
+
+
         //check if user is a registereduser
         if(this.isRegistered()){
             var chats=database.ref('/user/'+this.userId+'/chats/')
-            var chatCookie='chats=';
+            cookieStr.concat("chats=");
             //loop through user's active chats and concat them together
             for(var a in this.chats)
                 {
-                    chatCookie.concat(this.chats[a].chatId);
-                    chatCookie.concat(',');
+                    cookieStr.concat(this.chats[a].chatId);
+                    cookieStr.concat(',');
                 }
-            document.cookie=chatCookie;
+            cookieStr.concat(';')
       }
+        var d = new Date();
+        d.setMonth(d.getMonth()+1);
+        cookieStr.concat(d.toUTCString());
+        cookieStr.concat(';');
+        document.cookie=cookieStr;
 
 	}
 
