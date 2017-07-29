@@ -77,13 +77,38 @@ export class Beacon {
 
 	}
 
-	// for every user attending the beacon (plus the host), removes this beacon from their list of beacons
+		// for every user attending the beacon (plus the host), removes this beacon from their list of beacons
 	// hanx1980@mylaurier.ca
 	removeBeaconRef()
 	{
+    var array;
+    this.database.ref('/user/').once('value').then( b => {
+    var arrtest=this.members;
+    for (var m in b.val()){
+      for (var n in arrtest){
+         if (b.val()[m].userid == arrtest[n]){
+             array = b.val()[m].Beacons;
+             for (var t in array){
+               if (array[t].beaconId == this.beaconId){
+                 array.splice(t,1);
+               }
+             }
+         }
+      }
+    }
+    for (var i in b.val()){
+      if (b.val()[i].userid == this.host){
+        var array = b.val()[i].Beacons;
+        for (var a in array){
+          if (array[a].beaconId == this.beaconId){
+            array.splice(a,1);
+          }
+        }
+      }
+    }
+   });
 
 	}
-
 	// returns true if the given user is the host, and false otherwise
 	// zihua wang
 	checkHost(user:RegisteredUser)
