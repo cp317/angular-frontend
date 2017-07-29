@@ -115,6 +115,34 @@ export class Beacon {
 	{
 
 	}
+	
+	// get the beacon ID
+	// Rongxin Yuan - 140589620
+	getBeaconId(){
+		return this.beaconId;
+	}
+	
+	// get the Course code
+	// Rongxin Yuan - 140589620
+	getCourseCode(){
+		return this.course;
+	}
+	
+	// get the Description
+	// Rongxin Yuan - 140589620
+	getDescription(){
+		return this.description;
+	}
+	// get the Start time
+	// Rongxin Yuan - 140589620
+	getStartTime(){
+		return this.startTime;
+	}
+	// get the End time
+	// Rongxin Yuan - 140589620
+	getEndTime(){
+		return this.endTime;
+	}
 
   // get the host of the beacon
   // zhan4770@mylaurier.ca
