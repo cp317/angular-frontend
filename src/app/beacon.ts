@@ -143,7 +143,17 @@ export class Beacon {
 	getEndTime(){
 		return this.endTime;
 	}
-
+	// add user to members
+	// Rongxin Yuan - 140589620
+	inviteUser(newUser){
+		this.members.push(newUser);
+	}
+	// remove users
+	// Rongxin Yuan - 140589620
+	removeUser(user){
+		var index = array.indexOf(user);
+		array.splice(index, 1);
+	}
   // get the host of the beacon
   // zhan4770@mylaurier.ca
   getHost(){
@@ -156,6 +166,11 @@ export class Beacon {
     return this.lat + this.lng;
   }
 
+
+  // get the location of the beacon
+  // zhan4770@mylaurier.ca
+  
+  
   // get Members 
   // zhan4770@mylaurier.ca
 
