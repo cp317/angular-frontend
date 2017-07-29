@@ -116,6 +116,18 @@ export class Beacon {
 
 	}
 
+  // get the host of the beacon
+  // zhan4770@mylaurier.ca
+  getHost(){
+    return this.host;
+  }
+
+  // get the location of the beacon
+  // zhan4770@mylaurier.ca
+  getLocation(){
+    return this.lat + this.lng;
+  }
+
   getLat(){
     return this.lat;
   }
