@@ -13,6 +13,7 @@ export class Beacon {
   startTime:number;
   tags:string;
   beaconId:string;
+  description:string;
   database = firebase.database();
 
   constructor(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:string, lat:number, lng:number, key:string){
@@ -115,19 +116,19 @@ export class Beacon {
 	{
 
 	}
-	
+
 	// get the beacon ID
 	// Rongxin Yuan - 140589620
 	getBeaconId(){
 		return this.beaconId;
 	}
-	
+
 	// get the Course code
 	// Rongxin Yuan - 140589620
 	getCourseCode(){
 		return this.course;
 	}
-	
+
 	// get the Description
 	// Rongxin Yuan - 140589620
 	getDescription(){
@@ -151,8 +152,11 @@ export class Beacon {
 	// remove users
 	// Rongxin Yuan - 140589620
 	removeUser(user){
-		var index = array.indexOf(user);
-		array.splice(index, 1);
+		var index = this.members.indexOf(user);
+    if (index != -1)
+    {
+		    this.members.splice(index, 1);
+    }
 	}
   // get the host of the beacon
   // zhan4770@mylaurier.ca
@@ -183,28 +187,28 @@ export class Beacon {
   setLocation(lat, lng){
     this.lat = lat;
     this.lng = lng;
-    storeBeacon();
+    this.storeBeacon();
   }
 
   // set the start time
   // zhan4770@mylaurier.ca
   setStartTime(startTime){
     this.startTime = startTime;
-    storeBeacon();
+    this.storeBeacon();
   }
 
-  // set end time    
+  // set end time
   // zhan4770@mylaurier.ca
   setEndTime(endTime){
     this.endTime = endTime;
-    storeBeacon();
+    this.storeBeacon();
   }
 
   // set tags
   // zhan4770@mylaurier.ca
   setTags(tags){
     this.tags = tags;
-    storeBeacon();
+    this.storeBeacon();
   }
 
   getLat(){
