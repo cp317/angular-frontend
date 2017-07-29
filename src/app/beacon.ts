@@ -156,6 +156,15 @@ export class Beacon {
     return this.lat + this.lng;
   }
 
+  // get Members 
+  // zhan4770@mylaurier.ca
+
+  // get tags
+  // zhan4770@mylaurier.ca
+  getTags(){
+    return this.tags;
+  }
+
   getLat(){
     return this.lat;
   }
