@@ -163,15 +163,48 @@ export class Beacon {
   // get the location of the beacon
   // zhan4770@mylaurier.ca
   getLocation(){
-    return this.lat + this.lng;
+    return [this.lat, this.lng];
   }
 
-
+  // get members
+  // zhan4770@mylaurier.ca
+  getMembers(){
+    return this.members
+  }
 
   // get tags
   // zhan4770@mylaurier.ca
   getTags(){
     return this.tags;
+  }
+
+  // set the location
+  // zhan4770@mylaurier.ca
+  setLocation(lat, lng){
+    this.lat = lat;
+    this.lng = lng;
+    storeBeacon();
+  }
+
+  // set the start time
+  // zhan4770@mylaurier.ca
+  setStartTime(startTime){
+    this.startTime = startTime;
+    storeBeacon();
+  }
+
+  // set end time    
+  // zhan4770@mylaurier.ca
+  setEndTime(endTime){
+    this.endTime = endTime;
+    storeBeacon();
+  }
+
+  // set tags
+  // zhan4770@mylaurier.ca
+  setTags(tags){
+    this.tags = tags;
+    storeBeacon();
   }
 
   getLat(){
