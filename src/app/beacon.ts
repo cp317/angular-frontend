@@ -173,6 +173,8 @@ export class Beacon {
   
   // get Members 
   // zhan4770@mylaurier.ca
+  getMembers(){
+    return this.members;
 
   // get tags
   // zhan4770@mylaurier.ca
