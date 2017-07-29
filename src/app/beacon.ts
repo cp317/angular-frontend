@@ -167,14 +167,6 @@ export class Beacon {
   }
 
 
-  // get the location of the beacon
-  // zhan4770@mylaurier.ca
-  
-  
-  // get Members 
-  // zhan4770@mylaurier.ca
-  getMembers(){
-    return this.members;
 
   // get tags
   // zhan4770@mylaurier.ca
