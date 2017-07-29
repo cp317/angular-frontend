@@ -69,42 +69,12 @@ export class User
 	// parr8740@mylaurier.ca
 	storeCookie()
 	{
-    //connect to firebase
-        var database = firebase.database();
-        //get users unique id
-        var cookieStr = "userId=";
-        //concat userid into the cookie string and add to the user's cookie
-        cookieStr.concat(this.userId);
-        cookieStr.concat(';');
-        cookieStr.concat("beacons=");
-        //get user's list of active beacons
-        var beacons=database.ref('/User/'+this.userId+'/Beacons/');
-        //loop through users active beacons and concat them into a single comma seperated string 
-        for(var i in this.beacons)
-            {
-                cookieStr.concat(this.beacons[i].beaconId);
-                cookieStr.concat(",");
-            }
-        cookieStr.concat(";");
-
-
-        //check if user is a registereduser
-        if(this.isRegistered()){
-            var chats=database.ref('/user/'+this.userId+'/chats/')
-            cookieStr.concat("chats=");
-            //loop through user's active chats and concat them together
-            for(var a in this.chats)
-                {
-                    cookieStr.concat(this.chats[a].chatId);
-                    cookieStr.concat(',');
-                }
-            cookieStr.concat(';')
-      }
         var d = new Date();
-        d.setMonth(d.getMonth()+1);
-        cookieStr.concat(d.toUTCString());
-        cookieStr.concat(';');
-        document.cookie=cookieStr;
+        var dStr;
+        d.setFullYear(d.getFullYear()+1);
+        dStr.concat(d.toUTCString());
+        document.cookie='userId=' + this.userId + ';' + 'expires=' + dStr + ';';
+        encodeURIComponent(document.cookie);
 
 	}
 
@@ -114,13 +84,19 @@ export class User
 	{
 		//this.userId = ...
 		// return true if cookie is used and false otherwise
-        
         var decodeCookie= decodeURIComponent(document.cookie);
-        var cookieStr= decodeCookie.split(';');
-       // for(var i;cookieStr.length();i++){
+        if(document.cookie.indexOf('=')==-1){
+            document.cookie='userId=' + null + ';';
+        }else{
+            var cookieStr= document.cookie.split(';');
+            var splitStr= cookieStr[0].split('=');
+            this.userId=splitStr[1];
+        }
+        
             
-      //  }
-	}
+    }
+	
+        
     isRegistered(){
         
     }
