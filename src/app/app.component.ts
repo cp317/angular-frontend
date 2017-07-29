@@ -61,12 +61,39 @@ export class AppComponent {
     this.webAPI.getUserByEmail(email);
   }
 
+ 
+  /**
+ @ Purpose: Sample test for checkEmail fucntion.
+ @ flag:    The result will be true, if the email already exists 
+           and flag will be false if the email does not exist.
+
+  function main(){
+  var email = prompt("enter email: ");
+  checkEmail(email,function(flag){
+    alert(flag);
+  });
+}
+
+  **/
+
 	//check if the email is already in use
 	// hanx1980@mylaurier.ca
-	checkEmail(email:string)
-	{
-
+	checkEmail(email:string,callback)
+	{  
+    var flag:Boolean = false;
+    this.database.ref('/user/').once('value').then(res =>
+      {
+        for (var key in res.val())
+        {
+          var b = res.val()[key];
+          if (b.email==email){
+            flag = true;
+          }
+        }
+        callback(flag);
+      });
 	}
+
 
   // get the user with the given email
   login(email:string)
