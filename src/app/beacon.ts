@@ -75,7 +75,20 @@ export class Beacon {
 	// liux6433@mylaurier.ca
 	updateBeacon()
 	{
+	  this.database.ref('/beacon/' + this.beaconId).set({
 
+		course:this.course,
+		endTime:this.endTime,
+		host:this.host,
+		lat:this.lat,
+		lng:this.lng,
+		members:this.members,
+		school:this.school,
+		startTime:this.startTime,
+		tags:this.tags,
+		description:this.description
+    });
+		
 	}
 
 		// for every user attending the beacon (plus the host), removes this beacon from their list of beacons
