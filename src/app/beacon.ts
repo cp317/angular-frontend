@@ -125,8 +125,23 @@ export class Beacon {
 	}
 	// returns true if the given user is the host, and false otherwise
 	// zihua wang
+  //assigned to : wang7440@mylaurier.ca
+	// i use callback replaced  return because it will get nothing when you use return function 
 	checkHost(user:RegisteredUser)
 	{
+    boolean flag;
+		this.database.ref('users').once('value').then(ref <=
+		{
+			for (var i in ref.val()){
+				if (ref.val()[i].host == user.userid){
+					flag = true;
+				}else{
+					flag = false;
+				}
+			}
+			callback(flag);
+			
+		});
 
 	}
 
