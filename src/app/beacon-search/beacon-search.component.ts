@@ -57,6 +57,8 @@ export class BeaconSearchComponent implements OnInit {
   		}else{
   			this.tags += "0";
   		}
+
+  		this.getFilterBeacons();
   	}
 
   	//Gets all beacons within filter
