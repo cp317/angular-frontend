@@ -57,28 +57,12 @@ export class Chat
 		return this.chatId;
 	}
 	
-	getMessage(position:number)
-	{
-		if (position >= 0 && position < this.numberOfMessages())
-		{
-			return this.messages[position];
-		}
-		else
-		{
-			return null;
-		}
-	}
 	
 	getMessages()
 	{
 		return this.messages;
 	}
 	
-	//Returns the number of Messages in the chat.
-	numberOfMessages()
-	{
-		return this.messages.length;
-	}
 	
 	//Private Method
 	queryChatDatabase()
