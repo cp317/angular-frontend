@@ -32,7 +32,7 @@ export class BeaconCardsComponent implements OnInit {
       var s:string[] = [];
       this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
     }
-    // console.log(this.beacons);
+    console.log(this.beacons);
     this.beacon = this.beacons[0];
     });
   }
