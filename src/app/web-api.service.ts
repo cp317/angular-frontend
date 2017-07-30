@@ -42,6 +42,7 @@ export class WebAPI {
             beacons[key] = res.val()[key];
           }
         }
+        console.log(beacons);
         resolve(beacons);
       });
     }).catch(err => console.log(err))
@@ -85,7 +86,6 @@ export class WebAPI {
           }
         }
       }
-      console.log("t", t);
       return t;
   }
 

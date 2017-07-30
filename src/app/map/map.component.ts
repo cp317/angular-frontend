@@ -88,14 +88,12 @@ export class MapComponent implements OnInit {
   // display all beacons on the screen
   getBeacons()
   {
-    this.webAPI.getBeacons("Laurier").then(res =>
+    this.webAPI.getBeacons(null).then(res =>
     {
       for (var key in res)
       {
-        console.log(res[key]);
         this.beacons.push(new Beacon(key));
       }
-    //console.log(this.beacons);
     });
   }
 
@@ -143,6 +141,7 @@ export class MapComponent implements OnInit {
 
   // logs a beacon lat, lng given (for future functionality)
   placeBeacon($event: any ) {
+    this.getBeacons();
     console.log(this.beacons);
     var type;
     console.log($event.coords.lat);

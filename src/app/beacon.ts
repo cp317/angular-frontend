@@ -28,7 +28,6 @@ export class Beacon {
     }
 
     this.updateBeacon();
-    console.log(this);
   }
 
   // save the current beacon object to the database
