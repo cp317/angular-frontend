@@ -11,8 +11,8 @@ body{
   filter: alpha (opacity=70);
 }
 #something{
-  border-bottom: 3px solid lightblue;
-  border-top: 3px solid lightblue;
+  padding: 0.15cm;
+  border-bottom: 3px solid rgb(63,81,181);
 }
 #nav_wrapper ul li{
   list-style: none;
@@ -25,7 +25,9 @@ body{
   text-decoration: none;
 }
 
-#nav_wrapper ul li:hover{
-  background: lightblue;
-  transition: all 0.45s;
+#nav_wrapper ul li a:hover{
+  background:rgb(63,81,181);
+  transition: all 0.8s;
+  Color:white;
+  padding: 10px;
 }
