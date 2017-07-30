@@ -20,14 +20,47 @@ export class WebAPI {
         if (school != null)
         {
           validSchoolNames.push(school);
+
+          // get any names that are a substring of the given school name
+          // or that the school name is a substring of
           var schoolNames = this.getSchoolNameSubstr(res.val(),school)
-            for (let name of schoolNames)
+          for (let name of schoolNames)
+          {
+            if (!validSchoolNames.includes(name))
             {
               validSchoolNames.push(name);
             }
+          }
+          // get any acronyms of the school name
+          for (let name of validSchoolNames)
+          {
+            schoolNames = this.get_name_acr(res.val(), name);
+            for (let name_acr of schoolNames)
+            {
+              if(!validSchoolNames.includes(name_acr))
+              {
+                validSchoolNames.push(name_acr);
+                
+                if (name_acr.length > school.length)
+                {
+                  // orignal school name was an acronym so get school names of the full version
+                  var schoolNames = this.getSchoolNameSubstr(res.val(),name_acr)
+                  for (let name of schoolNames)
+                  {
+                    if (!validSchoolNames.includes(name))
+                    {
+                      validSchoolNames.push(name);
+                    }
+                  }
+                }
+              }
+            }
+          }
+
         }
         if (school != null)
         {
+          console.log(validSchoolNames);
           for (let key in res.val())
           {
             if (validSchoolNames.includes(res.val()[key].school))
@@ -52,42 +85,139 @@ export class WebAPI {
   // ex. ("Laurier" == "wilfrid laurier university")
   getSchoolNameSubstr(beacons, school_name)
   {
-      var uppcase=school_name.toUpperCase();                                          // make the parameter uppercase and its called uppcase
-      var len=uppcase.length;
-      var camp;
-      var t =[];
-      var temp;
-      var flag = false;
-      //alert('agg');
-      if (uppcase !='university' && uppcase != 'of')
-      {                                 // make sure when the user input university and of, it return nothing.
-        for(let beacon of beacons)
-        {
-          if (beacon.school != undefined)
-          {
-            camp=beacon.school.toUpperCase();                                // making the string to uppercase
-            if (camp==uppcase)
-            {
-              flag= true;
+    var uppcase=school_name.toUpperCase();                                          // make the parameter uppercase and its called uppcase
+    var len=uppcase.length;
+    var camp;
+    var t =[];
+    var temp;
+    var flag = false;
+    //alert('agg');
+    if (uppcase !='UNIVERSITY' && uppcase != 'OF'){                                 // make sure when the user input university and of, it return nothing.
+      for(var i in beacons){
+        if (beacons[i].school != undefined){
+          camp=beacons[i].school.toUpperCase();                                // making the string to uppercase
+          if (camp==uppcase){
+            flag= true;
+          }
+          temp=camp.split(' ');                                                // splitting the string
+          for (var tx in temp){
+            if (temp[tx].toUpperCase()==uppcase){                            // comparing the string
+              flag = true;
             }
-            temp=camp.split(' ');                                                // splitting the string
-            for (var tx in temp)
-            {
-              if (temp[tx].toUpperCase()==uppcase)
-              {                            // comparing the string
-                flag = true;
-              }
-            }
-            if (flag == true)
-            {                                                     // if string contains the given school name, then this string will be pushed into array.
-              t.push(beacon.school);
-              flag = false;
-            }
+          }
+          if (flag == true){                                                     // if string contains the given school name, then this string will be pushed into array.
+            t.push(beacons[i].school);
+            flag = false;
           }
         }
       }
+      var ua = uppcase.split(" ");
+      for (var m in beacons)
+      {
+        for (var n in ua)
+        {
+          if (beacons[m].school != undefined && beacons[m].school.toUpperCase() == ua[n])
+          {
+              t.push(beacons[m].school);
+          }
+        }
+      }
+    }
       return t;
   }
+
+
+get_name_acr(beacons:any[], school_name:string)
+{
+	var all_schools = [];
+	//check whether the school_name contains 'of'
+	var new_name = "";
+	var split_name = school_name.split("OF");
+	for (var i in split_name){
+		new_name += split_name[i];
+	}
+
+	//search without 'of'
+	if(school_name != new_name)
+	{
+		var s = this.get_name_acr_aux(beacons, new_name);
+		for (var i in s)
+		{
+			all_schools.push(s[i]);
+		}
+	}
+
+	// search with the original name
+	var s = this.get_name_acr_aux(beacons, new_name);
+	for (var i in s)
+	{
+		all_schools.push(s[i]);
+	}
+  return all_schools;
+}
+
+get_name_acr_aux(beacons:any[], school_name:string)
+{
+	var schools = [];
+
+		// iterate through each beacon
+		for (var i in beacons)
+		{
+			//schools may be undefined in database
+			if (beacons[i].school != undefined)
+			{
+				var acr_names = this.get_acr(beacons[i].school);
+				for (var j in acr_names)
+				{
+					if(acr_names[j] == school_name)
+					{
+						schools.push(beacons[i].school);
+					}
+				}
+        acr_names = this.get_acr(school_name);
+        for (var j in acr_names)
+				{
+					if(acr_names[j] == beacons[i].school)
+					{
+						schools.push(beacons[i].school);
+					}
+				}
+			}
+		}
+	return schools;
+}
+
+// the function returns an array of acronyms
+ get_acr(school_name:string){
+	//init the array
+	var acr_names = [];
+	var split_name = school_name.split(" ");
+	var acr = "";
+	var flag = false;
+
+	//push the acronym to acr_names and check whether the name contains 'of' or not
+	for (var i in split_name){
+		acr += split_name[i][0]
+		if(split_name[i].toUpperCase() == "OF"){
+			flag = true;
+		}
+	}
+
+	acr_names.push(acr.toUpperCase());
+	acr = "";
+
+	//push the new acronym without 'of', if the flag is set to true
+	if(flag){
+		for (var i in split_name){
+			if(split_name[i].toUpperCase() != "OF"){
+				acr += split_name[i][0]
+			}
+		}
+		acr_names.push(acr.toUpperCase());
+	}
+
+	return acr_names;
+}
 
   getUserById(id:string){
 
