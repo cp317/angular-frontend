@@ -16,15 +16,7 @@ export class Beacon {
   description:string;
   database = firebase.database();
 
-  constructor(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:string, lat:number, lng:number, key:string){
-    this.course = course;
-    this.school = school;
-    this.endTime = endTime;
-    this.host = host;
-    this.lat = lat;
-    this.lng = lng;
-    this.startTime = startTime;
-    this.tags = tags;
+  constructor(key:string){
 
     if (key == null)
     {
@@ -34,6 +26,9 @@ export class Beacon {
     {
       this.beaconId = key;
     }
+
+    this.updateBeacon();
+    console.log(this);
   }
 
   // save the current beacon object to the database
@@ -72,10 +67,8 @@ export class Beacon {
 	}
 
 	// updates the beacons attributes to match it's values in the database
-	// liux6433@mylaurier.ca
 	updateBeacon()
 	{
-    console.log("before update", this);
 	  this.database.ref('/beacon/' + this.beaconId).once('value').then(res => {
       var beacon = res.val();
 		this.course = beacon.course,
@@ -88,7 +81,6 @@ export class Beacon {
 		this.startTime = beacon.startTime,
 		this.tags = beacon.tags,
 		this.description = beacon.description
-    console.log("after update",this);
     });
 
 	}

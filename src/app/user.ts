@@ -47,13 +47,13 @@ export class User
 		//find the beacon in the beacon array
 		for(var i in this.beacons)
 		{
-				//delete if found
-				if(this.beacons[i].beaconId===b.beaconId)
-				{
-						this.beacons.splice(Number(i),1);
-						break;
-				}
-	}
+			//delete if found
+			if(this.beacons[i].beaconId===b.beaconId)
+			{
+					this.beacons.splice(Number(i),1);
+					break;
+			}
+		}
   }
 
 	// get a gravitar image for the user, if non exists use a random icon from \src\assets\profileIcons
@@ -92,13 +92,6 @@ export class User
             var splitStr= cookieStr[0].split('=');
             this.userId=splitStr[1];
         }
-        
-            
-    }
-	
-        
-    isRegistered(){
-        
     }
 }
 

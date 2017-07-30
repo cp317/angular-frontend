@@ -15,7 +15,7 @@ export class WebAPI {
     {
       this.database.ref('/beacon/').once('value').then( res =>
       {
-        var beacons = [];
+        var beacons = {};
         var validSchoolNames = [];
         if (school != null)
         {
@@ -32,14 +32,14 @@ export class WebAPI {
           {
             if (validSchoolNames.includes(res.val()[key].school))
             {
-              beacons.push(res.val()[key]);
+              beacons[key] = res.val()[key];
             }
           }
         }
         else
         {
           for (let key in res.val()){
-            beacons.push(res.val()[key]);
+            beacons[key] = res.val()[key];
           }
         }
         resolve(beacons);

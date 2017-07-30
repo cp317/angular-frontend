@@ -90,30 +90,13 @@ export class MapComponent implements OnInit {
   {
     this.webAPI.getBeacons("Laurier").then(res =>
     {
-      console.log(res);
       for (var key in res)
       {
-        var b = res[key];
-        var s:string[] = [];
-        this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
+        console.log(res[key]);
+        this.beacons.push(new Beacon(key));
       }
     //console.log(this.beacons);
     });
-  }
-
-  // create a new Beacon, which is first instantiated as a class and then stored in the database
-  createBeacon(
-    course:string,
-    school:string,
-    startTime:number,
-    endTime:number,
-    host:string,
-    lat:number,
-    lng:number,
-    tags:string)
-  {
-    var s:string[] = [];
-    var b = new Beacon(course, school, startTime, endTime, host, s, tags, lat, lng, null);
   }
 
   // gets the position of user from their browser and calls setPostion()
@@ -127,8 +110,6 @@ export class MapComponent implements OnInit {
   setPosition(position) {
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
-    // console.log(this.lat);
-    // console.log(this.lng);
     this.reverseGeocode();
   }
 
@@ -162,6 +143,7 @@ export class MapComponent implements OnInit {
 
   // logs a beacon lat, lng given (for future functionality)
   placeBeacon($event: any ) {
+    console.log(this.beacons);
     var type;
     console.log($event.coords.lat);
     console.log($event.coords.lng);

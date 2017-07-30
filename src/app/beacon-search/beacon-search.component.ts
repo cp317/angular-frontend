@@ -21,9 +21,9 @@ export class BeaconSearchComponent implements OnInit {
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
 	tags: string = "00000";
-  	
+
   	//When filter apply is done
-  	onApply(){ 
+  	onApply(){
   		//reset tags string
   		this.tags = "";
 
@@ -45,7 +45,7 @@ export class BeaconSearchComponent implements OnInit {
   		}else{
   			this.tags += "0";
   		}
-  		
+
   		if (this.hasWhiteboard){
   			this.tags += "1";
   		}else{
@@ -61,19 +61,17 @@ export class BeaconSearchComponent implements OnInit {
 
   	//Gets all beacons within filter
   	getFilterBeacons() {
-  		this.webAPI.getBeacons(null).then(res => 
+  		this.webAPI.getBeacons(this.schoolName).then(res =>
   			{
 	      	for (var key in res.val()){
 	      		var b = res.val()[key];
-	        	var s:string[] = [];
 
 	        	//compare to filter
 	        	if(((b.course === this.courseName) || (this.courseName === ""))
-	        	 && ((b.school === this.schoolName) || (this.schoolName === ""))
 	        	 && ((b.tags === this.tags) || (this.tags === "00000"))
 	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60))) //milliseconds to hours
 	        	 ){
-	        		this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
+	        		this.beacons.push(new Beacon(key));
 	        	}
 	     	}
       //console.log(this.beacons);

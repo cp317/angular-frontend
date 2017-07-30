@@ -50,9 +50,7 @@ export class AppComponent {
       {
         for (var key in res)
         {
-          var b = res[key];
-          var s:string[] = [];
-          this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
+          this.beacons.push(new Beacon(key));
         }
       });
   }
@@ -61,10 +59,10 @@ export class AppComponent {
     this.webAPI.getUserByEmail(email);
   }
 
- 
+
   /**
  @ Purpose: Sample test for checkEmail fucntion.
- @ flag:    The result will be true, if the email already exists 
+ @ flag:    The result will be true, if the email already exists
            and flag will be false if the email does not exist.
 
   function main(){
@@ -79,7 +77,7 @@ export class AppComponent {
 	//check if the email is already in use
 	// hanx1980@mylaurier.ca
 	checkEmail(email:string,callback)
-	{  
+	{
     var flag:Boolean = false;
     this.database.ref('/user/').once('value').then(res =>
       {
