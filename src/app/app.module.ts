@@ -47,7 +47,9 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
         RouterModule.forRoot([
-        {path: 'map', component: MapComponent}
+        {path: '', component: MapComponent},
+        {path: 'map', component: MapComponent},
+        {path: '*other', component: MapComponent}
     ]),
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk',
