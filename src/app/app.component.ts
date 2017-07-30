@@ -38,10 +38,9 @@ export class AppComponent {
       Observable.fromPromise(webAPI.getUserByEmail("MattMurdock96@gmail.com"))
     ]).subscribe(data => {
       this.beacons = data[0];
-      this.currentUser = data[1].val();
     });
     // this.getBeacons();
-    this.createGuestUser(); //you are a guest before you are registered
+    this.currentUser = new GuestUser(null); //you are a guest before you are registered
   }
 
   // display all beacons on the screen
@@ -102,13 +101,8 @@ export class AppComponent {
   // logout
   logout()
   {
-    this.createGuestUser();
-  }
-
-  // create GuestUser
-  createGuestUser()
-  {
-    this.currentUser = new GuestUser();
+    // replace the current user object with a new guest user
+    this.currentUser = new GuestUser(null);
   }
 
 	// updates references to the guest user to point to the newly registered user

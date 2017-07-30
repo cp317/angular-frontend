@@ -8,7 +8,7 @@ export class User
 	userId:string;
 	beacons:Beacon[] = [];
 	profileImageURL:string;
-    chats: Chat[]=[];
+  chats: Chat[]=[];
 	database = firebase.database();
 
   constructor(userId:string)
@@ -19,10 +19,17 @@ export class User
 			// generate a new userId if one is not already stored as a cookie
 			if (!this.loadCookie())
 			{
-				// attributes are null because they have had no opportunity to be set, this is the constructor
+				// attributes are null because they have had no opportunity to be set
+				this.setImage();
 				this.userId = this.database.ref('/user/').push({
-	  			profileImageURL: null,
-					beaconId: null
+					firstName: null,
+					lastName: null,
+					email: null,
+					gravatar: this.profileImageURL,
+					school: null,
+					biography: null,
+					chats: this.chats,
+					beacons: this.beacons
 	  		  }).key;
 			}
 		}
@@ -60,10 +67,8 @@ export class User
 	// parr8740@mylaurier.ca
 	setImage()
 	{
-        var randNum=Math.floor(Math.random()*3)+1;
-        this.profileImageURL='defaultImage';
-        this.profileImageURL.concat(String(randNum));
-        this.profileImageURL.concat('.png');
+    var randNum=Math.floor(Math.random()*3)+1;
+    this.profileImageURL='src/assets/profileIcons/defaultImage' + randNum + '.png';
 	}
 
 	// parr8740@mylaurier.ca
@@ -102,13 +107,9 @@ export class RegisteredUser {
 	lastName:string;
 	email:string;
 
-
-  constructor(user:User, firstName:string, lastName:string, email:string)
+  constructor(userId:string)
 	{
-		this.user = user;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
+		this.user = new User(userId);
   }
 
 	isRegistered()
@@ -121,10 +122,10 @@ export class GuestUser {
 
 	user:User; // the underlying user object, a javascript implementation of inheritance
 
-  constructor()
+  constructor(userId:string)
 	{
 		// generate a new userId or read an existing one from a cookie
-		this.user = new User(null);
+		this.user = new User(userId);
   }
 
 	isRegistered()

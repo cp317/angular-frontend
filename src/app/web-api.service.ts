@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import {User, RegisteredUser, GuestUser} from './user';
 
 @Injectable()
 export class WebAPI {
@@ -40,7 +41,7 @@ export class WebAPI {
               if(!validSchoolNames.includes(name_acr))
               {
                 validSchoolNames.push(name_acr);
-                
+
                 if (name_acr.length > school.length)
                 {
                   // orignal school name was an acronym so get school names of the full version
@@ -219,8 +220,60 @@ get_name_acr_aux(beacons:any[], school_name:string)
 	return acr_names;
 }
 
-  getUserById(id:string){
+  // inserts a beacon with the given attributes into the database
+  // returns the BeaconID of the newly created beacon
+  createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:string, lat:number, lng:number):string
+  {
+    // insert the beacon object into the database
+    return this.database.ref('/beacon/').push({
+  		school: school,
+  		course: course,
+  		startTime: startTime,
+  		endTime: endTime,
+  		host: host,
+      members: members,
+  		tags: tags,
+  		lat: lat,
+  		lng: lng
+  	  }).key;
+  }
 
+  // insert a user into the database
+  // returns the UserID of the newly created user
+  createUser(firstName:string, lastName:string, email:string)
+	{
+    return this.database.ref('/user/').push({
+      firstName: firstName,
+  		lastName: lastName,
+  		email: email,
+  		gravatar: null,
+  		school: null,
+  		biography: null,
+  		courseCode: [],
+  		chats: [],
+  		beacons: []
+    });
+  }
+
+  // returns the GuestUser or RegisteredUser object associated with the given userID
+  getUserById(id:string)
+  {
+    var user:any;
+    // check the email of the user with the given ID
+
+    // if email is not null / undefined, create a RegisteredUser object with the given ID
+    if (id != null)
+    {
+      user = new RegisteredUser(id);
+    }
+    // if email is null, create a GuestUser object with the given ID
+    else
+    {
+      user = new GuestUser(id);
+    }
+
+    // return the RegisteredUser / GuestUser object
+    return user;
   }
 
   getUserByEmail(email:string):Promise<any>{
