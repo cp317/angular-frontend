@@ -15,7 +15,6 @@ import * as firebase from 'firebase/app';
 })
 export class BeaconCardsComponent implements OnInit {
   private beacons: Beacon[] = [];
-  private beacon: Beacon;
 
   constructor(
       private webAPI: WebAPI) { }
@@ -32,8 +31,6 @@ export class BeaconCardsComponent implements OnInit {
       var s:string[] = [];
       this.beacons.push(new Beacon(b.course, b.school, b.startTime, b.endTime, b.host, s, b.tags, b.lat, b.lng, key));
     }
-    console.log(this.beacons);
-    this.beacon = this.beacons[0];
     });
   }
 

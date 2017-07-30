@@ -24,7 +24,6 @@ export class WebAPI {
             for (let name of schoolNames)
             {
               validSchoolNames.push(name);
-              console.log(name);
             }
         }
         if (school != null)
@@ -36,7 +35,6 @@ export class WebAPI {
               beacons.push(res.val()[key]);
             }
           }
-          // console.log(beacons);
         }
         else
         {
@@ -44,7 +42,6 @@ export class WebAPI {
             beacons.push(res.val()[key]);
           }
         }
-        // console.log(beacons);
         resolve(beacons);
       });
     }).catch(err => console.log(err))
@@ -63,11 +60,11 @@ export class WebAPI {
       //alert('agg');
       if (uppcase !='university' && uppcase != 'of')
       {                                 // make sure when the user input university and of, it return nothing.
-        for(var i in beacons)
+        for(let beacon of beacons)
         {
-          if (beacons[i].school != undefined)
+          if (beacon.school != undefined)
           {
-            camp=beacons[i].school.toUpperCase();                                // making the string to uppercase
+            camp=beacon.school.toUpperCase();                                // making the string to uppercase
             if (camp==uppcase)
             {
               flag= true;
@@ -82,7 +79,7 @@ export class WebAPI {
             }
             if (flag == true)
             {                                                     // if string contains the given school name, then this string will be pushed into array.
-              t.push(beacons[i].school);
+              t.push(beacon.school);
               flag = false;
             }
           }

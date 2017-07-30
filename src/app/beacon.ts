@@ -70,25 +70,27 @@ export class Beacon {
         });
     }
 	}
-	
+
 	// updates the beacons attributes to match it's values in the database
 	// liux6433@mylaurier.ca
 	updateBeacon()
 	{
-	  this.database.ref('/beacon/' + this.beaconId).set({
-
-		course:this.course,
-		endTime:this.endTime,
-		host:this.host,
-		lat:this.lat,
-		lng:this.lng,
-		members:this.members,
-		school:this.school,
-		startTime:this.startTime,
-		tags:this.tags,
-		description:this.description
+    console.log("before update", this);
+	  this.database.ref('/beacon/' + this.beaconId).once('value').then(res => {
+      var beacon = res.val();
+		this.course = beacon.course,
+		this.endTime = beacon.endTime,
+		this.host = beacon.host,
+		this.lat = beacon.lat,
+		this.lng = beacon.lng,
+		this.members = beacon.members,
+		this.school = beacon.school,
+		this.startTime = beacon.startTime,
+		this.tags = beacon.tags,
+		this.description = beacon.description
+    console.log("after update",this);
     });
-		
+
 	}
 
 		// for every user attending the beacon (plus the host), removes this beacon from their list of beacons
