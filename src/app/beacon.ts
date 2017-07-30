@@ -70,7 +70,7 @@ export class Beacon {
         });
     }
 	}
-
+	
 	// updates the beacons attributes to match it's values in the database
 	// liux6433@mylaurier.ca
 	updateBeacon()
@@ -121,33 +121,34 @@ export class Beacon {
       }
     }
    });
-
 	}
+
 	// returns true if the given user is the host, and false otherwise
 	// zihua wang
   //assigned to : wang7440@mylaurier.ca
-	// i use callback replaced  return because it will get nothing when you use return function 
+	// i use callback replaced  return because it will get nothing when you use return function
 	checkHost(user:RegisteredUser,callback)
 	{
-    boolean flag;
-		this.database.ref('users').once('value').then(ref <=
+    var flag:boolean;
+		this.database.ref('users').once('value').then(ref =>
 		{
 			for (var i in ref.val()){
-				if (ref.val()[i].host == user.userid){
+				if (ref.val()[i].host == user.user.userId){
 					flag = true;
 				}else{
 					flag = false;
 				}
 			}
 			callback(flag);
-			
+
 		});
 
 	}
 
 	// get the beacon ID
 	// Rongxin Yuan - 140589620
-	getBeaconId(){
+	getBeaconId()
+  {
 		return this.beaconId;
 	}
 
@@ -201,7 +202,7 @@ export class Beacon {
   // get members
   // zhan4770@mylaurier.ca
   getMembers(){
-    return this.members
+    return this.members;
   }
 
   // get tags
@@ -212,7 +213,7 @@ export class Beacon {
 
   // set the location
   // zhan4770@mylaurier.ca
-  setLocation(lat, lng){
+  setLocation(lat:number, lng:number){
     this.lat = lat;
     this.lng = lng;
     this.storeBeacon();
@@ -220,21 +221,21 @@ export class Beacon {
 
   // set the start time
   // zhan4770@mylaurier.ca
-  setStartTime(startTime){
+  setStartTime(startTime:number){
     this.startTime = startTime;
     this.storeBeacon();
   }
 
   // set end time
   // zhan4770@mylaurier.ca
-  setEndTime(endTime){
+  setEndTime(endTime:number){
     this.endTime = endTime;
     this.storeBeacon();
   }
 
   // set tags
   // zhan4770@mylaurier.ca
-  setTags(tags){
+  setTags(tags:string){
     this.tags = tags;
     this.storeBeacon();
   }
