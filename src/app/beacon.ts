@@ -127,7 +127,7 @@ export class Beacon {
 	// zihua wang
   //assigned to : wang7440@mylaurier.ca
 	// i use callback replaced  return because it will get nothing when you use return function 
-	checkHost(user:RegisteredUser)
+	checkHost(user:RegisteredUser,callback)
 	{
     boolean flag;
 		this.database.ref('users').once('value').then(ref <=
