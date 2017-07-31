@@ -1,40 +1,35 @@
-<!-- test -->
-<div class="mdl-layout mdl-layout--fixed-header">
+<h1 style="margin-top: 100px;margin-left: 95px; color:white; font-size:30px">Login</h1>
 
-	<div class="mdl-grid">
-		<div class="mdl-cell mdl-cell--8-col">
-			<h4>Login</h4>
-		</div>
-
-		<div class="mdl-cell mdl-cell--12-col mdl-grid mdl-grid--no-spacing">
-			<form action="#">
-				<div class="mdl-cell mdl-cell--10-col">
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input id="email" class="mdl-textfield__input" id="email" />
-						<label class="mdl-textfield__label" for="email">Email</label>
-					</div>
-					<div id="emailError" class="login-error"></div>
-				</div>
-
-				<div class="mdl-cell mdl-cell--10-col">
-					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-						<input id="password" class="mdl-textfield__input" type="password" id="password" />
-						<label class="mdl-textfield__label" for="password">Password</label>
-					</div>
-					<div id="passwordError" class="login-error"></div>
-				</div>
-
-				<div class="mdl-cell mdl-cell--10-col">
-					<button id="login" type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored">
-						Login
-					</button>
-					<button id="forgot" type="button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised">
-						Forgot Password
-					</button>
-				</div>
-			</form>
-
-		</div>
-	</div>
+<div class="form-horizontal text-center" style="margin-left: 50px; width:400px">
+  
+  	<form action="#">
+	  	<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+		    <input class="mdl-textfield__input" id="inputEmail3">
+		    <label class="mdl-textfield__label" for="email">Email</label>
+		 </div>
+	</form>
+	  
+	<form action="#">
+	  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+	    <input class="mdl-textfield__input" type="password" id="inputPassword3">
+	    <label class="mdl-textfield__label" for="password">Password</label>
+	  </div>
+	</form>
+  <div class="col-sm-6">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+  </div>
+  <div class="col-sm-6" style="margin-top: 10px">
+      <a>
+        <label>
+           Forget Password?
+        </label>
+      </a>
+  </div>
+  <div class="form-group" style="margin-top: 60px">
+      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">Login</button>
+  </div>
 </div>
-

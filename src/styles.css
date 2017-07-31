@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+body {
+    background-color: #8EB4E6;
+    background: -webkit-linear-gradient(#8EB4E6, #D5AAFF); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#8EB4E6, #D5AAFF); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#8EB4E6, #D5AAFF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#8EB4E6, #D5AAFF); /* Standard syntax */
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}
