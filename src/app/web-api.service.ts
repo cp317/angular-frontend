@@ -280,6 +280,40 @@ get_name_acr_aux(beacons:any[], school_name:string)
     });
   }
 
+  checkEmail(users:any[], email:string):boolean
+  {
+    console.log(email);
+    if (typeof(email) === "undefined" || email == null)
+    {
+      return false;
+    }
+    else
+    {
+      for (var i in users)
+      {
+        if (typeof(users[i].email) !== "undefined" && users[i].email == email)
+        {
+          return true;
+        }
+      }
+
+      return false;
+    }
+  }
+
+  getUsers():Promise<any>{
+    return new Promise((resolve,reject) => {
+      this.database.ref("user").once("value").then(function(res){
+        var users = {};
+        for (var key in res)
+        {
+          users[key] = res.val()[key];
+        }
+        resolve(users);
+      });
+    }).catch(err => console.log(err))
+  }
+
   getUserByEmail(email:string):Promise<any>{
     return new Promise((resolve,reject) => {
       this.database.ref("user").orderByChild("email").equalTo(email).on("child_added", function(snapshot) {

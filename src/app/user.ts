@@ -28,6 +28,7 @@ export class User
 					chats: this.chats,
 					beacons: this.beacons
 	  		  }).key;
+				this.storeCookie();
 			}
 		}
 		// if a userId is given, store it
@@ -65,10 +66,8 @@ export class User
 	// parr8740@mylaurier.ca
 	storeCookie(){
         var d = new Date();
-        var dStr;
         d.setFullYear(d.getFullYear()+1);
-        dStr.concat(d.toUTCString());
-        document.cookie='userId=' + this.userId + ';' + 'expires=' + dStr + ';';
+        document.cookie='userId=' + this.userId + ';' + 'expires=' + d + ';';
         encodeURIComponent(document.cookie);
 	}
 
@@ -94,9 +93,29 @@ export class RegisteredUser {
 	firstName:string;
 	lastName:string;
 	email:string;
+	biography:string;
+	school:string;
+	courses:string[] = [];
 
 	constructor(userId:string){
 		this.user = new User(userId);
+		this.getProfile();
+	}
+
+	getProfile(){
+		this.user.database.ref('/user/' + this.user.userId).once('value').then(res => {
+			var user = res.val();
+			this.firstName = user.firstName;
+			this.lastName = user.lastName;
+			this.email = user.email;
+			this.user.profileImageURL = user.profileImageURL;
+			this.school = user.school;
+			this.biography = user.biography;
+			if (typeof(user.courses) !== "undefined")
+			{
+			this.courses = user.courses;
+			}
+		});
 	}
 
 	isRegistered(){
@@ -127,7 +146,7 @@ export class Profile {
 	biography: string;
 	courseCode: string[] = [];
 	database = firebase.database();
-	
+
 	// Taken from User class.
 	constructor(userKey: string){
 		// If no userKey is given, get a new one from the database
@@ -145,13 +164,13 @@ export class Profile {
 		} else {
 			this.userKey = userKey;
 		}
-	
+
 	}
-	
+
 	// Update profile when a user edits their profile.
 	// deol5210@mylaurier.ca
 	updateProfile(){
-	
+
 		this.database.ref('/user/' + this.userKey).set({
 			userName: this.userName,
 			email: this.email,
@@ -160,10 +179,10 @@ export class Profile {
 			biography: this.biography,
 			courseCode: this.courseCode
 		})
-	
+
 	}
-	
-	
+
+
 	// Update profile vars from database.
 	// deol5210@mylaurier.ca
 	getProfile(){
@@ -176,9 +195,9 @@ export class Profile {
 			this.biography = user.biography,
 			this.courseCode = user.courseCode
 		});
-		
+
 	}
-	
+
 	/*
 	* Getter methods.
 	* deol5210@mylaurier.ca
@@ -186,27 +205,27 @@ export class Profile {
 	getUserName(){
 		return this.userName;
 	}
-	
+
 	getEmail(){
 		return this.email;
 	}
-	
+
 	getGravatar(){
 		return this.gravatar;
 	}
-	
+
 	getSchool(){
 		return this.school;
 	}
-	
+
 	getBiography(){
 		return this.biography;
 	}
-	
+
 	getCourseCode(){
 		return this.courseCode;
 	}
-	
+
 	/*
 	* Setter methods.
 	* deol5210@mylaurier.ca
@@ -215,22 +234,22 @@ export class Profile {
 		this.email = email;
 		this.updateProfile;
 	}
-	
+
 	setGravatar(gravatar: string){
 		this.gravatar = gravatar;
 		this.updateProfile;
 	}
-	
+
 	setSchool(school: string){
 		this.school = school;
 		this.updateProfile;
 	}
-	
+
 	setBiography(biography: string){
 		this.biography = biography;
 		this.updateProfile;
 	}
-	
+
 	setCourseCode(courseCode: string[]){
 		this.courseCode = courseCode;
 		this.updateProfile;

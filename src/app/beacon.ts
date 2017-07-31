@@ -35,12 +35,12 @@ export class Beacon {
   storeBeacon()
   {
 		var membersId = [];
-		
+
 		for (var i in this.members)
 		{
 			membersId.push(this.members[i].user.userId);
 		}
-	
+
     if (this.beaconId == null)
     {
   		// insert the beacon object into the database
