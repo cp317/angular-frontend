@@ -263,7 +263,7 @@ get_name_acr_aux(beacons:any[], school_name:string)
         var user:any;
 
         // if email is not null / undefined, create a RegisteredUser object with the given ID
-        if (typeof b.val().email !== "undefined")
+        if (typeof(b.val().email) !== "undefined")
         {
           user = new RegisteredUser(id);
         }
@@ -274,6 +274,7 @@ get_name_acr_aux(beacons:any[], school_name:string)
         }
 
         // return the RegisteredUser / GuestUser object
+        //console.log(user);
         resolve(user);
       });
     });

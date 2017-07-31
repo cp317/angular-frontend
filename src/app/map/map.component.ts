@@ -94,6 +94,7 @@ export class MapComponent implements OnInit {
       {
         this.beacons.push(new Beacon(key));
       }
+      console.log(this.beacons);
     });
   }
 

@@ -1,6 +1,6 @@
 import * as firebase from 'firebase/app';
 import { User, RegisteredUser, GuestUser } from './user';
-//import { WebAPI } from '../web-api.service';
+import { WebAPI } from './web-api.service';
 
 export class Beacon {
   course:string;
@@ -14,6 +14,7 @@ export class Beacon {
   tags:string;
   beaconId:string;
   description:string;
+  webAPI:WebAPI = new WebAPI();
   database = firebase.database();
 
   constructor(key:string){
@@ -72,20 +73,26 @@ export class Beacon {
       var beacon = res.val();
 		this.course = beacon.course,
 		this.endTime = beacon.endTime,
-		this.host = beacon.host,
 		this.lat = beacon.lat,
 		this.lng = beacon.lng,
-		this.members = beacon.members,
 		this.school = beacon.school,
 		this.startTime = beacon.startTime,
 		this.tags = beacon.tags,
 		this.description = beacon.description
+
+    this.webAPI.getUserById(beacon.host).then(h => {
+      this.host = h;
     });
-/*
-    webAPI.getUserById(this.host).then(res => {
-      this.host = res.val();
-      console.log(this.host);
-    });*/
+
+    for (var i in beacon.members)
+    {
+      this.webAPI.getUserById(beacon.members[i]).then(m => {
+        this.members[i] = m;
+      });
+    }
+  });
+
+
 	}
 
 		// for every user attending the beacon (plus the host), removes this beacon from their list of beacons
