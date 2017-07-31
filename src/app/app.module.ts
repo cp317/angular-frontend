@@ -19,7 +19,6 @@ import { BeaconPageComponent } from './beacon-page/beacon-page.component';
 import { RouterModule} from '@angular/router'
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import {ProfileComponent} from './profile/profile.component'
 
@@ -42,7 +41,6 @@ export const firebaseConfig = {
     BeaconListComponent,
     BeaconPageComponent,
     LoginComponent,
-    RegisterComponent,
     LoginPageComponent,
         ProfileComponent
   ],
