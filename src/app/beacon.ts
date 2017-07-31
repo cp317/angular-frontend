@@ -1,6 +1,6 @@
 import * as firebase from 'firebase/app';
-import {User, RegisteredUser, GuestUser} from './user';
-
+import { User, RegisteredUser, GuestUser } from './user';
+//import { WebAPI } from '../web-api.service';
 
 export class Beacon {
   course:string;
@@ -81,7 +81,11 @@ export class Beacon {
 		this.tags = beacon.tags,
 		this.description = beacon.description
     });
-
+/*
+    webAPI.getUserById(this.host).then(res => {
+      this.host = res.val();
+      console.log(this.host);
+    });*/
 	}
 
 		// for every user attending the beacon (plus the host), removes this beacon from their list of beacons

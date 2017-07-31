@@ -256,24 +256,27 @@ get_name_acr_aux(beacons:any[], school_name:string)
   }
 
   // returns the GuestUser or RegisteredUser object associated with the given userID
-  getUserById(id:string)
+  getUserById(id:string):Promise<any>
   {
-    var user:any;
-    // check the email of the user with the given ID
+    return new Promise((resolve,reject) => {
+        this.database.ref("user/" + id).once("value").then(function(b){
+        var user:any;
 
-    // if email is not null / undefined, create a RegisteredUser object with the given ID
-    if (id != null)
-    {
-      user = new RegisteredUser(id);
-    }
-    // if email is null, create a GuestUser object with the given ID
-    else
-    {
-      user = new GuestUser(id);
-    }
+        // if email is not null / undefined, create a RegisteredUser object with the given ID
+        if (typeof b.val().email !== "undefined")
+        {
+          user = new RegisteredUser(id);
+        }
+        // if email is null, create a GuestUser object with the given ID
+        else
+        {
+          user = new GuestUser(id);
+        }
 
-    // return the RegisteredUser / GuestUser object
-    return user;
+        // return the RegisteredUser / GuestUser object
+        resolve(user);
+      });
+    });
   }
 
   getUserByEmail(email:string):Promise<any>{
