@@ -21,7 +21,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import { LoginPageComponent } from './login-page/login-page.component';
-import { ProfileComponent } from './profile/profile.component'
+import { ProfileComponent } from './profile/profile.component';
+import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -44,7 +45,8 @@ export const firebaseConfig = {
     LoginComponent,
     RegisterComponent,
     LoginPageComponent,
-    ProfileComponent
+    ProfileComponent,
+    BeaconCreateComponent
   ],
   imports: [
     BrowserModule,
