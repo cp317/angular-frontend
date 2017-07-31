@@ -5,10 +5,10 @@ import { WebAPI } from './web-api.service';
 export class Beacon {
   course:string;
   endTime:number;
-  host:string;
+  host:any;
   lat:number;
   lng:number;
-  members:string[] = [];
+  members:any[] = [];
 	school:string;
   startTime:number;
   tags:string;
@@ -34,6 +34,13 @@ export class Beacon {
   // save the current beacon object to the database
   storeBeacon()
   {
+		var membersId = [];
+		
+		for (var i in this.members)
+		{
+			membersId.push(this.members[i].user.userId);
+		}
+	
     if (this.beaconId == null)
     {
   		// insert the beacon object into the database
@@ -42,9 +49,9 @@ export class Beacon {
   			course: this.course,
   			startTime: this.startTime,
   			endTime: this.endTime,
-  			host: this.host,
+  			host: this.host.user.userId,
   			tags: this.tags,
-  			members: this.members,
+  			members: membersId,
   			lat: this.lat,
   			lng: this.lng
   		  }).key;
@@ -57,9 +64,9 @@ export class Beacon {
         course: this.course,
         startTime: this.startTime,
         endTime: this.endTime,
-        host: this.host,
+        host: this.host.user.userId,
         tags: this.tags,
-        members: this.members,
+        members: membersId,
         lat: this.lat,
         lng: this.lng
         });
