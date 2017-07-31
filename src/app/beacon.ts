@@ -111,7 +111,7 @@ export class Beacon {
     var arrtest=this.members;
     for (var m in b.val()){
       for (var n in arrtest){
-         if (b.val()[m].userid == arrtest[n]){
+         if (b.val()[m].userid == arrtest[n].userid){
              array = b.val()[m].Beacons;
              for (var t in array){
                if (array[t].beaconId == this.beaconId){
@@ -122,7 +122,7 @@ export class Beacon {
       }
     }
     for (var i in b.val()){
-      if (b.val()[i].userid == this.host){
+      if (b.val()[i].userid == this.host.userid){
         var array = b.val()[i].Beacons;
         for (var a in array){
           if (array[a].beaconId == this.beaconId){
