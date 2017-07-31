@@ -11,28 +11,16 @@ export class User
 	chats: Chat[]=[];
 	database = firebase.database();
 
-  constructor(userId:string){
-		// if no userId is given, get a new one from the database
-		if (userId == null){
-			// generate a new userId if one is not already stored as a cookie
-			if (!this.loadCookie()){
-				// attributes are null because they have had no opportunity to be set
-				this.setImage();
-				this.userId = this.database.ref('/user/').push({
-					firstName: null,
-					lastName: null,
-					email: null,
-					gravatar: this.profileImageURL,
-					school: null,
-					biography: null,
-					chats: this.chats,
-					beacons: this.beacons
-	  		  }).key;
-				this.storeCookie();
-			}
+  constructor(userId:string)
+	{
+		// if no userId is given, check for one in a cookie
+		if (userId == null)
+		{
+			this.loadCookie()
 		}
 		// if a userId is given, store it
-		else{
+		else
+		{
 			this.userId = userId;
 		}
   }
@@ -63,6 +51,7 @@ export class User
 		this.profileImageURL='src/assets/profileIcons/defaultImage' + randNum + '.png';
 	}
 
+	// stores the user's userID as a cookie
 	// parr8740@mylaurier.ca
 	storeCookie(){
         var d = new Date();
@@ -71,11 +60,9 @@ export class User
         encodeURIComponent(document.cookie);
 	}
 
-	// returns true if cookie is used and false otherwise
+	// attempts to load the user's userID from a cookie
 	// parr8740@mylaurier.ca
 	loadCookie(){
-		//this.userId = ...
-		// return true if cookie is used and false otherwise
         var decodeCookie= decodeURIComponent(document.cookie);
         if(document.cookie.indexOf('=')==-1){
             document.cookie='userId=' + null + ';';
@@ -99,10 +86,11 @@ export class RegisteredUser {
 
 	constructor(userId:string){
 		this.user = new User(userId);
-		this.getProfile();
+		this.loadUser();
+		this.user.storeCookie();
 	}
 
-	getProfile(){
+	loadUser(){
 		this.user.database.ref('/user/' + this.user.userId).once('value').then(res => {
 			var user = res.val();
 			this.firstName = user.firstName;
@@ -111,9 +99,17 @@ export class RegisteredUser {
 			this.user.profileImageURL = user.profileImageURL;
 			this.school = user.school;
 			this.biography = user.biography;
+			if (typeof(user.chats) !== "undefined")
+			{
+				this.user.chats = user.chats;
+			}
+			if (typeof(user.beacons) !== "undefined")
+			{
+				this.user.beacons = user.beacons;
+			}
 			if (typeof(user.courses) !== "undefined")
 			{
-			this.courses = user.courses;
+				this.courses = user.courses;
 			}
 		});
 	}
@@ -121,79 +117,21 @@ export class RegisteredUser {
 	isRegistered(){
 		return true;
 	}
-}
-
-export class GuestUser {
-
-	user:User; // the underlying user object, a javascript implementation of inheritance
-
-	constructor(userId:string){
-		// generate a new userId or read an existing one from a cookie
-		this.user = new User(userId);
-	}
-
-	isRegistered(){
-		return false;
-	}
-}
-
-export class Profile {
-	userKey: string;
-	userName: string;
-	email: string;
-	gravatar: string;
-	school: string;
-	biography: string;
-	courseCode: string[] = [];
-	database = firebase.database();
-
-	// Taken from User class.
-	constructor(userKey: string){
-		// If no userKey is given, get a new one from the database
-		if (userKey == null){
-			// Attributes are null because they have had no opportunity to be set, this is the constructor
-			this.userKey = this.database.ref('/user/').push({
-				userName: null,
-				email: null,
-				gravatar: null,
-				school: null,
-				biography: null,
-				courseCode: null
-		  }).key;
-		// If a userKey is given, store it
-		} else {
-			this.userKey = userKey;
-		}
-
-	}
 
 	// Update profile when a user edits their profile.
 	// deol5210@mylaurier.ca
-	updateProfile(){
-
-		this.database.ref('/user/' + this.userKey).set({
-			userName: this.userName,
+	storeUser()
+	{
+		this.user.database.ref('/user/' + this.user.userId).set({
+			firstName: this.firstName,
+			lastName: this.lastName,
 			email: this.email,
-			gravatar: this.gravatar,
+			profileImageURL: this.user.profileImageURL,
 			school: this.school,
 			biography: this.biography,
-			courseCode: this.courseCode
-		})
-
-	}
-
-
-	// Update profile vars from database.
-	// deol5210@mylaurier.ca
-	getProfile(){
-		this.database.ref('/user/' + this.userKey).once('value').then(res => {
-			var user = res.val();
-			this.userName = user.userName,
-			this.email = user.email,
-			this.gravatar = user.gravatar,
-			this.school = user.school,
-			this.biography = user.biography,
-			this.courseCode = user.courseCode
+			courses: this.courses,
+			chats: this.user.chats,
+			beacons: this.user.beacons
 		});
 
 	}
@@ -202,8 +140,8 @@ export class Profile {
 	* Getter methods.
 	* deol5210@mylaurier.ca
 	*/
-	getUserName(){
-		return this.userName;
+	getName(){
+		return this.firstName + " " + this.lastName;
 	}
 
 	getEmail(){
@@ -211,7 +149,7 @@ export class Profile {
 	}
 
 	getGravatar(){
-		return this.gravatar;
+		return this.user.profileImageURL;
 	}
 
 	getSchool(){
@@ -222,8 +160,8 @@ export class Profile {
 		return this.biography;
 	}
 
-	getCourseCode(){
-		return this.courseCode;
+	getCourse(){
+		return this.courses;
 	}
 
 	/*
@@ -232,26 +170,98 @@ export class Profile {
 	*/
 	setEmail(email: string){
 		this.email = email;
-		this.updateProfile;
+		this.storeUser();
 	}
 
 	setGravatar(gravatar: string){
-		this.gravatar = gravatar;
-		this.updateProfile;
+		this.user.profileImageURL = gravatar;
+		this.storeUser();
 	}
 
 	setSchool(school: string){
 		this.school = school;
-		this.updateProfile;
+		this.storeUser();
 	}
 
 	setBiography(biography: string){
 		this.biography = biography;
-		this.updateProfile;
+		this.storeUser();
 	}
 
-	setCourseCode(courseCode: string[]){
-		this.courseCode = courseCode;
-		this.updateProfile;
+	addCourse(course: string){
+		this.courses.push(course);
+		this.storeUser();
+	}
+}
+
+export class GuestUser {
+
+	user:User; // the underlying user object, a javascript implementation of inheritance
+
+	constructor(userId:string){
+		// generate a new userId or read an existing one from a cookie
+		this.user = new User(userId);
+		if (userId != null)
+		{
+			this.loadUser();
+		}
+		else
+		{
+			this.user.setImage();
+			this.storeUser();
+		}
+
+		this.user.storeCookie();
+	}
+
+	isRegistered(){
+		return false;
+	}
+
+	storeUser()
+	{
+		if (this.user.userId == null)
+		{
+			this.user.userId = this.user.database.ref('/user/').push({
+				firstName: null,
+				lastName: null,
+				email: null,
+				gravatar: this.user.profileImageURL,
+				school: null,
+				biography: null,
+				chats: this.user.chats,
+				beacons: this.user.beacons
+				}).key;
+		}
+		else
+		{
+			this.user.database.ref('/user/' + this.user.userId).set({
+				firstName: null,
+				lastName: null,
+				email: null,
+				profileImageURL: this.user.profileImageURL,
+				school: null,
+				biography: null,
+				courses: null,
+				chats: this.user.chats,
+				beacons: this.user.beacons
+			});
+		}
+	}
+
+	loadUser()
+	{
+		this.user.database.ref('/user/' + this.user.userId).once('value').then(res => {
+			var user = res.val();
+			this.user.profileImageURL = user.profileImageURL;
+			if (typeof(user.chats) !== "undefined")
+			{
+				this.user.chats = user.chats;
+			}
+			if (typeof(user.beacons) !== "undefined")
+			{
+				this.user.beacons = user.beacons;
+			}
+		});
 	}
 }
