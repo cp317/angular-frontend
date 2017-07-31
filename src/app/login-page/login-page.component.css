@@ -7,4 +7,9 @@
 }
 .register{
     width:50%;
+    border-left: 2px solid white;
+}
+
+.main-content{
+	margin-top: 50px;
 }
