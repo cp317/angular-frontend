@@ -1,3 +1,16 @@
 .registration-error{
   color:red;
 }
+
+hr{
+	border-color:white;
+}
+
+input[type=password]{
+    background-color: transparent;
+    border-top:none;
+    border-left:none;
+    border-right:none;
+    box-shadow: none;
+    padding-bottom: 26px;
+}
