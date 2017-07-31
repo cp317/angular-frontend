@@ -109,7 +109,22 @@ export class AppComponent {
 	// zhan5990@mylaurier.ca
 	updateUserRef(userId:string, user:RegisteredUser)
 	{
-
+    this.database.ref('/beacon/').once('value').then(b =>
+    {
+      for(var i in b.val()){
+        if(b.val()[i].host.userId == userId){
+          b.val()[i].host = user;
+         }  
+      } 
+      for (var m in b.val()){
+        var array = b.val()[m].members;
+        for (var n in array){
+          if (array[n].userId == userId){
+            array[n] = user;
+          }
+        }
+      }
+    });
 	}
 
   clickedBeacon(label: string, index: number) {
