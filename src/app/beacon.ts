@@ -20,7 +20,8 @@ export class Beacon {
   database = firebase.database();
 
   constructor(key:string){
-
+	
+	this.chat = new Chat(); //starts up a new Chat object for this beacon 
     if (key == null)
     {
       this.storeBeacon(); // inserts into database and generates beaconId
@@ -29,7 +30,8 @@ export class Beacon {
     {
       this.beaconId = key;
     }
-
+	
+	
     this.updateBeacon();
   }
 
@@ -56,6 +58,7 @@ export class Beacon {
   			members: membersId,
   			lat: this.lat,
   			lng: this.lng
+			chatKey: this.chat.chatId; //adds chatID to chatKey FK
   		  }).key;
     }
     else
@@ -71,6 +74,7 @@ export class Beacon {
         members: membersId,
         lat: this.lat,
         lng: this.lng
+		chatKey: this.chat.chatId; //updates chatKey with chatID of Chat
         });
     }
 	}
