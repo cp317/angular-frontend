@@ -21,7 +21,6 @@ export class Beacon {
 
   constructor(key:string){
 	
-	this.chat = new Chat(); //starts up a new Chat object for this beacon 
     if (key == null)
     {
       this.storeBeacon(); // inserts into database and generates beaconId
@@ -57,8 +56,7 @@ export class Beacon {
   			tags: this.tags,
   			members: membersId,
   			lat: this.lat,
-  			lng: this.lng,
-			chatKey: this.chat.chatId; //adds chatID to chatKey FK
+  			lng: this.lng
   		  }).key;
     }
     else
@@ -73,8 +71,7 @@ export class Beacon {
         tags: this.tags,
         members: membersId,
         lat: this.lat,
-        lng: this.lng,
-		chatKey: this.chat.chatId; //updates chatKey with chatID of Chat
+        lng: this.lng
         });
     }
 	}
