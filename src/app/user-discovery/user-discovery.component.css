@@ -1,0 +1,80 @@
+#user-search-panel {
+background:#FFF;
+border-right:2px solid #000;
+width:300px;
+}
+
+#user-cards-panel {
+-ms-overflow-style:none;
+height:100%;
+overflow-y:scroll;
+}
+
+#user-cards-panel::-webkit-scrollbar {
+width:0!important;
+}
+
+#search-input-forms {
+margin:0 12px;
+}
+
+#search-input-forms form {
+margin-bottom: 8px;
+}
+
+#search-send {
+left:50%;
+margin:0 0 0 -64px;
+position:relative;
+width:128px;
+}
+
+#search-page {
+margin-top: 8px;
+display:flex;
+overflow:hidden;
+height: 600px;
+background-color: #969292;
+}
+
+#user-search {
+height:100%;
+padding:10px;
+width:30%;
+}
+
+#user-search-background {
+background:#FFF;
+display:block;
+height:620px;
+padding:inherit;
+text-align:center;
+}
+
+#user-search-button {
+position:absolute;
+top:50%;
+}
+
+#user-search-title {
+padding-bottom:20px;
+}
+
+#user-search {
+overflow:hidden;
+width:100%;
+}
+
+.beacon-invites {
+float:right;
+margin:0 6px 6px 0 !important;
+}
+
+.panels {
+background-color:#969292;
+}
+
+.search-title {
+margin:10px 0 0;
+text-align:center;
+}
