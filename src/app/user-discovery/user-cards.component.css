@@ -46,3 +46,9 @@
 	padding-top: 0px;
 	padding-left: 20px;
 }
+
+.beacon-invites {
+float:right;
+margin:0 6px 6px 0 !important;
+text-decoration: none;
+}
