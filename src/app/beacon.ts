@@ -1,15 +1,17 @@
 import * as firebase from 'firebase/app';
 import { User, RegisteredUser, GuestUser } from './user';
 import { WebAPI } from './web-api.service';
+import { Chat } from './chat';
 
 export class Beacon {
   course:string;
   endTime:number;
+  chat:Chat;
   host:any;
   lat:number;
   lng:number;
   members:any[] = [];
-	school:string;
+  school:string;
   startTime:number;
   tags:string;
   beaconId:string;
