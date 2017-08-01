@@ -1,0 +1,52 @@
+﻿<body>
+  <header>
+    <div class="container">
+      <div id="branding">
+        <h1>
+          <span class="highlight">
+            StudySpace
+          </span>
+        </h1>
+      </div>
+      <div id="nav">
+        <div id="container-fluid">
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div id="nav_wrapper">
+            <ul id="something">
+              <br>
+              <li><a routerLink="/map" routerLinkActive="active">MAP</a></li>
+              <li><a routerLink="/userdisc" routerLinkActive="active">USER DISCOVERY</a></li>
+
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </header>
+  <section id="boxes">
+    <div class="container">
+      <div class="box">
+        <h1>//NAME OF USER FROM SERVER</h1>
+        <img src="//add user image link">
+        <form>
+          <input type="button" value="chat" onclick="window.location.href='//link to chat'" />
+        </form>
+        <form>
+          <input type="button" value="Invite to Beacon" onclick="window.location.href='//link to chat'" />
+        </form>
+        <h2>School</h2>
+        <p>//USER SCHOOL FROM SERVER</p>
+        <h3>About</h3>
+        <p>//USER INFO FROM SERVER</p>
+        <h4>Classes Enrolled</h4>
+        <p>//USER INFO FROM SERVER</p>
+      </div>
+    </div>
+  </section>
+
+
+</body>
