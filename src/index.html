@@ -20,6 +20,19 @@
 
 <body>
   <app-root></app-root>
-</body>
+</body><script type="text/javascript">
+   function validate() {
+        if (document.getElementById("pass").value != document.getElementById("passc").value) {
+            //document.getElementById("message").innerHTML='hi';
+              alert(' Password and Confirm Password don\'t match.  Please try again.');
+        }
 
+        if (document.getElementById("email").value != document.getElementById("emailc").value) {
+            //document.getElementById("message").innerHTML='hi';
+              alert(' Email and Confirm Email don\'t match. Please try again.');
+        }
+
+  
+   }
+</script>
 </html>
