@@ -57,7 +57,7 @@ export class Beacon {
   			tags: this.tags,
   			members: membersId,
   			lat: this.lat,
-  			lng: this.lng
+  			lng: this.lng,
 			chatKey: this.chat.chatId; //adds chatID to chatKey FK
   		  }).key;
     }
@@ -73,7 +73,7 @@ export class Beacon {
         tags: this.tags,
         members: membersId,
         lat: this.lat,
-        lng: this.lng
+        lng: this.lng,
 		chatKey: this.chat.chatId; //updates chatKey with chatID of Chat
         });
     }
