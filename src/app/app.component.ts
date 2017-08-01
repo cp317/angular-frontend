@@ -34,18 +34,18 @@ export class AppComponent {
 
   constructor(public afAuth: AngularFireAuth, public af: AngularFireDatabase, private webAPI:WebAPI) {
     Observable.forkJoin([
-      Observable.fromPromise(webAPI.getBeacons(null)),
+      Observable.fromPromise(webAPI.getBeacons(null,null)),
       Observable.fromPromise(webAPI.getUserByEmail("MattMurdock96@gmail.com"))
     ]).subscribe(data => {
       this.beacons = data[0];
     });
-    // this.getBeacons();
+
     this.currentUser = new GuestUser(null); //you are a guest before you are registered
   }
 
   // display all beacons on the screen
   getBeacons() {
-      this.webAPI.getBeacons(null).then(res =>
+      this.webAPI.getBeacons(null,null).then(res =>
       {
         for (var key in res)
         {
@@ -114,8 +114,8 @@ export class AppComponent {
       for(var i in b.val()){
         if(b.val()[i].host.userId == userId){
           b.val()[i].host = user;
-         }  
-      } 
+         }
+      }
       for (var m in b.val()){
         var array = b.val()[m].members;
         for (var n in array){

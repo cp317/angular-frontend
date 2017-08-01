@@ -10,7 +10,10 @@ export class WebAPI {
 
   constructor() { }
 
-  getBeacons(school:string): firebase.Promise<any>
+  // gets all beacons with the given school and course
+  // if school is null, return beacons with any school
+  // if course is null, return beacons with any course
+  getBeacons(school:string, course:string): firebase.Promise<any>
   {
     return new Promise((resolve,reject) =>
     {
@@ -74,6 +77,16 @@ export class WebAPI {
         {
           for (let key in res.val()){
             beacons[key] = res.val()[key];
+          }
+        }
+        if (course != null)
+        {
+          for (let key in beacons)
+          {
+            if (beacons[key].course != course)
+            {
+              delete beacons[key];
+            }
           }
         }
         console.log(beacons);

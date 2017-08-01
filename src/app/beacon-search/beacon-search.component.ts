@@ -63,14 +63,13 @@ export class BeaconSearchComponent implements OnInit {
 
   	//Gets all beacons within filter
   	getFilterBeacons() {
-  		this.webAPI.getBeacons(this.schoolName).then(res =>
+  		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res =>
   			{
 	      	for (var key in res.val()){
 	      		var b = res.val()[key];
 
 	        	//compare to filter
-	        	if(((b.course === this.courseName) || (this.courseName === ""))
-	        	 && ((b.tags === this.tags) || (this.tags === "00000"))
+	        	if(((b.tags === this.tags) || (this.tags === "00000"))
 	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60))) //milliseconds to hours
 	        	 ){
 	        		this.beacons.push(new Beacon(key));
