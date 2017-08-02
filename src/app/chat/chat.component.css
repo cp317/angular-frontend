@@ -16,10 +16,8 @@ html, body {
 .chat-footer, .chatbar:after {
 	height: 5px;
 }
-.chat-footer {
-	position: fixed; top: 580px; left: 1200px;
-}
 .chat-button {
+	position: fixed; bottom: 0; right: 0;
 	background-color: #555555; /* Black colour */
 	color: white;
 	text-align: center;
@@ -50,4 +48,5 @@ html, body {
 	margin-left: 50px;
 }
 @media screen and (max-height: 450px) {
+	.chat-button 
 	.chat-sidebar {padding-top: 15px;}
