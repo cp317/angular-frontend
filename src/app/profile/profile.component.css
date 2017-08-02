@@ -38,7 +38,21 @@ body{
 #inviteButton{
   font-size: 20px;
 }
-
+.Picture{
+	width: 250px;
+	display: inline-flex;
+}
+.Picture img{
+	margin: auto 5px;
+	float: left;
+	width: 300px;
+	height: 150px;
+	
+}
+.ChatBeacon{
+	position: relative;
+	top: 30px;
+}
 .School{
 	position: relative;
     left: 500px;
