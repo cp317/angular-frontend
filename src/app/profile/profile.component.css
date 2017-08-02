@@ -55,17 +55,17 @@ body{
 }
 .School{
 	position: relative;
-    left: 500px;
-    top: 30px;
+    left: 300px;
+    top: 0px;
 }
 .About{
 	position: relative;
-    left: 500px;
+    left: 300px;
     top: 40px;
 }
 
 .Enrolled{
 	position: relative;
-    left: 500px;
-    top: 50px;
+    left: 300px;
+    top: 250px;
 }
