@@ -1,0 +1,21 @@
+*{
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.chatbar {
+	min-height: 100%;
+	/* equal to footer height */
+	margin-bottom: -142px;
+}
+.chatbar:after {
+	content: "";
+	display: block;
+}
+.chat-footer, .chatbar:after {
+	height: 142px;
+}
+.chat-footer {
+	background: orange;
+}
