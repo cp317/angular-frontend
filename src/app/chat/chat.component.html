@@ -1,11 +1,11 @@
 
 <div class ="chatbar">
 	<div class="chat-footer" style="position: fixed; bottom: 0px; right 0px;">
-		<button class="chat-button" id="chat-button" type="button" onclick="openChat()">Chat</button>
+		<button md-button class="chat-button" id="chat-button" type="button" (click)="openChat()">Chat</button>
 	</div>
 
 	<div id="chatSidenav" class="chat-sidebar">
-		<a href="javascript:void(0)" class="close-chat" onclick="closeChat()">&times;</a>
+		<a href="javascript:void(0)" class="close-chat" (click)="closeChat()">&times;</a>
 
     <!-- Thes next 2 divs pertain to the content in the sidebar -Paul -->
     <div id="chatListUser" class="chat-list-user">
@@ -22,13 +22,3 @@
 
 	</div>
 </div>
-
-<script>
- function openChat(){
-	document.getElementById("chatSidenav").style.width = "250px";
-}
-
- function closeChat(){
-	document.getElementById("chatSidenav").style.width = "0";
-}
-</script>
