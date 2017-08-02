@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component'
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
+import {UserDiscoveryComponent} from './user-discovery/user-discovery.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -48,14 +49,15 @@ export const firebaseConfig = {
     RegisterComponent,
     LoginPageComponent,
     ProfileComponent,
-    BeaconCreateComponent
+    BeaconCreateComponent,
+    UserDiscoveryComponent
   ],
   imports: [
     BrowserModule,
         RouterModule.forRoot([
         {path: '', component: MapComponent},
         {path: 'map', component: MapComponent},
-        {path: 'profile', component: ProfileComponent},
+        {path: 'user-discovery', component: UserDiscoveryComponent},
         {path: '*other', component: MapComponent}
     ]),
     AgmCoreModule.forRoot({
