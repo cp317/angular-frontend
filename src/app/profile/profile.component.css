@@ -46,7 +46,7 @@ body{
 	margin: auto 5px;
 	float: left;
 	width: 300px;
-	height: 150px;
+	height: 200px;
 	
 }
 .ChatBeacon{
@@ -54,18 +54,24 @@ body{
 	top: 30px;
 }
 .School{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 10px;
 	position: relative;
     left: 300px;
-    top: 0px;
+    top: -265px;
 }
 .About{
+	font-family: "Times New Roman", Times, serif;
+    font-size: 10px;
 	position: relative;
     left: 300px;
-    top: 40px;
+    top: -250px;
 }
 
 .Enrolled{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 10px;
 	position: relative;
     left: 300px;
-    top: 250px;
+    top: 150px;
 }
