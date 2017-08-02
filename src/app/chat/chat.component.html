@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="chat.component.css">
+
 <div class ="chatbar">
 	<div class="chat-footer" style="position: fixed; bottom: 0px; right 0px;">
 		<button class="chat-button" id="chat-button" type="button" onclick="openChat()">Chat</button>
@@ -9,5 +9,12 @@
 	</div>
 </div>
 
-<script src = "chat.component.ts">
+<script>
+ function openChat(){
+	document.getElementById("chatSidenav").style.width = "250px";
+}
+
+ function closeChat(){
+	document.getElementById("chatSidenav").style.width = "0";
+}
 </script>

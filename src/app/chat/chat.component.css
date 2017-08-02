@@ -47,6 +47,3 @@ html, body {
 	font-size: 30px;
 	margin-left: 50px;
 }
-@media screen and (max-height: 450px) {
-	.chat-button 
-	.chat-sidebar {padding-top: 15px;}
