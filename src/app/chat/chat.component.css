@@ -17,6 +17,16 @@ html, body {
 	height: 5px;
 }
 .chat-footer {
-	position: relative; top: 600px; left: 1323px;
-	background-color: orange;
+	position: relative; top: 580px; left: 1250px;
+}
+.chat-button {
+	background-color: #555555; /* Black colour */
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: 2px solid #e7e7e7;
+	font-size: 12px;
+	padding: 12px 28px;
+	border-radius: 4px;
 }
