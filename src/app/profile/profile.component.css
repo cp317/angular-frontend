@@ -39,33 +39,39 @@ body{
   font-size: 20px;
 }
 .Picture{
-	width: 250px;
-	display: inline-flex;
+  width: 250px;
+  display: inline-flex;
 }
 .Picture img{
-	margin: auto 5px;
-	float: left;
-	width: 300px;
-	height: 150px;
-	
+  margin: auto 5px;
+  float: left;
+  width: 300px;
+  height: 200px;
+  
 }
 .ChatBeacon{
-	position: relative;
-	top: 30px;
+  position: relative;
+  top: 30px;
 }
 .School{
-	position: relative;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10px;
+  position: relative;
     left: 300px;
-    top: 0px;
+    top: -265px;
 }
 .About{
-	position: relative;
+  font-family: "Times New Roman", Times, serif;
+    font-size: 10px;
+  position: relative;
     left: 300px;
-    top: 40px;
+    top: -250px;
 }
 
 .Enrolled{
-	position: relative;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10px;
+  position: relative;
     left: 300px;
-    top: 250px;
+    top: 150px;
 }
