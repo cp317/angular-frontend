@@ -7,16 +7,16 @@ html, body {
 .chatbar {
 	min-height: 100%;
 	/* equal to footer height */
-	margin-bottom: -142px;
+	margin-bottom: -5px;
 }
 .chatbar:after {
 	content: "";
 	display: block;
 }
 .chat-footer, .chatbar:after {
-	height: 142px;
+	height: 5px;
 }
 .chat-footer {
-	position: relative; top: 100px;left: 200px;
+	position: relative; top: 600px; left: 1323px;
 	background-color: orange;
 }
