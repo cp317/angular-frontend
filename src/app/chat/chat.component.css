@@ -30,3 +30,24 @@ html, body {
 	padding: 14px 70px;
 	border-radius: 4px;
 }
+.chat-sidebar {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: #111; /* black background */
+	overflow-x: hidden; /* disables horizontal scrolling */
+	padding-top: 60px; /*top padding for things inside */
+	transition: 0.5s; /* half a second slide into place */
+}
+.chat-sidebar .close-chat {
+	position: absolute;
+	top: 0;
+	right: 25px; 
+	font-size: 30px;
+	margin-left: 50px;
+}
+@media screen and (max-height: 450px) {
+	.chat-sidebar {padding-top: 15px;}
