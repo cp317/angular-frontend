@@ -220,7 +220,6 @@ export class GuestUser {
 			this.user.setImage();
 			this.storeUser();
 		}
-
 		this.user.storeCookie();
 	}
 

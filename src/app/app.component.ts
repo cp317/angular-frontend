@@ -39,8 +39,6 @@ export class AppComponent {
     ]).subscribe(data => {
       this.beacons = data[0];
     });
-
-    this.currentUser = new GuestUser(null); //you are a guest before you are registered
   }
 
   // display all beacons on the screen

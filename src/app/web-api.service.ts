@@ -60,6 +60,21 @@ export class WebAPI {
               }
             }
           }
+          for (let name of validSchoolNames)
+          {
+            if(name.length > 3)
+            {
+              schoolNames = this.get_name_spl(name, 1, res.val());
+              for (let s of schoolNames)
+              {
+                if (!validSchoolNames.includes(s))
+                {
+                  validSchoolNames.push(s);
+                  console.log(s);
+                }
+              }
+            }
+          }
 
         }
         if (school != null)
@@ -233,6 +248,80 @@ get_name_acr_aux(beacons:any[], school_name:string)
 	return acr_names;
 }
 
+// check if one of the school names contains a spelling error
+get_name_spl(school_name:string, variance:number, beacons:any[])
+{
+var t = []; // array to hold all the beacons with matching school names
+		var ls = school_name.length;  //length of school name
+		var school = school_name.toUpperCase();
+		var testb; //variance: school name of each serched beacon
+		var lb; //length of testb
+		var j;  //differnce between lb and ls
+		var flag = false; // flag to show the name is matched or not
+		var comp;
+		//start searching
+		for (var i in beacons)
+		{
+			if (beacons[i].school!= undefined){
+				testb = beacons[i].school;
+				lb = testb.length;
+				j = lb - ls;
+				if (j <= variance && j>= -variance){
+					testb = testb.toUpperCase();
+					//if school name and testb have same length
+					if (j==0){
+						comp = 0
+						for (var m =0;m<j;m++){
+							if (testb[m]!=school[m]){
+								comp++;
+							}
+						}
+						if (comp <= variance){
+							flag = true;
+						}
+					}
+					//otherwise
+					else{
+						var shorter; //shorter string between school name and testb
+						var longer;	//longer string between school name and testb
+						var short_l; //length of shorter string
+						if (j>0){
+							short_l = ls
+							shorter = school;
+							longer = testb.toUpperCase();
+						}else{
+							short_l = lb;
+							shorter = testb.toUpperCase();
+							longer = school;
+						}
+
+						comp = 0;
+						var ln = 0;
+						var sn = 0;
+						while (sn < short_l){
+							if (shorter[sn] != longer[ln]){
+								ln--;
+								comp++;
+							}
+							ln++;
+							sn++;
+						}
+						if (comp <= variance){
+							flag = true;
+						}
+					}
+				}
+				//push matched beacon to array
+				if (flag == true ){
+					t.push(beacons[i]);
+					flag = false;
+				}
+			}
+		}
+		// return array
+    return t;
+}
+
   // inserts a beacon with the given attributes into the database
   // returns the BeaconID of the newly created beacon
   createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:string, lat:number, lng:number):string
@@ -276,7 +365,7 @@ get_name_acr_aux(beacons:any[], school_name:string)
         var user:any;
 
         // if email is not null / undefined, create a RegisteredUser object with the given ID
-        if (typeof(b.val().email) !== "undefined")
+        if (typeof(b.val().email) !== "undefined" && b.val().email != null)
         {
           user = new RegisteredUser(id);
         }
@@ -304,7 +393,7 @@ get_name_acr_aux(beacons:any[], school_name:string)
     {
       for (var i in users)
       {
-        if (typeof(users[i].email) !== "undefined" && users[i].email == email)
+        if (typeof(users[i].email) !== "undefined" && users[i].email != null)
         {
           return true;
         }
@@ -320,7 +409,15 @@ get_name_acr_aux(beacons:any[], school_name:string)
         var users = {};
         for (var key in res)
         {
-          users[key] = res.val()[key];
+          if (typeof(res.val()[key].email) !== "undefined" && res.val()[key].email != null)
+          {
+            users[key] = new RegisteredUser(key);
+          }
+          else
+          {
+            users[key] = new GuestUser(key);
+          }
+          console.log(users[key]);
         }
         resolve(users);
       });
