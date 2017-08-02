@@ -17,7 +17,7 @@ html, body {
 	height: 5px;
 }
 .chat-footer {
-	position: relative; top: 580px; left: 1250px;
+	position: fixed; top: 580px; left: 1200px;
 }
 .chat-button {
 	background-color: #555555; /* Black colour */
@@ -27,6 +27,6 @@ html, body {
 	display: inline-block;
 	border: 2px solid #e7e7e7;
 	font-size: 12px;
-	padding: 12px 28px;
+	padding: 14px 70px;
 	border-radius: 4px;
 }
