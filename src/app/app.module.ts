@@ -57,6 +57,7 @@ export const firebaseConfig = {
         {path: '', component: MapComponent},
         {path: 'map', component: MapComponent},
         {path: 'user-discovery', component: UserDiscoveryComponent},
+        {path: 'profile', component: ProfileComponent},
         {path: '*other', component: MapComponent}
     ]),
     AgmCoreModule.forRoot({
