@@ -31,7 +31,7 @@ export class Chat
 	//Creates a new Message for currentt User
 	createNewMessage(msgString:string, userId:string)
 	{
-		this.database.ref('/chat/' + this.chatId + '/').push({
+		this.database.ref('/chat/' + this.chatId + '/messages/').push({
 			msgString: msgString,
 			timestamp: this.createTimestamp(),
 			sender: userId
@@ -49,26 +49,24 @@ export class Chat
 		var seconds = date.getUTCSeconds();
 		var minutes = date.getUTCMinutes();
 		var hours = date.getUTCHours();
-		return '' + day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+		return '' + month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
 	}
 	
 	getChatID()
 	{
 		return this.chatId;
-	}
-	
+	}	
 	
 	getMessages()
 	{
 		return this.messages;
 	}
 	
-	
 	//Private Method
 	queryChatDatabase()
 	{
 		var messages:Message[] = [];
-		this.database.ref('/chat/' + this.chatId + '/').orderByKey().on("value", function(messageLog) 
+		this.database.ref('/chat/' + this.chatId + '/messages/').orderByKey().on("value", function(messageLog) 
 		{	
 			for (var messageKey in messageLog.val())
 			{
