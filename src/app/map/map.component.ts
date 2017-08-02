@@ -56,7 +56,6 @@ export class MapComponent implements OnInit {
     this.getBeacons();
     // sets initial map position based on user location
     this.getPosition();
-
     // creates serach FromControl
     this.searchControl = new FormControl();
 

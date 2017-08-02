@@ -72,6 +72,16 @@ export class User
             this.userId=splitStr[1];
         }
     }
+    loadUserId(){
+        var user = firebase.auth().currentUser;
+        if(user){
+            // user is already signed in
+            this.userId=user.uid
+        }else{
+            this.userId=null;
+        }
+
+    }
 }
 
 export class RegisteredUser {

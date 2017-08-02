@@ -240,7 +240,7 @@ get_name_acr_aux(beacons:any[], school_name:string)
     // insert the beacon object into the database
     return this.database.ref('/beacon/').push({
   		school: school,
-  		course: course,
+  		course: course.replace(/\s/g, "").toUpperCase(),
   		startTime: startTime,
   		endTime: endTime,
   		host: host,

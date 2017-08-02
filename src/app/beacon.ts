@@ -18,6 +18,7 @@ export class Beacon {
   description:string;
   webAPI:WebAPI = new WebAPI();
   database = firebase.database();
+  tags_temp:any[] = [0, 1, 0, 1, 1];
 
   constructor(key:string){
 	
