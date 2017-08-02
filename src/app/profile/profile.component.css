@@ -1,0 +1,57 @@
+body{
+  font-family: ariel, sans-serif;
+}
+#nav{
+  background-size: cover;
+}
+#nav_wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.87;
+  filter: alpha (opacity=70);
+}
+#something{
+  padding: 0.15cm;
+  border-bottom: 3px solid rgb(63,81,181);
+}
+#nav_wrapper ul li{
+  list-style: none;
+  display: inline;
+  padding: 10px;
+}
+
+#nav_wrapper a{
+  color: Black;
+  text-decoration: none;
+}
+
+#nav_wrapper ul li a:hover{
+  background:rgb(63,81,181);
+  transition: all 0.8s;
+  Color:white;
+  padding: 10px;
+}
+#chatButton{
+  font-size: 20px;
+  
+}
+#inviteButton{
+  font-size: 20px;
+}
+
+.School{
+	position: relative;
+    left: 500px;
+    top: 30px;
+}
+.About{
+	position: relative;
+    left: 500px;
+    top: 40px;
+}
+
+.Enrolled{
+	position: relative;
+    left: 500px;
+    top: 50px;
+}

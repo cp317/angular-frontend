@@ -1,0 +1,32 @@
+*{
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.chatbar {
+	min-height: 100%;
+	/* equal to footer height */
+	margin-bottom: -5px;
+}
+.chatbar:after {
+	content: "";
+	display: block;
+}
+.chat-footer, .chatbar:after {
+	height: 5px;
+}
+.chat-footer {
+	position: fixed; top: 580px; left: 1200px;
+}
+.chat-button {
+	background-color: #555555; /* Black colour */
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: 2px solid #e7e7e7;
+	font-size: 12px;
+	padding: 14px 70px;
+	border-radius: 4px;
+}
