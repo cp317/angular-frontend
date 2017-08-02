@@ -20,43 +20,43 @@ export class BeaconSearchComponent implements OnInit {
 	hasOutlets: boolean;
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
-	tags: string = "00000";
+	tags: number[] = [];
 
   	//When filter apply is done
   	onApply(){
   		//reset tags string
-  		this.tags = "";
+  		this.tags = [];
 
   		//build the tags string
-  		if (this.hasComputers){
-  			this.tags += "1";
-  		}else{
-  			this.tags += "0";
+  		if (this.hasComputers) {
+  			this.tags.push(1);
+  		} else{
+  			this.tags.push(0);
   		}
 
   		if (this.hasOutlets){
-  			this.tags += "1";
-  		}else{
-  			this.tags += "0";
-  		}
+  		  this.tags.push(1);
+      } else{
+        this.tags.push(0);
+      }
 
   		if (this.hasProjector){
-  			this.tags += "1";
-  		}else{
-  			this.tags += "0";
-  		}
+  		  this.tags.push(1);
+      } else{
+        this.tags.push(0);
+      }
 
   		if (this.hasWhiteboard){
-  			this.tags += "1";
-  		}else{
-  			this.tags += "0";
-  		}
+  		  this.tags.push(1);
+      } else{
+        this.tags.push(0);
+      }
 
   		if (this.hasWifi){
-  			this.tags += "1";
-  		}else{
-  			this.tags += "0";
-  		}
+  		  this.tags.push(1);
+      } else{
+        this.tags.push(0);
+      }
 
   		this.getFilterBeacons();
   	}
@@ -69,7 +69,7 @@ export class BeaconSearchComponent implements OnInit {
 	      		var b = res.val()[key];
 
 	        	//compare to filter
-	        	if(((b.tags === this.tags) || (this.tags === "00000"))
+	        	if(((b.tags === this.tags) || (this.tags === [0,0,0,0,0]))
 	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60))) //milliseconds to hours
 	        	 ){
 	        		this.beacons.push(new Beacon(key));

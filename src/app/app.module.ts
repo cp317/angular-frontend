@@ -23,7 +23,7 @@ import { RegisterComponent } from './register/register.component'
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
-import {UserDiscoveryComponent} from './user-discovery/user-discovery.component';
+import { UserDiscoveryComponent } from './user-discovery/user-discovery.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -57,6 +57,7 @@ export const firebaseConfig = {
         {path: '', component: MapComponent},
         {path: 'map', component: MapComponent},
         {path: 'user-discovery', component: UserDiscoveryComponent},
+        {path: 'beacon-create', component: BeaconCreateComponent},
         {path: 'profile', component: ProfileComponent},
         {path: '*other', component: MapComponent}
     ]),

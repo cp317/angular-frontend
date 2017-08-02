@@ -13,12 +13,12 @@ export class Beacon {
   members:any[] = [];
   school:string;
   startTime:number;
-  tags:string;
+  tags: number[] = [];
   beaconId:string;
   description:string;
   webAPI:WebAPI = new WebAPI();
   database = firebase.database();
-  tags_temp:any[] = [0, 1, 0, 1, 1];
+  
 
   constructor(key:string){
 	
@@ -34,7 +34,7 @@ export class Beacon {
 	
     this.updateBeacon();
   }
-
+ 
   // save the current beacon object to the database
   storeBeacon()
   {
@@ -250,7 +250,7 @@ export class Beacon {
 
   // set tags
   // zhan4770@mylaurier.ca
-  setTags(tags:string){
+  setTags(tags:number[]){
     this.tags = tags;
     this.storeBeacon();
   }
