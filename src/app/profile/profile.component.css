@@ -43,58 +43,31 @@ body{
   display: inline-flex;
 }
 .Picture img{
-<<<<<<< HEAD
   margin: auto 5px;
   float: left;
   width: 300px;
-  height: 200px;
-  
-=======
-	margin: auto 5px;
-	float: left;
-	width: 300px;
-	height: 200px;
-	
->>>>>>> bf87d13ecf787cea672d987fcc2ec2a3bd33bb7a
+  height: 200px;	
 }
 .ChatBeacon{
   position: relative;
   top: 30px;
 }
 .School{
-<<<<<<< HEAD
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
-  position: relative;
-=======
 	font-family: "Times New Roman", Times, serif;
 	position: relative;
->>>>>>> bf87d13ecf787cea672d987fcc2ec2a3bd33bb7a
     left: 300px;
     top: -265px;
 }
 .About{
-<<<<<<< HEAD
-  font-family: "Times New Roman", Times, serif;
-    font-size: 10px;
-  position: relative;
-=======
 	font-family: "Times New Roman", Times, serif;
 	position: relative;
->>>>>>> bf87d13ecf787cea672d987fcc2ec2a3bd33bb7a
     left: 300px;
     top: -250px;
 }
 
 .Enrolled{
-<<<<<<< HEAD
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
-  position: relative;
-=======
 	font-family: "Times New Roman", Times, serif;
 	position: relative;
->>>>>>> bf87d13ecf787cea672d987fcc2ec2a3bd33bb7a
     left: 300px;
     top: 150px;
 }
