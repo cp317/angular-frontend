@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebAPI } from '../web-api.service';
 
 @Component({
   selector: 'app-beacon-create',
