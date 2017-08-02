@@ -4,12 +4,11 @@
     margin: 1rem;
     position: relative;
 }
-.beacon-card > .mdl-card__title {
-    
-}
+
 .beacon-card > .mdl-card__supporting-text {
     text-align: left;
 }
+
 .mdl-progress {
     width: 100%;
 }
