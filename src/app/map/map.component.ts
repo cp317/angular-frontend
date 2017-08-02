@@ -142,7 +142,6 @@ export class MapComponent implements OnInit {
 
   // logs a beacon lat, lng given (for future functionality)
   placeBeacon($event: any ) {
-    console.log(this.beacons);
     var type;
     console.log($event.coords.lat);
     console.log($event.coords.lng);
