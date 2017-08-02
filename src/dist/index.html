@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Cp317Frontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link media="all" type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation-flex.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,500" rel="stylesheet">
+
+  <!-- I don't know how we're gonna add the framework later so I just did this for now-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <!-- delete the above lines if we are manually selecting the components that we want from the framework -->
+
+</head>
+
+<body>
+  <app-root></app-root>
+<script type="text/javascript" src="../../dist/inline.bundle.js"></script><script type="text/javascript" src="../../dist/polyfills.bundle.js"></script><script type="text/javascript" src="../../dist/styles.bundle.js"></script><script type="text/javascript" src="../../dist/vendor.bundle.js"></script><script type="text/javascript" src="../../dist/main.bundle.js"></script></body><script type="text/javascript">
+   function validate() {
+        if (document.getElementById("pass").value != document.getElementById("passc").value) {
+            //document.getElementById("message").innerHTML='hi';
+              alert(' Password and Confirm Password don\'t match.  Please try again.');
+        }
+
+        if (document.getElementById("email").value != document.getElementById("emailc").value) {
+            //document.getElementById("message").innerHTML='hi';
+              alert(' Email and Confirm Email don\'t match. Please try again.');
+        }
+
+  
+   }
+</script>
+</html>
