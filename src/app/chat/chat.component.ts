@@ -8,12 +8,12 @@ import { RouterModule } from '@angular/router';
 })
 
 export class ChatComponent implements OnInit {
-	
+
 	constructor () { }
-	
+
 	ngOnInit() {
 	}
-	
+
  openChat(){
 	document.getElementById("chatSidenav").style.width = "250px";
 }
@@ -21,4 +21,13 @@ export class ChatComponent implements OnInit {
  closeChat(){
 	document.getElementById("chatSidenav").style.width = "0";
 }
+
+populateSidebarUser(User){
+
+}
+
+populateSidebarBeacon(User){
+
+}
+
 }

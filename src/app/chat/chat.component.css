@@ -28,6 +28,9 @@ html, body {
 	padding: 14px 70px;
 	border-radius: 4px;
 }
+.chat-list-user,chat-list-beacon{
+
+}
 .chat-sidebar {
 	height: 100%;
 	width: 0;
@@ -43,7 +46,7 @@ html, body {
 .chat-sidebar .close-chat {
 	position: absolute;
 	top: 0;
-	right: 25px; 
+	right: 25px;
 	font-size: 30px;
 	margin-left: 50px;
 }
