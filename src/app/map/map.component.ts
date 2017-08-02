@@ -125,6 +125,7 @@ export class MapComponent implements OnInit {
         // update search bar placeholder
         document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
     })
+    return this.address;
   }
 
   // returns the maps current center latitude and longitude
