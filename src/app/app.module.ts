@@ -12,6 +12,7 @@ import { WebAPI } from './web-api.service';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ChatComponent } from './chat/chat.component';
 import { BeaconCardsComponent } from './beacon-cards/beacon-cards.component';
 import { BeaconSearchComponent } from './beacon-search/beacon-search.component';
 import { BeaconListComponent } from './beacon-list/beacon-list.component';
@@ -39,6 +40,7 @@ export const firebaseConfig = {
     AppComponent,
     MapComponent,
     NavbarComponent,
+	ChatComponent,
     UserDiscoveryComponent,
     BeaconCardsComponent,
     BeaconSearchComponent,
