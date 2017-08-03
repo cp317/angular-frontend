@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit {
 	}
 
  openChat(){
-	document.getElementById("chatSidenav").style.width = "250px";
+	document.getElementById("chatSidenav").style.width = "169px";
 }
 
  closeChat(){
@@ -27,7 +27,6 @@ populateSidebarUser(User){
 }
 
 populateSidebarBeacon(User){
-
 }
 
 }

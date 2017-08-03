@@ -6,7 +6,7 @@ html, body {
 }
 .chatbar {
 	min-height: 100%;
-	/* equal to footer height */
+	/* equal to footer height -OC */
 	margin-bottom: -5px;
 }
 .chatbar:after {
@@ -18,7 +18,7 @@ html, body {
 }
 .chat-button {
 	position: fixed; bottom: 0; right: 0;
-	background-color: #e7e7e7; /* Black colour */
+	background-color: #e7e7e7; /* Grey colour -OC */
 	color: white;
 	text-align: center;
 	text-decoration: none;
@@ -28,8 +28,16 @@ html, body {
 	padding: 14px 70px;
 	border-radius: 4px;
 }
-.chat-list-user,chat-list-beacon{
+.chat-list-user, .chat-list-beacon{
 
+}
+.chat-head-user, .chat-head-beacon{
+	font-size: 20px;
+	padding: 0 5px;
+}
+.testing{
+	font-size: 16px;
+	padding: 0 5px;
 }
 .chat-sidebar {
 	height: 100%;
@@ -38,10 +46,10 @@ html, body {
 	z-index: 1;
 	top: 0;
 	right: 0;
-	background-color: #e7e7e7; /* black background */
-	overflow-x: hidden; /* disables horizontal scrolling */
-	padding-top: 60px; /*top padding for things inside */
-	transition: 0.5s; /* half a second slide into place */
+	background-color: #e7e7e7; /* grey background -OC */
+	overflow-x: hidden; /* disables horizontal scrolling -OC */
+	padding-top: 60px; /*top padding for things inside -OC */
+	transition: 0.5s; /* half a second slide into place -OC */
 }
 .chat-sidebar .close-chat {
 	position: absolute;
