@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
 
  openChat(){
 	document.getElementById("chatSidenav").style.width = "169px";
+	this.populateSidebarBeacon();
 }
 
  closeChat(){
@@ -30,14 +31,19 @@ populateSidebarUser(User){
 
 populateSidebarBeacon(){
 	
+	var beaconPart = document.getElementById("chatListBeacon");
+	var division = document.createElement("div");
+	division.id = "beacon-part";
 	var i;
 	for( i = 0; i < 10; i++){
 		var element = document.getElementById("chatListBeacon");
 		var para = document.createElement("p");
+		para.style.padding = "0 5px";
 		var node = document.createTextNode("This is testing");
 		para.appendChild(node);
-		element.appendChild(para);
+		beaconPart.appendChild(para);
 	}
+	element.appendChild(beaconPart);
 }
 
 testfunc(){
