@@ -28,7 +28,9 @@ html, body {
 	padding: 14px 60px;
 	border-radius: 4px;
 }
-.chat-list-user, .chat-list-beacon{
+.chat-list-user,.chat-list-beacon{
+
+  text-align: left;
 
 }
 .chat-head-user, .chat-head-beacon{

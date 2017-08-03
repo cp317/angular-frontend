@@ -4,7 +4,7 @@ import * as firebase from 'firebase/app';
 
 
 @Component({
-	selector: 'app-chat-component',
+    selector: 'app-chat-component',
 	templateUrl: './chat.component.html',
 	styleUrls: ['./chat.component.css']
 })
@@ -21,13 +21,18 @@ export class ChatComponent implements OnInit {
 	this.populateSidebarBeacon();
 }
 
- closeChat(){
+closeChat(){
 	document.getElementById("chatSidenav").style.width = "0";
+    this.unPopulateSidebar();
 }
 
-populateSidebarUser(User){
-
-}
+/*populateSidebarUser(User){
+  var x,y,z;
+  x = 5;
+  y = 6;
+  z = x + y;
+  document.getElementById('demo').innerHTML = z;
+}**/
 
 populateSidebarBeacon(){
 	var element = document.getElementById("chatListBeacon"); // Main doodad -OC
@@ -48,4 +53,12 @@ testfunc(){
 	var temp = firebase.auth().currentUser;
 	console.log(temp);
 }
+
+//Unpopulates the sidebar -Paul
+unPopulateSidebar(){
+    var element = document.getElementById("chatListBeacon");
+    var division = document.getElementById("beacon-part");
+    element.removeChild(division);
+}
+
 }
