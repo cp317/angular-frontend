@@ -30,20 +30,18 @@ populateSidebarUser(User){
 }
 
 populateSidebarBeacon(){
-	
-	var beaconPart = document.getElementById("chatListBeacon");
-	var division = document.createElement("div");
-	division.id = "beacon-part";
+	var element = document.getElementById("chatListBeacon"); // Main doodad -OC
+	var division = document.createElement("div"); // Child of element -OC
+	division.id = "beacon-part"; // id for div -OC
 	var i;
 	for( i = 0; i < 10; i++){
-		var element = document.getElementById("chatListBeacon");
-		var para = document.createElement("p");
-		para.style.padding = "0 5px";
+		var para = document.createElement("p"); // child of division -OC
+		para.style.padding = "0 5px"; //stylizing -OC
 		var node = document.createTextNode("This is testing");
-		para.appendChild(node);
-		beaconPart.appendChild(para);
+		para.appendChild(node); // appends text to para -OC
+		division.appendChild(para); //appends para to division -OC
 	}
-	element.appendChild(beaconPart);
+	element.appendChild(division); //appends division to element -OC
 }
 
 testfunc(){
