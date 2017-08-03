@@ -18,14 +18,14 @@ html, body {
 }
 .chat-button {
 	position: fixed; bottom: 0; right: 0;
-	background-color: #e7e7e7; /* Grey colour -OC */
+	font-size: 2em;
+	background-color: #3333FF; /* Grey colour -OC */
 	color: white;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	border: 2px solid #e7e7e7;
-	font-size: 12px;
-	padding: 14px 70px;
+	padding: 14px 60px;
 	border-radius: 4px;
 }
 .chat-list-user, .chat-list-beacon{
@@ -46,7 +46,7 @@ html, body {
 	z-index: 1;
 	top: 0;
 	right: 0;
-	background-color: #e7e7e7; /* grey background -OC */
+	background-color: white; /* grey background -OC */
 	overflow-x: hidden; /* disables horizontal scrolling -OC */
 	padding-top: 60px; /*top padding for things inside -OC */
 	transition: 0.5s; /* half a second slide into place -OC */
