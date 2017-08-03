@@ -1,7 +1,7 @@
 <!-- Chat button component -OC -->
 <div class ="chatbar">
 	<div class="chat-footer" style="position: fixed; bottom: 0px; right 0px;">
-		<button md-button class="chat-button" id="chat-button" type="button" (click)="openChat()" style="font-size: 20px">Chat</button>
+		<button md-button class="chat-button" id="chat-button" type="button" (click)="openChat(); populateSidebarBeacon()" style="font-size: 20px">Chat</button>
 	</div>
 	<!-- Sidebar component -OC -->
 	<div id="chatSidenav" class="chat-sidebar">
@@ -21,5 +21,9 @@
 
     </div>
 
+	</div>
+	
+	<div class = "printingtest">
+		<button class="testbutton" (click)="testfunc()">Click</button>
 	</div>
 </div>

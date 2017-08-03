@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import * as firebase from 'firebase/app';
+
 
 @Component({
 	selector: 'app-chat-component',
@@ -8,7 +10,7 @@ import { RouterModule } from '@angular/router';
 })
 
 export class ChatComponent implements OnInit {
-
+	private database = firebase.database();
 	constructor () { }
 
 	ngOnInit() {
@@ -26,7 +28,20 @@ populateSidebarUser(User){
 
 }
 
-populateSidebarBeacon(User){
+populateSidebarBeacon(){
+	
+	var i;
+	for( i = 0; i < 10; i++){
+		var element = document.getElementById("chatListBeacon");
+		var para = document.createElement("p");
+		var node = document.createTextNode("This is testing");
+		para.appendChild(node);
+		element.appendChild(para);
+	}
 }
 
+testfunc(){
+	var temp = firebase.auth().currentUser;
+	console.log(temp);
+}
 }
