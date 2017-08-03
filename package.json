@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "jasmine",
+    "test": "jasmine-ts \"path/to/specs/**/*.spec.ts\"",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
