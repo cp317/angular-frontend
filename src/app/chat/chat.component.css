@@ -18,7 +18,7 @@ html, body {
 }
 .chat-button {
 	position: fixed; bottom: 0; right: 0;
-	background-color: #e7e7e7; /* Black colour */
+	background-color: #e7e7e7; /* Grey colour */
 	color: white;
 	text-align: center;
 	text-decoration: none;
@@ -38,7 +38,7 @@ html, body {
 	z-index: 1;
 	top: 0;
 	right: 0;
-	background-color: #e7e7e7; /* black background */
+	background-color: #e7e7e7; /* grey background */
 	overflow-x: hidden; /* disables horizontal scrolling */
 	padding-top: 60px; /*top padding for things inside */
 	transition: 0.5s; /* half a second slide into place */

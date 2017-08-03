@@ -27,7 +27,6 @@ populateSidebarUser(User){
 }
 
 populateSidebarBeacon(User){
-
 }
 
 }
