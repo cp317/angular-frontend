@@ -28,9 +28,9 @@ closeChat(){
     this.unPopulateSidebar();
 }
 
-/* Dummy functions, delete comment when user authentication is working. -OC 
-
-populateSidebarUser(User){
+/* Dummy functions, delete multi line comment when user authentication is working. -OC 
+//// Populates the User Chat(s) for chatSidenav -OC
+populateSidebarUser(u:User){
 	var uElement = document.getElementById("chatListUser"); // Main div being added to -OC 
 	var uHeader = document.createElement("h1"); // Create the header for User chats -OC
 	uHeader.style.padding = "0 5px"; // Stylize the header -OC
@@ -41,7 +41,7 @@ populateSidebarUser(User){
 	uDivision.id = "user-part"; // id for div -OC
 	uDivision.appendChild(uHeader); // Add uHeader to uElement
 	// Loops through adding Chat objects -OC
-	var uList[] = User.chats;
+	var uList[] = u.chats;
 	var j;
 	for( j = 0; j < uList.length(); j++){
 		var uLink = document.createElement("a"); // Child of uDivision -OC 
@@ -52,7 +52,8 @@ populateSidebarUser(User){
 	} // End of loop -OC 
 	uElement.appendChild(uDivision); // Adds uDivision to uElement -OC
 }
-populateSidebarBeacon(User){
+// Populates the Beacon Chat(s) for chatSidenav -OC
+populateSidebarBeacon(u:User){
 	var bElement = document.getElementById("chatListBeacon"); // Main div being added to -OC
 	var bHeader = document.createElement("h2"); // Create the header for Beacon chats -OC
 	bHeader.style.padding = "0 5px"; // Stylize the header -OC
@@ -63,7 +64,7 @@ populateSidebarBeacon(User){
 	bDivision.id = "beacon-part"; // id for div -OC
 	bDivision.appendChild(bHeader); // Add bHeader to bDivision -OC
 	// Loops through adding Beacon chats -OC
-	var bList[] = User.beacons;
+	var bList[] = u.beacons;
 	var i;
 	for( i = 0; i < 10; i++){
 		var bLink = document.createElement("a"); // Child of uDivision -OC
@@ -146,4 +147,10 @@ refreshSidebar(){
     console.log("Ni");
 }
 
+/* Un-multiline comment when user authentication is ready -OC 
+// Creates the main button portion for Beacon chats when passed a Beacon object. -OC
+beaconButtonCreation(Beacon){
+	
+}
+*/
 }
