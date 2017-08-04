@@ -12,15 +12,14 @@ import * as firebase from 'firebase/app';
 export class ChatComponent implements OnInit {
 	private database = firebase.database();
 	constructor () { }
-
 	ngOnInit() {
 	}
 
 // Opens up the chatSidenav for chats and calls the population functions -OC
  openChat(){
 	document.getElementById("chatSidenav").style.width = "169px";
-	this.populateSidebarUser();
 	this.populateSidebarBeacon();
+	this.populateSidebarUser();
 }
 // Closes the chatSidenav for chats and unpopulates them -OC
 closeChat(){
@@ -90,4 +89,12 @@ unPopulateSidebar(){
     bElement.removeChild(bDivision);
 	uElement.removeChild(uDivision);
 }
+
+//Refreshes the sidebar, nearly instantly, A+ -Paul
+refreshSidebar(){
+    this.closeChat();
+    this.openChat();
+    console.log("Ni");
+}
+
 }
