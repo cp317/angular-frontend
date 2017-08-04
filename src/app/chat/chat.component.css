@@ -41,6 +41,23 @@ html, body {
 	font-size: 16px;
 	padding: 0 5px;
 }
+.material-icons{
+	text-decoration: none;
+}
+#close-button{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 4rem;
+}
+#refresh-button{
+	position: absolute;
+	top: 0;
+	right: 130px;
+	font-size: 4rem;
+	padding: 0 -4rem;
+	
+}
 .chat-sidebar {
 	height: 100%;
 	width: 0;
