@@ -173,10 +173,10 @@ beaconButtonCreation(b:Beacon){
 	bButt.style.padding = "20px 5px"; //Button size -OC 
 	bButt.addEventListener("click", beaconChatPopupBox(currentUser, beacon)); // Calls the proper function on click -OC
 	var cnDiv = document.createElement("div"); // Course Name Div retrieved from passed beacon -OC
-	var memDiv = document.createElement("div"); // Members Div retrieved from passed beacon -OC 
-	var trDiv = document.createElement("div"); // Time Remaining Div retrieved from passed beacon -OC
 	var courseName = document.createTextNode(b.course); // Course Name text -OC 
-	
+	cnDiv.appendChild(courseName); 
+	bButt.appendChild(cnDiv); // Course name is now inside button -OC
+	bElement.appendChild(bButt); // Adds button to sidebar
 }
 */
 }
