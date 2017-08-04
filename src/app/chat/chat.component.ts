@@ -90,10 +90,10 @@ unPopulateSidebar(){
 	uElement.removeChild(uDivision);
 }
 
+//Refreshes the sidebar, nearly instantly, A+ -Paul
 refreshSidebar(){
     this.closeChat();
-    
-    //this.openChat();
+    this.openChat();
     console.log("Ni");
 }
 
