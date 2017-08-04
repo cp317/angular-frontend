@@ -29,7 +29,7 @@ closeChat(){
 }
 
 /* Dummy functions, delete multi line comment when user authentication is working. -OC 
-//// Populates the User Chat(s) for chatSidenav -OC
+// Populates the User Chat(s) for chatSidenav -OC
 populateSidebarUser(u:User){
 	var uElement = document.getElementById("chatListUser"); // Main div being added to -OC 
 	var uHeader = document.createElement("h1"); // Create the header for User chats -OC
@@ -110,12 +110,15 @@ populateSidebarBeacon(){
 	bHeader.appendChild(bHeadText);
 	var bDivision = document.createElement("div"); // Child of bElement -OC
 	bDivision.id = "beacon-part"; // id for div -OC
+	bDivision.style.fontSize = "20px"; 
 	bDivision.appendChild(bHeader); // Add bHeader to bDivision -OC
 	// Loops through adding dummy text -OC
 	var i;
 	for( i = 0; i < 10; i++){
-		var bPara = document.createElement("p"); // Child of bDivision -OC
-		bPara.style.padding = "0 5px"; // Stylizing dummy text -OC
+		var bPara = document.createElement("button"); // Child of bDivision -OC
+		bPara.style.padding = "20px 5px"; // Stylizing dummy text -OC
+		//bPara.style.fontSize = "16px"; 
+		bPara.addEventListener("click", this.unPopulateSidebar); // For learning how to do things dynamically w/ buttons in JS -OC 
 		var bNode = document.createTextNode("This is beacon testing");
 		bPara.appendChild(bNode); // Adds text to bPara -OC
 		bDivision.appendChild(bPara); // Adds bPara to bDivision -OC
@@ -164,7 +167,15 @@ beaconChatPopupBox(currentUser,beacon){
 
 /* Un-multiline comment when user authentication is ready -OC 
 // Creates the main button portion for Beacon chats when passed a Beacon object. -OC
-beaconButtonCreation(Beacon){
+beaconButtonCreation(b:Beacon){
+	var bElement = document.getElementById("beacon-part"); // Sets the main element to the div created prior --OC
+	var bButt = document.createElement("button");
+	bButt.style.padding = "20px 5px"; //Button size -OC 
+	bButt.addEventListener("click", beaconChatPopupBox(currentUser, beacon)); // Calls the proper function on click -OC
+	var cnDiv = document.createElement("div"); // Course Name Div retrieved from passed beacon -OC
+	var memDiv = document.createElement("div"); // Members Div retrieved from passed beacon -OC 
+	var trDiv = document.createElement("div"); // Time Remaining Div retrieved from passed beacon -OC
+	var courseName = document.createTextNode(b.course); // Course Name text -OC 
 	
 }
 */
