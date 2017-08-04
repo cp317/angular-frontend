@@ -1,6 +1,10 @@
+/*
+ Authors Martin Symington (OC) & Paul Hohbaum
+*/
 *{
 	margin: 0;
 }
+
 html, body {
 	height: 100%;
 }
@@ -19,7 +23,7 @@ html, body {
 .chat-button {
 	position: fixed; bottom: 0; right: 0;
 	font-size: 2em;
-	background-color: #3333FF; /* Grey colour -OC */
+	background-color: #3333FF; /* Blue colour -OC */
 	color: white;
 	text-align: center;
 	text-decoration: none;
@@ -53,7 +57,7 @@ html, body {
 #refresh-button{
 	position: absolute;
 	top: 0;
-	right: 130px;
+	left: 0;
 	font-size: 4rem;
 	padding: 0 -4rem;
 	
