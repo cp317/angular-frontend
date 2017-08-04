@@ -211,12 +211,24 @@ beaconButtonCreation(b:Beacon){
 	var bElement = document.getElementById("beacon-part"); // Sets the main element to the div created prior --OC
 	var bButt = document.createElement("button");
 	bButt.style.padding = "20px 5px"; //Button size -OC 
-	bButt.addEventListener("click", beaconChatPopupBox(currentUser, beacon)); // Calls the proper function on click -OC
+	bButt.addEventListener("click", beaconChatPopupBox(beacon)); // Calls the proper function on click -OC
 	var cnDiv = document.createElement("div"); // Course Name Div retrieved from passed beacon -OC
 	var courseName = document.createTextNode(b.course); // Course Name text -OC 
 	cnDiv.appendChild(courseName); 
 	bButt.appendChild(cnDiv); // Course name is now inside button -OC
 	bElement.appendChild(bButt); // Adds button to sidebar
+}
+// Creates the main button portion for User chats when passed a User object. -OC
+userButtonCreation(u:User){
+	var uElement = document.getElementById("user-part"); // Sets the main element to the div created prior --OC
+	var uButt = document.createElement("button");
+	uButt.style.padding = "20px 5px"; //Button size -OC 
+	uButt.addEventListener("click", userChatPopupBox(recipientUser)); // Calls the proper function on click -OC
+	var unDiv = document.createElement("div"); // Course Name Div retrieved from passed beacon -OC
+	var uId = document.createTextNode(u.userId); // User ID text -OC 
+	unDiv.appendChild(uId); 
+	uButt.appendChild(unDiv); // User ID is now inside button -OC
+	uElement.appendChild(uButt); // Adds button to sidebar
 }
 */
 }
