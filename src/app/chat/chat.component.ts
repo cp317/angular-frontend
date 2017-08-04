@@ -153,14 +153,10 @@ unPopulateSidebar(){
 refreshSidebar(){
     this.closeChat();
     this.openChat();
-    console.log("Ni");
     console.log("Ahhhhh refreshing");
 }
 
 //Opens the chat popup box for users -Paul
-userChatPopupBox(currentUser,recipientUser){
-    var currentUser = currentUser; //The current user
-    var chatUser = chatUser; //Person the current user is talking to
 userChatPopupBox(currentUser:User,recipientUser:User){
     
     
@@ -189,9 +185,6 @@ findRecipientUser(currentUser: User,recipientUser:User){
 }**/
 //-----------------------------------------------------------------------------------------------------
 //Opens the chat popup box for beacons -Paul
-beaconChatPopupBox(currentUser,beacon){
-    var currentUser = currentUser; //The current user
-    var beacon = beacon; //Person the current user is talking to
 beaconChatPopupBox(currentUser:User,beacon:Beacon){
     var messages = beacon.chat.messages; //Gets the messages list from the beacon chat -Paul
 
