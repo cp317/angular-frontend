@@ -16,7 +16,7 @@ Martin : 12:00 - 9:00 / 9 Hours
 Friday Aug 4th/ Implementation day 3
 
 Paul   : 11:00 - 4:00 / 5 hours
-Martin : 11:00 - 4:00 / 5 hours
+Martin : 11:00 - 3:30 / 4.5 hours
 
 Saturday Aug 5th/ Implementation day 4
 
