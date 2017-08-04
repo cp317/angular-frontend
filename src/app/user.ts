@@ -231,16 +231,7 @@ export class GuestUser {
 	{
 		if (this.user.userId == null)
 		{
-			this.user.userId = this.user.database.ref('/user/').push({
-				firstName: null,
-				lastName: null,
-				email: null,
-				gravatar: this.user.profileImageURL,
-				school: null,
-				biography: null,
-				chats: this.user.chats,
-				beacons: this.user.beacons
-				}).key;
+			console.log("No uid.")
 		}
 		else
 		{

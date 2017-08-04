@@ -344,7 +344,9 @@ var t = []; // array to hold all the beacons with matching school names
   // returns the UserID of the newly created user
   createUser(firstName:string, lastName:string, email:string)
 	{
-    return this.database.ref('/user/').push({
+    var user = firebase.auth().currentUser;
+
+    return this.database.ref('/user/').child(user.uid).set({
       firstName: firstName,
   		lastName: lastName,
   		email: email,
@@ -357,6 +359,13 @@ var t = []; // array to hold all the beacons with matching school names
     });
   }
 
+  getCurrentUser(){
+    var user = firebase.auth().currentUser;
+    if (user != null){
+      return this.getUserById(user.uid);
+    }
+    return null;
+  }
   // returns the GuestUser or RegisteredUser object associated with the given userID
   getUserById(id:string):Promise<any>
   {
@@ -368,11 +377,13 @@ var t = []; // array to hold all the beacons with matching school names
         if (typeof(b.val().email) !== "undefined" && b.val().email != null)
         {
           user = new RegisteredUser(id);
+          user.loadUser();
         }
         // if email is null, create a GuestUser object with the given ID
         else
         {
           user = new GuestUser(id);
+          user.loadUser();
         }
 
         // return the RegisteredUser / GuestUser object

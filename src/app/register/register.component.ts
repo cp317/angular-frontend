@@ -28,6 +28,21 @@ export class RegisterComponent implements OnInit {
           var errorMessage = error.message
           console.log(error.message)
         });
+      var user = firebase.auth().currentUser;
+
+      if (user != null){
+        //Add the user to the info database
+        firebase.database().ref('/user/' + user.uid).set({
+  				firstName: null,
+  				lastName: null,
+  				email: user.email,
+  				profileImageURL: null,
+  				school: null,
+  				biography: null,
+  				courses: null,
+  				chats: null,
+  				beacons: null});
+      }
   }
 
   registerAnonUser(email:string, password:string){
@@ -37,6 +52,22 @@ export class RegisterComponent implements OnInit {
     }, function(error) {
         console.log("Error upgrading anonymous account", error.message);
     });
+
+    var user = firebase.auth().currentUser;
+    if (user != null){
+      //Add the user to the info database
+      firebase.database().ref('/user/' + user.uid).set({
+        firstName: null,
+        lastName: null,
+        email: null,
+        profileImageURL: null,
+        school: null,
+        biography: null,
+        courses: null,
+        chats: null,
+        beacons: null});
+    }
+
   }
 
 }
