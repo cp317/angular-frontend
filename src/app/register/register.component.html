@@ -22,16 +22,16 @@
 		    <label class="mdl-textfield__label" for="email">Confirm Email</label>
 		 </div>
 	<!-- </form> -->
- 
+
 	<!-- <form action="#"> -->
 	  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 	    <input class="mdl-textfield__input" type="password" id="passc">
 	    <label class="mdl-textfield__label" for="password">Confirm Password</label>
 	  </div>
 	<!-- </form> -->
-	
+
   <div class="form-group" style="*margin-top: 60px">
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="validate()">Register</button>
+      <button (click)="attemptRegistration()" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="validate()">Register</button>
   </div>
 
   <div class="col-sm-4"><hr></div><div class="col-sm-4">OR</div><div class="col-sm-4"><hr></div>
@@ -41,6 +41,3 @@
   </div>
 
 </form>
-
-
-
