@@ -145,6 +145,21 @@ refreshSidebar(){
     this.closeChat();
     this.openChat();
     console.log("Ni");
+    console.log("Ahhhhh refreshing");
+}
+
+//Opens the chat popup box for users -Paul
+userChatPopupBox(currentUser,recipientUser){
+    var currentUser = currentUser; //The current user
+    var chatUser = chatUser; //Person the current user is talking to
+    
+}
+
+//Opens the chat popup box for beacons -Paul
+beaconChatPopupBox(currentUser,beacon){
+    var currentUser = currentUser; //The current user
+    var beacon = beacon; //Person the current user is talking to
+    
 }
 
 /* Un-multiline comment when user authentication is ready -OC 
