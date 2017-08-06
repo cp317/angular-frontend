@@ -154,10 +154,10 @@ export class Chat
 				//If the Chat between the Users doesn't exist a new Chat is made.
 				if (res == '')
 				{
-					this.database.ref('/user/' + this.users[0].userId + '/privateChat/').update({
+					this.database.ref('/user/' + this.users[0].userId + '/chats/').update({
 						[this.users[1].userId] : this.chatId
 					});
-					this.database.ref('/user/' + this.users[1].userId + '/privateChat/').update({
+					this.database.ref('/user/' + this.users[1].userId + '/chats/').update({
 						[this.users[0].userId] : this.chatId
 					});
 				}
