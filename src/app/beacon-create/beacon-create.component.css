@@ -26,9 +26,9 @@ form{
 .mdl-checkbox__label{
     float: left;
 }
-.tag{
-    margin-left: 10px;
-}
 .tags{
     display: table-cell;
+}
+.tag{
+    margin-left: 10px;
 }

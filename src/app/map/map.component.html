@@ -29,7 +29,7 @@
 	</agm-map>
 </div>
 
-<div *ngIf="createState == false">
+<div [hidden]="createState">
 	<div id="searchBar" class="form-group">
 		<input name="search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
 	</div>
@@ -41,6 +41,6 @@
 	</div>
 </div>
 
-<div *ngIf="createState == true" class="create-beacon">
+<div [hidden]="!createState" class="create-beacon">
 	<app-beacon-create></app-beacon-create>
 </div>
