@@ -1,7 +1,15 @@
 agm-map {
-  	height: 500px;
+	height: 500px;
 	width: 500px;
 	position: absolute;
-	right: 20px;
-  margin-top: -64px;
-     }
+	right: 20%;
+}
+
+#navButton{
+	margin-left: 2%;
+	margin-bottom: 1%;
+}
+
+#searchBar{
+	margin-left: 2%;
+}

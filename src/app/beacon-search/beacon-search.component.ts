@@ -61,8 +61,9 @@ export class BeaconSearchComponent implements OnInit {
   		this.getFilterBeacons();
   	}
 
-  	//Gets all beacons within filter
-  	getFilterBeacons() {
+		//Gets all beacons within filter
+		
+  	getFilterBeacons() { /**
   		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res =>
   			{
 	      	for (var key in res.val()){
@@ -76,7 +77,7 @@ export class BeaconSearchComponent implements OnInit {
 	        	}
 	     	}
       //console.log(this.beacons);
-    	})
+    	})*/
  	 }
 
   	constructor() { }

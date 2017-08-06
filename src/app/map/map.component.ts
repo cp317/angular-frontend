@@ -26,6 +26,7 @@ export class MapComponent implements OnInit {
   private beacons:any[] = [];
   private address: string;
   private type: any;
+  private createState: Boolean;
 
 	// google maps zoom level
 	private zoom: number = 8;
@@ -44,6 +45,8 @@ export class MapComponent implements OnInit {
     private ngZone: NgZone) { }
 
   ngOnInit() {
+    // Sets default page to view beacons
+    this.createState = false;
     //create a random new Beacon for testing purposes
     /*this.createBeacon("CP317", "Laurier",
          new Date().getTime(),
@@ -172,5 +175,18 @@ export class MapComponent implements OnInit {
   // logs each beacon click (for future functionality)
   clickedBeacon(beacon: Beacon, index: number) {
     console.log(`clicked the beacon: ${beacon.course || index}`)
+  }
+
+  createButton(){
+    if (this.createState == false) {
+      this.createState = true;
+      console.log("Now showing beacon create page.")
+    }
+  }
+  searchButton(){
+    if (this.createState == true) {
+      this.createState = false;
+      console.log("Now showing search page.")
+    }
   }
 }

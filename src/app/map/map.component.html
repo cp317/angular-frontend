@@ -1,8 +1,9 @@
-<div class="form-group">
-	<input name="search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-</div>
+<button id="navButton" (click)="searchButton()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"> View Beacons </button>
+<button id="navButton" (click)="createButton()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"> Create Beacon </button>
+
+
 <!-- this creates a google map on the page with the given lat/lng from  the component as the initial center of the map: -->
-<div>
+<div id="mapDiv">
 	<!-- Creates the agm-map -->
 	<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="placeBeacon($event)">
 		<!-- Creates an agm-map marker -->
@@ -27,9 +28,19 @@
 
 	</agm-map>
 </div>
-<div class="search-area">
-	<app-beacon-search></app-beacon-search>
-</div> 
-<div class = "becards">
-<app-beacon-cards></app-beacon-cards>
+
+<div [hidden]="createState">
+	<div id="searchBar" class="form-group">
+		<input name="search" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+	</div>
+	<div class="search-area">
+		<app-beacon-search></app-beacon-search>
+	</div> 
+	<div class = "becards">
+		<app-beacon-cards></app-beacon-cards>
+	</div>
+</div>
+
+<div [hidden]="!createState" class="create-beacon">
+	<app-beacon-create></app-beacon-create>
 </div>
