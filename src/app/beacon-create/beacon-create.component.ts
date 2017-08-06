@@ -88,7 +88,7 @@ export class BeaconCreateComponent implements OnInit {
 
 
   }
-
+/**
   getLocation(){
     var location: {
       lat: number,
@@ -99,6 +99,6 @@ export class BeaconCreateComponent implements OnInit {
     this.beaconForm.lng = location.lng;
     console.log(location);
   }
-
+*/
 
 }
