@@ -1,8 +1,38 @@
-.tags{
-	display:inline-block;
+h1{
+    text-align: left;
+    margin-top: 60px;
+    margin-left: 140px;
+    color:white; 
+    font-size:30px;
+}
+
+form{
+    margin-left: 90px;
+    width: 70%;
 }
 
 .mdl-checkbox{
-    width: 50%;
-    vertical-align:middle;
+     width: 110px;
+}
+
+.mdl-textfield{
+    margin-right: 10px;
+    float: left;
+}
+
+.mdl-textfield__input{
+    margin-top: 7px;
+    float: left;
+}
+
+.tags{
+    display: table-cell;
+}
+
+.tag{
+    margin-left: 10px;
+}
+
+.mdl-checkbox__label{
+    float: left;
 }
