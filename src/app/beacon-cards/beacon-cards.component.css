@@ -5,8 +5,10 @@
     position: relative;
 }
 
-.beacon-card > .mdl-card__supporting-text {
+
+.mdl-card__supporting-text {
     text-align: left;
+    font-size: 14px;
 }
 
 .mdl-progress {
