@@ -16,15 +16,15 @@ export class BeaconSearchComponent {
 
   beacons:Beacon[] = [];
 
-	schoolName: string = "";
-	courseName: string = "";
-	timeRemaining: number = 0;
+	schoolName: string;
+	courseName: string;
+	timeRemaining: number;
 	hasWifi: boolean;
 	hasComputers: boolean;
 	hasOutlets: boolean;
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
-	tags: number[] = [];
+	tags: number[];
 
 	onApply() {
 		//reset tags string
@@ -68,22 +68,30 @@ export class BeaconSearchComponent {
 		this.getFilterBeacons();
 	}
 		
-  	getFilterBeacons() {
-      console.log(this.tags);
-      console.log(this.schoolName);
-      console.log(this.courseName);
-  		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res =>
-  			{
-	      	for (var key in res) {
-            var b = new Beacon(key);
-	        	//compare to filter
-	        	if (b.tags === this.tags && this.timeRemaining >= ((b.endTime - b.startTime) / (1000 * 60 * 60))) {
-              console.log("passes filter");
-              console.log(b);
-	        		this.beacons.push(b);
-	        	}
-	     	}
-        console.log(this.beacons);
-    	})
- 	 }
+	getFilterBeacons() {
+		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res => {
+       console.log("here1");
+      	for (var key in res) {
+          console.log("here2");
+          var b = new Beacon(key);
+          console.log(b);
+          console.log(b.tags);
+          console.log(this.timeRemaining);
+          console.log(b.endTime);
+          console.log(b.startTime);
+          console.log(((b.endTime - b.startTime) / (1000 * 60 * 60)));
+          if (this.timeRemaining >= ((b.endTime - b.startTime) / (1000 * 60 * 60))) {
+            console.log("here3");
+            for (var i = 0; i < this.tags.length; i++) {
+              console.log(this.tags[i]);
+              if (this.tags[i] === 0)
+                this.beacons.push(b);
+              else if (this.tags[i] && b.tags[i])
+                this.beacons.push(b);
+            }
+          }
+     	}
+      console.log(this.beacons);
+  	})
+	}
 }
