@@ -349,7 +349,8 @@ get_name_spl(school_name:string, variance:number, beacons:any[])
   }
 
     // sets the maps lat and lng attributes given a position
-  setPosition(lat, lng, address) {
+  setPosition(lat, lng, address) 
+  {
     
     if (lat != null)
     {
@@ -363,6 +364,7 @@ get_name_spl(school_name:string, variance:number, beacons:any[])
     {
       this.address = address;
     }
+    console.log(this.lat, this.lng)
   }
 
   // returns the maps current center latitude and longitude

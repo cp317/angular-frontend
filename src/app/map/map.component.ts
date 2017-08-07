@@ -131,12 +131,12 @@ export class MapComponent implements OnInit {
     var latlng = this.getMapCenter();
     // console.log(latlng);
     // get address from geocoder based on {lat, lng}
-    geocoder.geocode({'location': latlng}, function(results, status) {
+    geocoder.geocode({'location': latlng}, (results, status) => {
         // console.log(results[1].formatted_address);
         var address = results[1].formatted_address;
         this.webAPI.setPosition(null, null, address);
         // update search bar placeholder
-        document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
+        document.getElementsByName('search')[0].setAttribute('placeholder', address);
     })
   }
 

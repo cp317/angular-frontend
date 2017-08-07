@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { WebAPI } from '../web-api.service';
 import { BeaconForm } from './beaconCreate.interface';
-import { MapComponent } from '../map/map.component';
 
 
 @Component({
@@ -15,10 +14,8 @@ import { MapComponent } from '../map/map.component';
 export class BeaconCreateComponent implements OnInit {
   public beaconForm: BeaconForm;    // form model
   public submitted: boolean = false;
-  private webAPI:WebAPI = new WebAPI();
-  private mapComponent: MapComponent ;  
   
-  constructor() { 
+  constructor(private webAPI:WebAPI) { 
   }
 
   ngOnInit() {
