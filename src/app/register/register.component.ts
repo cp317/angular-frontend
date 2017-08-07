@@ -13,20 +13,43 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  attemptRegistration(){
-      var email = (<HTMLInputElement>document.getElementById("inputEmail3")).value;
-      console.log(email)
-      var password = (<HTMLInputElement>document.getElementById("inputPassword3")).value;
-      console.log(password)
-      this.registerUser(email,password)
+  attemptRegistration()
+  {
+    var valid = 1;
+
+    // checks emails to make sure they match
+    var email = (<HTMLInputElement>document.getElementById("email")).value;
+    if (email != (<HTMLInputElement>document.getElementById("emailc")).value) 
+    {
+      valid = 0;
+    }
+   
+    // checks passwords to make sure they match
+    var password = (<HTMLInputElement>document.getElementById("pass")).value;
+    if (password != (<HTMLInputElement>document.getElementById("passc")).value)
+    {
+      valid = 0;
+    }
+
+    // if all the fields match, register the user
+    if (valid == 1)
+    {
+      this.registerUser(email,password);
+    }
   }
 
   registerUser(email:string, password:string){
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(
         function(error){
           var errorCode = error.stack;
-          var errorMessage = error.message
-          console.log(error.message)
+          var errorMessage = error.message;
+
+          if (errorMessage = "The email address is already in use by another account.")
+          {
+            alert(errorMessage);
+          }
+
+          console.log(errorCode + " " + errorMessage);
         });
       var user = firebase.auth().currentUser;
 
