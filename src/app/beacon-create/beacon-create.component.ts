@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { WebAPI } from '../web-api.service';
-import { BeaconForm } from './beaconCreate.interface';
+import { BeaconForm } from './beacon-create.interface';
 
 
 @Component({
@@ -14,7 +14,8 @@ import { BeaconForm } from './beaconCreate.interface';
 export class BeaconCreateComponent implements OnInit {
   public beaconForm: BeaconForm;    // form model
   public submitted: boolean = false;
-  
+  private desc: string; 
+
   constructor(private webAPI:WebAPI) { 
   }
 
@@ -31,13 +32,14 @@ export class BeaconCreateComponent implements OnInit {
       endTime:null,   
       lat:null,
       lng:null,
+      description:'',
       hasWifi: false,
       hasComputers: false,
       hasOutlets: false,
       hasWhiteboard: false,
       hasProjector: false
     }
-
+    this.submitted = false;
   }
 
   create(form: BeaconForm) {
@@ -56,9 +58,8 @@ export class BeaconCreateComponent implements OnInit {
       var endTime = endDate.getTime();
       var members = [];
       var tags = [];
+      form.description = this.desc;
       
-
-      console.log(hostName);
       if (form.hasComputers) {
         tags.push(1);
       } else{
@@ -89,8 +90,10 @@ export class BeaconCreateComponent implements OnInit {
         tags.push(0);
       }           
 
-      //this.webAPI.createBeacon(form.courseCode, form.school, startTime, endTime, hostName, members, tags, form.lat, form.lng);
+      this.webAPI.createBeacon(form.courseCode, form.school, startTime, endTime, hostName, members, tags, form.description, form.lat, form.lng);
       alert("Beacon created.")
+      this.desc='';
+      this.ngOnInit();
     }
     else {
       alert(valid);

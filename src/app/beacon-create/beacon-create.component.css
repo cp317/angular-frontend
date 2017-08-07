@@ -32,3 +32,12 @@ form{
 .tag{
     margin-left: 10px;
 }
+#locButton{
+    background-color: #33691E;
+}
+#resetButton{
+    background-color: #B71C1C;
+}
+#createButton{
+    background-color: #33691E;
+}

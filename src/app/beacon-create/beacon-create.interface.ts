@@ -10,9 +10,10 @@ export interface BeaconForm {
     endTime:number;
     lat:number;
     lng:number;
-    hasWifi: boolean;
-	hasComputers: boolean;
-	hasOutlets: boolean;
-	hasWhiteboard: boolean;
-	hasProjector: boolean;
+    description:string;
+    hasWifi:boolean;
+	hasComputers:boolean;
+	hasOutlets:boolean;
+	hasWhiteboard:boolean;
+	hasProjector:boolean;
 }
