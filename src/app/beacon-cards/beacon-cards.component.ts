@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 
 import { Beacon } from '../beacon';
 
@@ -13,13 +13,16 @@ import * as firebase from 'firebase/app';
 @Component({
   selector: 'app-beacon-cards',
   templateUrl: './beacon-cards.component.html',
-  styleUrls: ['./beacon-cards.component.css']
+  styleUrls: ['./beacon-cards.component.css'],
 })
+
 export class BeaconCardsComponent implements OnInit {
+  
   private beacons: Beacon[] = [];
 
   constructor(
-      private webAPI: WebAPI) { }
+      private webAPI: WebAPI,
+      private ngZone: NgZone) { }
 
   ngOnInit() {
       this.getBeacons()
@@ -32,6 +35,12 @@ export class BeaconCardsComponent implements OnInit {
       this.beacons.push(new Beacon(key));
     }
     });
+  }
+
+  setBeacons(beacons) {
+    this.beacons = beacons;
+    this.ngZone.run(() => {});
+    return;
   }
 
   joinBeacon(beacon: Beacon) {

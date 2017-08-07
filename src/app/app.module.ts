@@ -43,7 +43,7 @@ export const firebaseConfig = {
     AppComponent,
     MapComponent,
     NavbarComponent,
-	ChatComponent,
+	  ChatComponent,
     UserDiscoveryComponent,
     BeaconCardsComponent,
     BeaconSearchComponent,
@@ -82,7 +82,9 @@ export const firebaseConfig = {
   entryComponents: [
     PasswordComponent
     ],
-  providers: [WebAPI],
+  providers: [
+  WebAPI,
+  BeaconCardsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

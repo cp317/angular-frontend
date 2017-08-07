@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Beacon } from '../beacon';
 import { WebAPI } from '../web-api.service';
-
+import { MapComponent } from '../map/map.component'
+import { BeaconCardsComponent } from '../beacon-cards/beacon-cards.component'
+ 
 @Component({
   selector: 'app-beacon-search',
   templateUrl: './beacon-search.component.html',
@@ -11,10 +13,12 @@ import { WebAPI } from '../web-api.service';
 export class BeaconSearchComponent {
 
   constructor(
-  private webAPI:WebAPI
+  private webAPI: WebAPI,
+  private map: MapComponent,
+  private cards: BeaconCardsComponent
   ) { }
 
-  beacons:Beacon[] = [];
+  beacons: Beacon[] = [];
 
 	schoolName: string;
 	courseName: string;
@@ -29,37 +33,37 @@ export class BeaconSearchComponent {
 	onApply() {
 		//reset tags string
 		this.tags = [];
+    this.beacons = [];
 
 		//build the tags string
-		if (this.hasComputers) {
+		if (this.hasComputers)
 			this.tags.push(1);
-		} else{
+		else
 			this.tags.push(0);
-		}
+		
 
-		if (this.hasOutlets){
+		if (this.hasOutlets) 
 		  this.tags.push(1);
-    } else{
+    else
       this.tags.push(0);
-    }
+    
 
-		if (this.hasProjector){
+		if (this.hasProjector)
 		  this.tags.push(1);
-    } else{
+    else
       this.tags.push(0);
-    }
+    
 
-		if (this.hasWhiteboard){
+		if (this.hasWhiteboard)
 		  this.tags.push(1);
-    } else{
+    else
       this.tags.push(0);
-    }
+    
 
-		if (this.hasWifi){
+		if (this.hasWifi)
 		  this.tags.push(1);
-    } else{
+    else
       this.tags.push(0);
-    }
 
     this.schoolName = (<HTMLInputElement> document.getElementsByName('schoolFilter')[0]).value;
     this.courseName = (<HTMLInputElement> document.getElementsByName('courseFilter')[0]).value;
@@ -83,6 +87,8 @@ export class BeaconSearchComponent {
           }
      	}
        // console.log(this.beacons);
+       this.map.setBeacons(this.beacons);
+       this.cards.setBeacons(this.beacons);
   	})
 	}
 }
