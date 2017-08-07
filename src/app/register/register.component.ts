@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
+import {User, RegisteredUser, GuestUser} from './user';
+import { WebAPI } from './web-api.service';
+
 
 @Component({
   selector: 'app-register',
@@ -40,13 +43,26 @@ export class RegisterComponent implements OnInit {
 
   registerUser(email:string, password:string){
       var user = firebase.auth().currentUser;
-      if(user=null){
+      if(user.isAnonymous=true){
         var credential = firebase.auth.EmailAuthProvider.credential(email, password)
         user.linkWithCredential(credential).then(function(user) {
       console.log("Anonymous account successfully upgraded", user);
     }, function(error) {
         console.log("Error upgrading anonymous account", error.message);
     });
+    this.webAPI.getUserById(user.uid).then(guest=>{
+        firebase.database().ref('/user/' + user.uid).set({
+  				firstName: null,
+  				lastName: null,
+  				email: email,
+  				profileImageURL: guest.profileImageURL,
+  				school: null,
+  				biography: null,
+  				courses: guest.courses,
+  				chats: guest.chats,
+  				beacons: guest.beacons});
+    });
+          
     }else{
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(
         function(error){
@@ -77,6 +93,7 @@ export class RegisterComponent implements OnInit {
   				beacons: null});
       }
   }
+    
 
   registerAnonUser(email:string, password:string){
     if(firebase.auth())
