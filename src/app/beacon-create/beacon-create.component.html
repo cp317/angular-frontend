@@ -32,8 +32,8 @@
   
   <!-- Course Code -->
   <div class="mdl-textfield">
-    <label class="mdl-textfield__label" for="course">Course Code</label><br>
-    <input class="mdl-textfield__input" name="course" [(ngModel)]="beaconForm.course" #course="ngModel" required>
+    <label class="mdl-textfield__label" for="courseCode">Course Code</label><br>
+    <input class="mdl-textfield__input" name="courseCode" [(ngModel)]="beaconForm.courseCode" #courseCode="ngModel" required>
   </div>
 
   <!-- Start Time -->
@@ -59,7 +59,7 @@
     <input class="mdl-textfield__input" id="lngBox" name="lng" [(ngModel)]="beaconForm.lng">
   </div>
   <button input type="button" id="locButton" (click)="getLocation()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"> Get Center Location From Map </button>
-
+  <br>
   <!-- Tag label and spacing -->
   <div class="mdl-textfield"> <label class="mdl-textfield__label">Tags</label><br></div>
   <div class="mdl-textfield"><br></div>
