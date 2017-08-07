@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
 	private user: Observable<firebase.User>;
   private items: FirebaseListObservable<any[]>;
   private searchControl: FormControl;
-  private beacons:any[] = [];
+  private beacons: any[] = [];
   private address: string;
   private type: any;
   private createState: Boolean;
@@ -94,7 +94,6 @@ export class MapComponent implements OnInit {
 
   setBeacons(beacons) {
     this.beacons = beacons;
-    console.log(this.beacons);
     return;
   }
 

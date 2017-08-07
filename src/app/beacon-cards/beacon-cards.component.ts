@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Beacon } from '../beacon';
 
@@ -20,26 +20,22 @@ export class BeaconCardsComponent implements OnInit {
   
   private beacons: Beacon[] = [];
 
-  constructor(
-      private webAPI: WebAPI,
-      private ngZone: NgZone) { }
+  constructor(private webAPI: WebAPI) { }
 
   ngOnInit() {
-      this.getBeacons()
+      this.getBeacons();
   }
 
   getBeacons() {
     this.webAPI.getBeacons(null,null).then(res => {
-    for (var key in res)
-    {
-      this.beacons.push(new Beacon(key));
-    }
+      for (var key in res) {
+        this.beacons.push(new Beacon(key));
+      }
     });
   }
 
   setBeacons(beacons) {
     this.beacons = beacons;
-    this.ngZone.run(() => {});
     return;
   }
 

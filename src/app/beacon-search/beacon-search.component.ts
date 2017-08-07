@@ -22,7 +22,7 @@ export class BeaconSearchComponent {
 
 	schoolName: string;
 	courseName: string;
-	timeRemaining: number;
+	timeRemaining: number = 6;
 	hasWifi: boolean;
 	hasComputers: boolean;
 	hasOutlets: boolean;
