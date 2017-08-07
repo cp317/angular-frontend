@@ -68,13 +68,13 @@ html, body {
 	height: 100%;
 	width: 0;
 	position: fixed;
-	z-index: 1;
+	z-index: 3;
 	top: 0;
 	right: 0;
-	background-color: white; /* grey background -OC */
-	overflow-x: hidden; /* disables horizontal scrolling -OC */
-	padding-top: 60px; /*top padding for things inside -OC */
-	transition: 0.5s; /* half a second slide into place -OC */
+	background-color: white; /* White background -OC */
+	overflow-x: hidden; /* Disables horizontal scrolling -OC */
+	padding-top: 60px; /* Top padding for things inside -OC */
+	transition: 0.5s; /* Half a second slide into place -OC */
 }
 .chat-sidebar .close-chat {
 	position: absolute;
@@ -82,6 +82,17 @@ html, body {
 	right: 25px;
 	font-size: 30px;
 	margin-left: 50px;
+}
+
+.chat-footer {
+	height: 0; /* Let's see what happens when we flip properties of the sidebar to make a footer simmilar -OC */
+	width: 100%;
+	position: fixed;
+	z-index: 0;
+	bottom: 0;
+	background-color: white; /* Except for this, thisis still white -OC */
+	overflow-y: hidden;
+	transition: 0.5s;
 }
 
 .testbutton{

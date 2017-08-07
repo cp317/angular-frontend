@@ -28,16 +28,16 @@ export class WebAPI {
         var validSchoolNames = [];
         if (school != null)
         {
-          validSchoolNames.push(school);
+          validSchoolNames.push(school.toUpperCase());
 
           // get any names that are a substring of the given school name
           // or that the school name is a substring of
           var schoolNames = this.getSchoolNameSubstr(res.val(),school)
           for (let name of schoolNames)
           {
-            if (!validSchoolNames.includes(name))
+            if (!validSchoolNames.includes(name.toUpperCase()))
             {
-              validSchoolNames.push(name);
+              validSchoolNames.push(name.toUpperCase());
             }
           }
           // get any acronyms of the school name
@@ -46,9 +46,9 @@ export class WebAPI {
             schoolNames = this.get_name_acr(res.val(), name);
             for (let name_acr of schoolNames)
             {
-              if(!validSchoolNames.includes(name_acr))
+              if(!validSchoolNames.includes(name_acr.toUpperCase()))
               {
-                validSchoolNames.push(name_acr);
+                validSchoolNames.push(name_acr.toUpperCase());
 
                 if (name_acr.length > school.length)
                 {
@@ -56,9 +56,9 @@ export class WebAPI {
                   var schoolNames = this.getSchoolNameSubstr(res.val(),name_acr)
                   for (let name of schoolNames)
                   {
-                    if (!validSchoolNames.includes(name))
+                    if (!validSchoolNames.includes(name.toUpperCase()))
                     {
-                      validSchoolNames.push(name);
+                      validSchoolNames.push(name.toUpperCase());
                     }
                   }
                 }
@@ -72,10 +72,15 @@ export class WebAPI {
               schoolNames = this.get_name_spl(name, 1, res.val());
               for (let s of schoolNames)
               {
-                if (!validSchoolNames.includes(s))
+                if (!validSchoolNames.includes(s.toUpperCase()))
                 {
+<<<<<<< HEAD
                   validSchoolNames.push(s);
                   //console.log(s);
+=======
+                  validSchoolNames.push(s.toUpperCase());
+                  console.log(s);
+>>>>>>> 3e95708d93a9a4ab7da737879d762bc2dc7de0da
                 }
               }
             }
@@ -87,7 +92,7 @@ export class WebAPI {
           //console.log(validSchoolNames);
           for (let key in res.val())
           {
-            if (validSchoolNames.includes(res.val()[key].school))
+            if (validSchoolNames.includes(res.val()[key].school.toUpperCase()))
             {
               beacons[key] = res.val()[key];
             }
@@ -103,7 +108,7 @@ export class WebAPI {
         {
           for (let key in beacons)
           {
-            if (beacons[key].course != course)
+            if (beacons[key].course.replace(/\s/g, "").toUpperCase() != course.replace(/\s/g, "").toUpperCase())
             {
               delete beacons[key];
             }
@@ -330,9 +335,9 @@ get_name_spl(school_name:string, variance:number, beacons:any[])
     return t;
 }
 
-  // inserts a beacon with the given attributes into the database
+  // inserts a beacon with the given attributes into the database 
   // returns the BeaconID of the newly created beacon
-  createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:string, lat:number, lng:number):string
+  createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:number[], description:string, lat:number, lng:number):string
   {
     // insert the beacon object into the database
     return this.database.ref('/beacon/').push({
@@ -343,6 +348,7 @@ get_name_spl(school_name:string, variance:number, beacons:any[])
   		host: host,
       members: members,
   		tags: tags,
+      description: description,
   		lat: lat,
   		lng: lng
   	  }).key;

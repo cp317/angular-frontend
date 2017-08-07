@@ -27,10 +27,10 @@ export class BeaconCreateComponent implements OnInit {
       },    
       courseCode:'',
       school:'',
-      startTime:0,
-      endTime:0,   
-      lat:0,
-      lng:0,
+      startTime:null,
+      endTime:null,   
+      lat:null,
+      lng:null,
       hasWifi: false,
       hasComputers: false,
       hasOutlets: false,
@@ -40,54 +40,62 @@ export class BeaconCreateComponent implements OnInit {
 
   }
 
-  create(form: BeaconForm, isValid: boolean) {
-    this.submitted = true;
-    // if valid, call API to save customer
-    var location;
-    var firstName = form.host.firstName;
-    var lastName = form.host.lastName;
-    var school = form.school;
-    var courseCode = form.courseCode;
-    var startDate = new Date(form.startTime);
-    var endDate = new Date(form.endTime);
-    var startTime = startDate.getTime();
-    var endTime = endDate.getTime();
+  create(form: BeaconForm) {
 
-    var tags = [];
-    
-    if (form.hasComputers) {
-      tags.push(1);
-    } else{
-      tags.push(0);
+    var valid = this.isValid(form);
+
+    if (valid == true) {    
+      this.submitted = true;
+      var firstName = form.host.firstName;
+      var lastName = form.host.lastName;
+      var hostName = firstName + " " + lastName;
+
+      var startDate = new Date(form.startTime);
+      var endDate = new Date(form.endTime);
+      var startTime = startDate.getTime();
+      var endTime = endDate.getTime();
+      var members = [];
+      var tags = [];
+      
+
+      console.log(hostName);
+      if (form.hasComputers) {
+        tags.push(1);
+      } else{
+        tags.push(0);
+      }
+
+      if (form.hasOutlets){
+        tags.push(1);
+      } else{
+        tags.push(0);
+      }
+
+      if (form.hasProjector){
+        tags.push(1);
+      } else{
+        tags.push(0);
+      }
+
+      if (form.hasWhiteboard){
+        tags.push(1);
+      } else{
+        tags.push(0);
+      }
+
+      if (form.hasWifi){
+        tags.push(1);
+      } else{
+        tags.push(0);
+      }           
+
+      //this.webAPI.createBeacon(form.courseCode, form.school, startTime, endTime, hostName, members, tags, form.lat, form.lng);
+      alert("Beacon created.")
+    }
+    else {
+      alert(valid);
     }
 
-    if (form.hasOutlets){
-      tags.push(1);
-    } else{
-      tags.push(0);
-    }
-
-    if (form.hasProjector){
-      tags.push(1);
-    } else{
-      tags.push(0);
-    }
-
-    if (form.hasWhiteboard){
-      tags.push(1);
-    } else{
-      tags.push(0);
-    }
-
-    if (form.hasWifi){
-      tags.push(1);
-    } else{
-      tags.push(0);
-    }
-    
-    console.log("running create");
-    //console.log(form);
-    //console.log(tags);
   }
 
 
@@ -95,13 +103,15 @@ export class BeaconCreateComponent implements OnInit {
   {
     var school = form.school;
     var courseCode = form.courseCode;
+    var lat = form.lat;
+    var lng = form.lng;
     var startDate = new Date(form.startTime);
     var endDate = new Date(form.endTime);
 
     // first check if the dates are defined
-    if (typeof(startDate) === "undefined" || typeof(endDate) === "undefined" || startDate == null || endDate == null)
+    if ( form.startTime == null || form.endTime == null)
     {
-      return "Please enter start and end time in proper format";
+      return "Please enter a start and end time.";
     }
 
     var startTime = startDate.getTime();
@@ -118,11 +128,14 @@ export class BeaconCreateComponent implements OnInit {
     }
     else if (courseCode == null || courseCode.replace(/\s/g, "") == "")
     {
-      return "Please enter your course code";
+      return "Please enter your course code.";
     }
     else if (school == null || school.replace(/\s/g, "") == "")
     {
-      return "Please enter your school";
+      return "Please enter your school.";
+    }
+    else if ( lat == null || lng == null){
+      return "Please enter valid latitude and longitude values or click the 'Get Center Location From Map' button."
     }
     else
     {
@@ -130,12 +143,11 @@ export class BeaconCreateComponent implements OnInit {
     }
   }
 
-
+  /** sets the location of the center of map on create-beacon form */
   getLocation(){
     var location = this.webAPI.getMapCenter();
     this.beaconForm.lat = location.lat;
     this.beaconForm.lng = location.lng;
-    console.log(location);
   }
 
 
