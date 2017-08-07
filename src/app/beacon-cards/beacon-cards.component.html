@@ -21,35 +21,35 @@ last edited by mat younatan 8/6/2017
 
     <div style="display: flex; justify-content: space-around;">
         <!-- Tooltips (aka Tags) -->
-        <div *ngIf="beacon.tags[0] === 1">
+        <div *ngIf="beacon.tags[0]">
             <img id="comp-tt" src="https://image.flaticon.com/icons/svg/263/263082.svg" style="width:30px;height:30px">
             <div class="mdl-tooltip" data-mdl-for="comp-tt">
                 This location has computers
             </div>
         </div>
 
-        <div *ngIf="beacon.tags[1] === 1">
+        <div *ngIf="beacon.tags[1]">
             <img id="outlet-tt" src="https://image.flaticon.com/icons/svg/125/125639.svg" style="width:30px;height:30px">
             <div class="mdl-tooltip" data-mdl-for="outlet-tt">
                 This location has outlets
             </div>
         </div>
 
-        <div *ngIf="beacon.tags[2] === 1">
+        <div *ngIf="beacon.tags[2]">
             <img id="proj-tt" src="https://image.flaticon.com/icons/svg/462/462388.svg" style="width:30px;height:30px">
             <div class="mdl-tooltip" data-mdl-for="proj-tt">
                 This location has a projector
             </div>
         </div>
 
-        <div *ngIf="beacon.tags[3] === 1">
+        <div *ngIf="beacon.tags[3]">
             <img id = "wbrd-tt" src="https://image.flaticon.com/icons/svg/43/43232.svg" style="width:30px;height:30px">
             <div class="mdl-tooltip" data-mdl-for="wbrd-tt">
                 This location has a whiteboard
             </div>
         </div>
 
-        <div *ngIf="beacon.tags[4] === 1">
+        <div *ngIf="beacon.tags[4]">
             <img id = "wifi-tt" src="https://image.flaticon.com/icons/svg/149/149193.svg" style="width:30px;height:30px">
             <div class="mdl-tooltip" data-mdl-for="wifi-tt">
                 This location has WiFi

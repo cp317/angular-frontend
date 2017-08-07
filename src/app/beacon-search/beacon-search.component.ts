@@ -8,9 +8,13 @@ import { WebAPI } from '../web-api.service';
   styleUrls: ['./beacon-search.component.css'],
 })
 
-export class BeaconSearchComponent implements OnInit {
-  	private webAPI:WebAPI
-    beacons:Beacon[] = [];
+export class BeaconSearchComponent {
+
+  constructor(
+  private webAPI:WebAPI
+  ) { }
+
+  beacons:Beacon[] = [];
 
 	schoolName: string = "";
 	courseName: string = "";
@@ -22,68 +26,57 @@ export class BeaconSearchComponent implements OnInit {
 	hasProjector: boolean;
 	tags: number[] = [];
 
-  	//When filter apply is done
-  	onApply(){
-  		//reset tags string
-  		this.tags = [];
+	onApply() {
+		//reset tags string
+		this.tags = [];
 
-  		//build the tags string
-  		if (this.hasComputers) {
-  			this.tags.push(1);
-  		} else{
-  			this.tags.push(0);
-  		}
+		//build the tags string
+		if (this.hasComputers) {
+			this.tags.push(1);
+		} else{
+			this.tags.push(0);
+		}
 
-  		if (this.hasOutlets){
-  		  this.tags.push(1);
-      } else{
-        this.tags.push(0);
-      }
+		if (this.hasOutlets){
+		  this.tags.push(1);
+    } else{
+      this.tags.push(0);
+    }
 
-  		if (this.hasProjector){
-  		  this.tags.push(1);
-      } else{
-        this.tags.push(0);
-      }
+		if (this.hasProjector){
+		  this.tags.push(1);
+    } else{
+      this.tags.push(0);
+    }
 
-  		if (this.hasWhiteboard){
-  		  this.tags.push(1);
-      } else{
-        this.tags.push(0);
-      }
+		if (this.hasWhiteboard){
+		  this.tags.push(1);
+    } else{
+      this.tags.push(0);
+    }
 
-  		if (this.hasWifi){
-  		  this.tags.push(1);
-      } else{
-        this.tags.push(0);
-      }
+		if (this.hasWifi){
+		  this.tags.push(1);
+    } else{
+      this.tags.push(0);
+    }
 
-  		this.getFilterBeacons();
-  	}
-
-		//Gets all beacons within filter
+		this.getFilterBeacons();
+	}
 		
-  	getFilterBeacons() { /**
+  	getFilterBeacons() {
+      console.log(this.tags);
   		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res =>
   			{
-	      	for (var key in res.val()){
-	      		var b = res.val()[key];
-
+	      	for (var key in res) {
+            var b = new Beacon(key);
 	        	//compare to filter
-	        	if(((b.tags === this.tags) || (this.tags === [0,0,0,0,0]))
-	        	 && (this.timeRemaining >= ((b.endTime - b.startTime) / (1000*60*60))) //milliseconds to hours
-	        	 ){
-	        		this.beacons.push(new Beacon(key));
+	        	if (b.tags === this.tags && this.timeRemaining >= (b.endTime - b.startTime) / (1000 * 60 * 60)) {
+	        		this.beacons.push(b);
 	        	}
+          console.log("here");
+          console.log(this.beacons);
 	     	}
-      //console.log(this.beacons);
-    	})*/
+    	})
  	 }
-
-  	constructor() { }
-
-  	ngOnInit() {
-  	}
-
-
 }
