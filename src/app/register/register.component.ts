@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
-import {User, RegisteredUser, GuestUser} from './user';
-import { WebAPI } from './web-api.service';
+import {User, RegisteredUser, GuestUser} from '../user';
+import { WebAPI } from '../web-api.service';
 
 
 @Component({
@@ -11,7 +11,11 @@ import { WebAPI } from './web-api.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private webAPI:WebAPI
+    ) {
+
+  }
 
   ngOnInit() {
   }
