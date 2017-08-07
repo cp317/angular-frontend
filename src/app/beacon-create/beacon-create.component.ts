@@ -15,7 +15,7 @@ import { MapComponent } from '../map/map.component';
 export class BeaconCreateComponent implements OnInit {
   public beaconForm: BeaconForm;    // form model
   public submitted: boolean = false;
-  private webAPI:WebAPI
+  private webAPI:WebAPI = new WebAPI();
   private mapComponent: MapComponent ;  
   
   constructor() { 
@@ -46,6 +46,7 @@ export class BeaconCreateComponent implements OnInit {
   create(form: BeaconForm, isValid: boolean) {
     this.submitted = true;
     // if valid, call API to save customer
+    var location;
     var firstName = form.host.firstName;
     var lastName = form.host.lastName;
     var school = form.school;
@@ -134,11 +135,7 @@ export class BeaconCreateComponent implements OnInit {
 
 
   getLocation(){
-    var location: {
-      lat: number,
-      lng: number
-    } = this.mapComponent.getMapCenter();
-
+    var location = this.webAPI.getMapCenter();
     this.beaconForm.lat = location.lat;
     this.beaconForm.lng = location.lng;
     console.log(location);

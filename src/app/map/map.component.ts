@@ -47,14 +47,6 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     // Sets default page to view beacons
     this.createState = false;
-    //create a random new Beacon for testing purposes
-    /*this.createBeacon("CP317", "Laurier",
-         new Date().getTime(),
-         new Date().getTime() + 1 +  Math.floor(Math.random() * 21600000),
-         "123456789ABCDEFG",
-         43.4724 + (Math.random()-0.5),
-         -80.526 + (Math.random()-0.5),
-         "0010");*/
     // gets beacons from firebase
     this.getBeacons();
     // sets initial map position based on user location
@@ -81,6 +73,7 @@ export class MapComponent implements OnInit {
           // set latitude, longitude and zoom based on autocomplete suggestion
           this.lat = place.geometry.location.lat();
           this.lng = place.geometry.location.lng();
+          this.webAPI.setPosition(this.lat, this.lng, null);
           this.zoom = 10;
         });
       });
@@ -111,6 +104,7 @@ export class MapComponent implements OnInit {
   setPosition(position) {
     this.lat = position.coords.latitude;
     this.lng = position.coords.longitude;
+    this.webAPI.setPosition(this.lat, this.lng, null);
     this.reverseGeocode();
   }
 
@@ -122,13 +116,13 @@ export class MapComponent implements OnInit {
     var latlng = this.getMapCenter();
     // console.log(latlng);
     // get address from geocoder based on {lat, lng}
-    var address = geocoder.geocode({'location': latlng}, function(results, status) {
+    geocoder.geocode({'location': latlng}, function(results, status) {
         // console.log(results[1].formatted_address);
-        this.address = results[1].formatted_address;
+        var address = results[1].formatted_address;
+        this.webAPI.setPosition(null, null, address);
         // update search bar placeholder
         document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
     })
-    return this.address;
   }
 
   // returns the maps current center latitude and longitude

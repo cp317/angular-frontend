@@ -4,9 +4,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import {User, RegisteredUser, GuestUser} from './user';
 
+
 @Injectable()
 export class WebAPI {
   database = firebase.database();
+  
+  lat:number = 13.7244418;
+  lng:number = 100.3522238;
+  address:string;
 
   constructor() { }
 
@@ -217,7 +222,8 @@ get_name_acr_aux(beacons:any[], school_name:string)
 }
 
 // the function returns an array of acronyms
- get_acr(school_name:string){
+get_acr(school_name:string)
+{
 	//init the array
 	var acr_names = [];
 	var split_name = school_name.split(" ");
@@ -225,7 +231,8 @@ get_name_acr_aux(beacons:any[], school_name:string)
 	var flag = false;
 
 	//push the acronym to acr_names and check whether the name contains 'of' or not
-	for (var i in split_name){
+	for (var i in split_name)
+  {
 		acr += split_name[i][0]
 		if(split_name[i].toUpperCase() == "OF"){
 			flag = true;
@@ -236,7 +243,8 @@ get_name_acr_aux(beacons:any[], school_name:string)
 	acr = "";
 
 	//push the new acronym without 'of', if the flag is set to true
-	if(flag){
+	if(flag)
+  {
 		for (var i in split_name){
 			if(split_name[i].toUpperCase() != "OF"){
 				acr += split_name[i][0]
@@ -251,7 +259,7 @@ get_name_acr_aux(beacons:any[], school_name:string)
 // check if one of the school names contains a spelling error
 get_name_spl(school_name:string, variance:number, beacons:any[])
 {
-var t = []; // array to hold all the beacons with matching school names
+    var t = []; // array to hold all the beacons with matching school names
 		var ls = school_name.length;  //length of school name
 		var school = school_name.toUpperCase();
 		var testb; //variance: school name of each serched beacon
@@ -338,6 +346,30 @@ var t = []; // array to hold all the beacons with matching school names
   		lat: lat,
   		lng: lng
   	  }).key;
+  }
+
+    // sets the maps lat and lng attributes given a position
+  setPosition(lat, lng, address) {
+    
+    if (lat != null)
+    {
+      this.lat = lat;
+    }  
+    if (lng != null)
+    {
+      this.lng = lng;
+    }
+    if (address != null)
+    {
+      this.address = address;
+    }
+  }
+
+  // returns the maps current center latitude and longitude
+  getMapCenter() {
+    //console.log(this.lat);
+    //console.log(this.lng);
+    return {lat: this.lat, lng: this.lng, address: this.address};
   }
 
   // insert a user into the database
