@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
 
   registerUser(email:string, password:string){
       var user = firebase.auth().currentUser;
-      if(user.isAnonymous()){
+      if(user=null){
         var credential = firebase.auth.EmailAuthProvider.credential(email, password)
         user.linkWithCredential(credential).then(function(user) {
       console.log("Anonymous account successfully upgraded", user);
