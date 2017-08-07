@@ -84,10 +84,48 @@ export class BeaconCreateComponent implements OnInit {
     }
     console.log(form);
     console.log(tags);
-    
-
-
   }
+
+
+  isValid(form: BeaconForm)
+  {
+    var school = form.school;
+    var courseCode = form.courseCode;
+    var startDate = new Date(form.startTime);
+    var endDate = new Date(form.endTime);
+
+    // first check if the dates are defined
+    if (typeof(startDate) === "undefined" || typeof(endDate) === "undefined" || startDate == null || endDate == null)
+    {
+      return "Please enter start and end time in proper format";
+    }
+
+    var startTime = startDate.getTime();
+    var endTime = endDate.getTime();
+
+    // then check if the dates are valid
+    if (startTime > endTime)
+    {
+      return "End time must be after start time.";
+    }
+    else if (endTime < new Date().getTime())
+    {
+      return "End time must be in the future."
+    }
+    else if (courseCode == null || courseCode.replace(/\s/g, "") == "")
+    {
+      return "Please enter your course code";
+    }
+    else if (school == null || school.replace(/\s/g, "") == "")
+    {
+      return "Please enter your school";
+    }
+    else
+    {
+      return true;
+    }
+  }
+
 /**
   getLocation(){
     var location: {
