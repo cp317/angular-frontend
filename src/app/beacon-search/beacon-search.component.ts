@@ -69,11 +69,12 @@ export class BeaconSearchComponent {
 	}
 		
 	getFilterBeacons() {
+  console.log(this.schoolName);
 		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res => {
        console.log("here1");
       	for (var key in res) {
           console.log("here2");
-          var b = new Beacon(key);
+          var b = res[key];
           console.log(b);
           console.log(b.tags);
           console.log(this.timeRemaining);
@@ -82,12 +83,18 @@ export class BeaconSearchComponent {
           console.log(((b.endTime - b.startTime) / (1000 * 60 * 60)));
           if (this.timeRemaining >= ((b.endTime - b.startTime) / (1000 * 60 * 60))) {
             console.log("here3");
-            for (var i = 0; i < this.tags.length; i++) {
+            var t = 1;
+            for (var i = 0; i < this.tags.length; i++) 
+            {
               console.log(this.tags[i]);
-              if (this.tags[i] === 0)
-                this.beacons.push(b);
-              else if (this.tags[i] && b.tags[i])
-                this.beacons.push(b);
+              if (b.tags[i] > this.tags[i])
+              {
+                t = 0;
+              }
+            }
+            if (t == 1)
+            {
+              this.beacons.push(b);
             }
           }
      	}

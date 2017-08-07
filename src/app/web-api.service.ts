@@ -26,7 +26,7 @@ export class WebAPI {
       {
         var beacons = {};
         var validSchoolNames = [];
-        if (school != null)
+        if (school != null && school != "")
         {
           validSchoolNames.push(school.toUpperCase());
 
@@ -81,7 +81,7 @@ export class WebAPI {
           }
 
         }
-        if (school != null)
+        if (school != null && school != "")
         {
           //console.log(validSchoolNames);
           for (let key in res.val())
@@ -98,7 +98,7 @@ export class WebAPI {
             beacons[key] = res.val()[key];
           }
         }
-        if (course != null)
+        if (course != null && course != "")
         {
           for (let key in beacons)
           {
