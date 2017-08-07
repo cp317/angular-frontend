@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { WebAPI } from '../web-api.service';
 import { BeaconForm } from './beaconCreate.interface';
 import { MapComponent } from '../map/map.component';
+
 
 @Component({
   moduleId: module.id,
@@ -9,13 +10,16 @@ import { MapComponent } from '../map/map.component';
   templateUrl: './beacon-create.component.html',
   styleUrls: ['./beacon-create.component.css']
 })
+
+
 export class BeaconCreateComponent implements OnInit {
   public beaconForm: BeaconForm;    // form model
   public submitted: boolean = false;
   private webAPI:WebAPI
-  private mapComp:MapComponent
-
-  constructor() { }
+  private mapComponent: MapComponent ;  
+  
+  constructor() { 
+  }
 
   ngOnInit() {
 
@@ -82,8 +86,10 @@ export class BeaconCreateComponent implements OnInit {
     } else{
       tags.push(0);
     }
-    console.log(form);
-    console.log(tags);
+    
+    console.log("running create");
+    //console.log(form);
+    //console.log(tags);
   }
 
 
@@ -126,17 +132,17 @@ export class BeaconCreateComponent implements OnInit {
     }
   }
 
-/**
+
   getLocation(){
     var location: {
       lat: number,
       lng: number
-    } = this.mapComp.getMapCenter();
+    } = this.mapComponent.getMapCenter();
 
     this.beaconForm.lat = location.lat;
     this.beaconForm.lng = location.lng;
     console.log(location);
   }
-*/
+
 
 }

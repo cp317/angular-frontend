@@ -48,17 +48,18 @@
     <input class="mdl-textfield__input" name="endTime" type="datetime-local" [(ngModel)]="beaconForm.endTime" #endTime="ngModel" min="2017-08-01T00:00" max="2037-12-31T00:00">
   </div>
 
-  <!-- Latitude and Longitude
+  <!-- Latitude and Longitude-->
   <div class="mdl-textfield">
     <label class="mdl-textfield__label" for="lat">Latitude</label><br>
-    <input class="mdl-textfield__input" id="latBox" name="lat" [(ngModel)]="beaconForm.lat" ng-change="getLocation()">
+    <input class="mdl-textfield__input" id="latBox" name="lat" [(ngModel)]="beaconForm.lat">
   </div>
 
   <div class="mdl-textfield">
     <label class="mdl-textfield__label" for="lng">Longitude</label><br>
-    <input class="mdl-textfield__input" id="lngBox" name="lng" [(ngModel)]="beaconForm.lng" ng-change="getLocation()">
+    <input class="mdl-textfield__input" id="lngBox" name="lng" [(ngModel)]="beaconForm.lng">
   </div>
--->
+  <button input type="button" id="locButton" (click)="getLocation()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"> Get Center Location From Map </button>
+
   <!-- Tag label and spacing -->
   <div class="mdl-textfield"> <label class="mdl-textfield__label">Tags</label><br></div>
   <div class="mdl-textfield"><br></div>
