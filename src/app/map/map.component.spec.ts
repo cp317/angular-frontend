@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MapComponent } from './amg-map.component';
+import { MapComponent } from './map.component';
 
 describe('MapComponent', () => {
   let component: MapComponent;
