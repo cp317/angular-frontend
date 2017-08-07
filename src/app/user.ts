@@ -17,7 +17,7 @@ export class User
 		// if no userId is given, check for one in a cookie
 		if (userId == null)
 		{
-			this.loadCookie()
+			this.loadUserId()
 		}
 		// if a userId is given, store it
 		else
@@ -52,28 +52,9 @@ export class User
 		this.profileImageURL='src/assets/profileIcons/defaultImage' + randNum + '.png';
 	}
 
-	// stores the user's userID as a cookie
-	// parr8740@mylaurier.ca
-	storeCookie(){
-        var d = new Date();
-        d.setFullYear(d.getFullYear()+1);
-        document.cookie='userId=' + this.userId + ';' + 'expires=' + d + ';';
-        encodeURIComponent(document.cookie);
-	}
 
-	// attempts to load the user's userID from a cookie
-	// parr8740@mylaurier.ca
-	loadCookie(){
-        var decodeCookie= decodeURIComponent(document.cookie);
-        if(document.cookie.indexOf('=')==-1){
-            document.cookie='userId=' + null + ';';
-        } else {
-            var cookieStr= document.cookie.split(';');
-            var splitStr= cookieStr[0].split('=');
-            this.userId=splitStr[1];
-        }
-    }
     loadUserId(){
+        
         var user = firebase.auth().currentUser;
         if(user){
             // user is already signed in
@@ -99,7 +80,6 @@ export class RegisteredUser {
 	constructor(userId:string){
 		this.user = new User(userId);
 		this.loadUser();
-		this.user.storeCookie();
 	}
 
 	loadUser(){
@@ -236,7 +216,6 @@ export class GuestUser {
 			this.user.setImage();
 			this.storeUser();
 		}
-		this.user.storeCookie();
 	}
 
 	isRegistered(){

@@ -39,6 +39,15 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(email:string, password:string){
+      var user = firebase.auth().currentUser;
+      if(user.isAnonymous()){
+        var credential = firebase.auth.EmailAuthProvider.credential(email, password)
+        user.linkWithCredential(credential).then(function(user) {
+      console.log("Anonymous account successfully upgraded", user);
+    }, function(error) {
+        console.log("Error upgrading anonymous account", error.message);
+    });
+    }else{
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(
         function(error){
           var errorCode = error.stack;
@@ -51,7 +60,8 @@ export class RegisterComponent implements OnInit {
 
           console.log(errorCode + " " + errorMessage);
         });
-      var user = firebase.auth().currentUser;
+    }
+    
 
       if (user != null){
         //Add the user to the info database
@@ -69,6 +79,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerAnonUser(email:string, password:string){
+    if(firebase.auth())
     var credential = firebase.auth.EmailAuthProvider.credential(email, password)
     firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
       console.log("Anonymous account successfully upgraded", user);
