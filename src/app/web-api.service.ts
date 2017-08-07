@@ -75,7 +75,7 @@ export class WebAPI {
                 if (!validSchoolNames.includes(s))
                 {
                   validSchoolNames.push(s);
-                  console.log(s);
+                  //console.log(s);
                 }
               }
             }
@@ -84,7 +84,7 @@ export class WebAPI {
         }
         if (school != null)
         {
-          console.log(validSchoolNames);
+          //console.log(validSchoolNames);
           for (let key in res.val())
           {
             if (validSchoolNames.includes(res.val()[key].school))
@@ -109,7 +109,7 @@ export class WebAPI {
             }
           }
         }
-        console.log(beacons);
+        //console.log(beacons);
         resolve(beacons);
       });
     }).catch(err => console.log(err))

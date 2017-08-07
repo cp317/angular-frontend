@@ -61,22 +61,29 @@ export class BeaconSearchComponent {
       this.tags.push(0);
     }
 
+    this.schoolName = (<HTMLInputElement> document.getElementsByName('schoolFilter')[0]).value;
+    this.courseName = (<HTMLInputElement> document.getElementsByName('courseFilter')[0]).value;
+    this.timeRemaining = +(<HTMLInputElement> document.getElementsByName('timeRemaining')[0]).value;
+
 		this.getFilterBeacons();
 	}
 		
   	getFilterBeacons() {
       console.log(this.tags);
+      console.log(this.schoolName);
+      console.log(this.courseName);
   		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res =>
   			{
 	      	for (var key in res) {
             var b = new Beacon(key);
 	        	//compare to filter
-	        	if (b.tags === this.tags && this.timeRemaining >= (b.endTime - b.startTime) / (1000 * 60 * 60)) {
+	        	if (b.tags === this.tags && this.timeRemaining >= ((b.endTime - b.startTime) / (1000 * 60 * 60))) {
+              console.log("passes filter");
+              console.log(b);
 	        		this.beacons.push(b);
 	        	}
-          console.log("here");
-          console.log(this.beacons);
 	     	}
+        console.log(this.beacons);
     	})
  	 }
 }
