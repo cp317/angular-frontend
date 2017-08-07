@@ -81,8 +81,7 @@ export class MapComponent implements OnInit {
   }
 
   // display all beacons on the screen
-  getBeacons()
-  {
+  getBeacons() {
     this.webAPI.getBeacons(null,null).then(res =>
     {
       for (var key in res)
@@ -91,6 +90,11 @@ export class MapComponent implements OnInit {
       }
       console.log(this.beacons);
     });
+  }
+
+  setBeacons(beacons) {
+    this.beacons = beacons;
+    return;
   }
 
   // gets the position of user from their browser and calls setPostion()

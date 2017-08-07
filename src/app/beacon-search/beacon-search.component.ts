@@ -16,15 +16,15 @@ export class BeaconSearchComponent {
 
   beacons:Beacon[] = [];
 
-	schoolName: string = "";
-	courseName: string = "";
-	timeRemaining: number = 0;
+	schoolName: string;
+	courseName: string;
+	timeRemaining: number;
 	hasWifi: boolean;
 	hasComputers: boolean;
 	hasOutlets: boolean;
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
-	tags: number[] = [];
+	tags: number[];
 
 	onApply() {
 		//reset tags string
@@ -61,22 +61,28 @@ export class BeaconSearchComponent {
       this.tags.push(0);
     }
 
+    this.schoolName = (<HTMLInputElement> document.getElementsByName('schoolFilter')[0]).value;
+    this.courseName = (<HTMLInputElement> document.getElementsByName('courseFilter')[0]).value;
+    this.timeRemaining = +(<HTMLInputElement> document.getElementsByName('timeRemaining')[0]).value;
+
 		this.getFilterBeacons();
 	}
 		
-  	getFilterBeacons() {
-      console.log(this.tags);
-  		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res =>
-  			{
-	      	for (var key in res) {
-            var b = new Beacon(key);
-	        	//compare to filter
-	        	if (b.tags === this.tags && this.timeRemaining >= (b.endTime - b.startTime) / (1000 * 60 * 60)) {
-	        		this.beacons.push(b);
-	        	}
-          console.log("here");
-          console.log(this.beacons);
-	     	}
-    	})
- 	 }
+	getFilterBeacons() {
+		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res => {
+      	for (var key in res) {
+          var b = res[key];
+          if (this.timeRemaining >= ((b.endTime - b.startTime) / (1000 * 60 * 60))) {
+            var t = 1;
+            for (var i = 0; i < this.tags.length; i++) {
+              if (this.tags[i] > b.tags[i])
+                t = 0;
+            }
+            if (t == 1)
+              this.beacons.push(b);
+          }
+     	}
+       // console.log(this.beacons);
+  	})
+	}
 }

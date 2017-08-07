@@ -26,7 +26,7 @@ export class WebAPI {
       {
         var beacons = {};
         var validSchoolNames = [];
-        if (school != null)
+        if (school != null && school != "")
         {
           validSchoolNames.push(school.toUpperCase());
 
@@ -75,16 +75,15 @@ export class WebAPI {
                 if (!validSchoolNames.includes(s.toUpperCase()))
                 {
                   validSchoolNames.push(s.toUpperCase());
-                  console.log(s);
                 }
               }
             }
           }
 
         }
-        if (school != null)
+        if (school != null && school != "")
         {
-          console.log(validSchoolNames);
+          //console.log(validSchoolNames);
           for (let key in res.val())
           {
             if (validSchoolNames.includes(res.val()[key].school.toUpperCase()))
@@ -99,7 +98,7 @@ export class WebAPI {
             beacons[key] = res.val()[key];
           }
         }
-        if (course != null)
+        if (course != null && course != "")
         {
           for (let key in beacons)
           {
@@ -109,7 +108,7 @@ export class WebAPI {
             }
           }
         }
-        console.log(beacons);
+        //console.log(beacons);
         resolve(beacons);
       });
     }).catch(err => console.log(err))
