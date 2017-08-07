@@ -19,8 +19,15 @@ label{
 	width: 50%;
 }
 
-button{
+#search-button{
 	font-size: 20px;
 	background-color: #D3D3D3;
 	border: black 1px solid;
+}
+.mdl-textfield__label{
+    color: darkslategray;
+}
+.mdl-textfield__input{
+	border-top: none;
+    border-bottom: 1px solid darkslategray;
 }

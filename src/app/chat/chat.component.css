@@ -21,16 +21,21 @@ html, body {
 	height: 5px;
 }
 .chat-button {
+    border: none;
+    border-radius: 2px;
 	position: fixed; bottom: 0; right: 0;
-	font-size: 2em;
-	background-color: #3333FF; /* Blue colour -OC */
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+	font-size: 25px;
+    font-weight: 450;
+    letter-spacing: 0;
+	background-color: #3f51b5; /* Blue colour -OC */
 	color: white;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	border: 2px solid #e7e7e7;
+	/*border: 2px solid #e7e7e7;**/
 	padding: 14px 60px;
-	border-radius: 4px;
+	/*border-radius: 4px;**/
 }
 .chat-list-user,.chat-list-beacon{
 

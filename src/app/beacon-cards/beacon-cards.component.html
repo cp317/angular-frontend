@@ -1,8 +1,10 @@
 <!--
 
-last edited by mat younatan 7/25/2017
+last edited by mat younatan 8/6/2017
+    - (adding) join beacon functionality
 
 -->
+<h3> Open Beacons </h3>
 <div class = "beacon-card mdl-card mdl-shadow--2dp" *ngFor="let beacon of beacons">
 
     <!-- School -->
@@ -57,6 +59,9 @@ last edited by mat younatan 7/25/2017
 
     <!-- Time progression bar -->
     <div>
+        <div class="mdl-card__supporting-text">
+            Time Remaining:
+        </div>
         <!-- Simple MDL Progress Bar -->
         <div id="time-bar" class="mdl-progress mdl-js-progress"></div>
     </div>
@@ -68,9 +73,8 @@ last edited by mat younatan 7/25/2017
 
     <!-- Buttons -->
     <div class="mdl-card__actions mdl-card--border">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <button (click)="joinBeacon(beacon)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             JOIN BEACON
         </button>
-
     </div>
 </div>

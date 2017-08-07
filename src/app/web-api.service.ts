@@ -370,24 +370,20 @@ var t = []; // array to hold all the beacons with matching school names
   getUserById(id:string):Promise<any>
   {
     return new Promise((resolve,reject) => {
-        this.database.ref("user/" + id).once("value").then(function(b){
+        this.database.ref("/user/" + id).once("value").then(function(b){
         var user:any;
-
         // if email is not null / undefined, create a RegisteredUser object with the given ID
-        if (typeof(b.val().email) !== "undefined" && b.val().email != null)
+        if (b.child("email").val() != null && b.child("email") !== "undefined" )
         {
           user = new RegisteredUser(id);
-          user.loadUser();
         }
         // if email is null, create a GuestUser object with the given ID
         else
         {
           user = new GuestUser(id);
-          user.loadUser();
         }
 
         // return the RegisteredUser / GuestUser object
-        //console.log(user);
         resolve(user);
       });
     });

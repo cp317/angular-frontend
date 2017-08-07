@@ -253,12 +253,12 @@ export class GuestUser {
 	{
 		this.user.database.ref('/user/' + this.user.userId).once('value').then(res => {
 			var user = res.val();
-			this.user.profileImageURL = user.profileImageURL;
-			if (typeof(user.chats) !== "undefined")
+			//this.user.profileImageURL = user.profileImageURL;
+			if (res.hasChild("chats"))
 			{
 				this.user.chats = user.chats;
 			}
-			if (typeof(user.beacons) !== "undefined")
+			if (res.hasChild("beacons"))
 			{
 				this.user.beacons = user.beacons;
 			}

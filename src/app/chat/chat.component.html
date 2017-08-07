@@ -2,7 +2,12 @@
 <!-- Chat button component -OC -->
 <div class ="chatbar">
 	<div class="chat-footer" style="position: fixed; bottom: 0px; right 0px;">
-		<button md-button class='chat-button' id="chat-button" type="button" (click)="openChat()" style="font-size: 20px">Chat</button>
+	<div class="chat-footer" id="chat-footer" style="position: fixed;">
+        
+		<button md-button class='chat-button' id="chat-button" type="button" (click)="openChat()" >Chat</button>
+        
+        <!--Chat footer buttons should(TM) go here -Paul-->
+        
 	</div>
 	<!-- Sidebar component -OC -->
 	<div id="chatSidenav" class="chat-sidebar">

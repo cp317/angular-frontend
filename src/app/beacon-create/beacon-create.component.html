@@ -1,94 +1,108 @@
-<h1 style="margin-top: 60px;margin-left: 140px;color:white; font-size:30px">Create Beacon</h1>
+<h1>Create Beacon</h1>
 
-<form class="form-horizontal text-center" style="margin-left: 90px;width:500px">
+<form #f="ngForm" (ngSubmit)="create(f.value, f.valid)" novalidate class="form-horizontal text-center">
 
+  <!-- Need to have host autofilled to user's name -->
 
-    <!-- Need to have host autofilled to user's name -->
-  	<!-- <form action="#"> -->      
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" id="host">
-		    <label class="mdl-textfield__label" for="host">Host</label>
-      </div>
-	  <!-- </form> -->
-
-  	<!-- <form action="#"> -->
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" id="school">
-		    <label class="mdl-textfield__label" for="school">School</label>
-      </div>
-	  <!-- </form> -->
-
-  	<!-- <form action="#"> -->
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" id="courseCode">
-		    <label class="mdl-textfield__label" for="courseCode">Course Code</label>
-      </div>
-	  <!-- </form> -->
- 
-    <!-- Need to time with date selector instead of input field -->
-  	<!-- <form action="#"> -->
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" id="startTime">
-		    <label class="mdl-textfield__label" for="startTime">Start Time</label>
-      </div>
-    <!-- </form> -->
+  <!-- Host details -->
+  <div ngModelGroup="host">
+    <!-- Host's first name -->
+    <div class="mdl-textfield">      
+      <label class="mdl-textfield__label">First Name</label><br>
+      <input class="mdl-textfield__input" name="firstName" [(ngModel)]="beaconForm.host.firstName" #firstName="ngModel">
       
-  	<!-- <form action="#"> -->
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" id="endTime">
-		    <label class="mdl-textfield__label" for="endTime">End Time</label>
-      </div>
-	  <!-- </form> -->
+      <!--show error only when field is not valid & it's dirty or form submited
+      <small [hidden]="firstName.valid || (firstName.pristine && !f.submitted)" class="text-danger"> Required field. </small> -->
+    </div> 
 
-    <!-- Need to separate lat/lng and/or get it directly from map -->
-  	<!-- <form action="#"> -->
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" id="endTime">
-        <label class="mdl-textfield__label" for="endTime">Location</label>
-      </div>
-    <!-- </form> -->    
-    <br>
-    <div class="tags">    
-      <label for="WiFi" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" id="chkWiFi" class="mdl-checkbox__input" checked>
+    <!-- Host's last name -->
+    <div class="mdl-textfield">
+      <label class="mdl-textfield__label" for="lastName">Last Name</label><br>
+      <input class="mdl-textfield__input" name="lastName" [(ngModel)]="beaconForm.host.lastName" #lastName="ngModel" required>
+      <!--show error only when field is not valid & it's dirty or form submited
+      <small [hidden]="lastName.valid || (lastName.pristine && !f.submitted)" class="text-danger"> Required field. </small> -->
+    </div>
+  </div>
+
+  <!-- School Name -->
+  <div class="mdl-textfield">
+    <label class="mdl-textfield__label" for="school">School</label><br>
+    <input class="mdl-textfield__input" name="school" [(ngModel)]="beaconForm.school" #school="ngModel" required >
+  </div>
+  
+  <!-- Course Code -->
+  <div class="mdl-textfield">
+    <label class="mdl-textfield__label" for="course">Course Code</label><br>
+    <input class="mdl-textfield__input" name="course" [(ngModel)]="beaconForm.course" #course="ngModel" required>
+  </div>
+
+  <!-- Start Time -->
+  <div class="mdl-textfield">
+    <label class="mdl-textfield__label" for="startTime">Start Time</label><br>
+    <input class="mdl-textfield__input" name="startTime" type="datetime-local" [(ngModel)]="beaconForm.startTime" #startTime="ngModel" min="2017-08-01T00:00" max="2037-12-31T00:00">
+  </div>
+
+  <!-- End Time -->
+  <div class="mdl-textfield">
+    <label class="mdl-textfield__label" for="endTime">End Time</label><br>
+    <input class="mdl-textfield__input" name="endTime" type="datetime-local" [(ngModel)]="beaconForm.endTime" #endTime="ngModel" min="2017-08-01T00:00" max="2037-12-31T00:00">
+  </div>
+
+  <!-- Latitude and Longitude
+  <div class="mdl-textfield">
+    <label class="mdl-textfield__label" for="lat">Latitude</label><br>
+    <input class="mdl-textfield__input" id="latBox" name="lat" [(ngModel)]="beaconForm.lat" ng-change="getLocation()">
+  </div>
+
+  <div class="mdl-textfield">
+    <label class="mdl-textfield__label" for="lng">Longitude</label><br>
+    <input class="mdl-textfield__input" id="lngBox" name="lng" [(ngModel)]="beaconForm.lng" ng-change="getLocation()">
+  </div>
+-->
+  <!-- Tag label and spacing -->
+  <div class="mdl-textfield"> <label class="mdl-textfield__label">Tags</label><br></div>
+  <div class="mdl-textfield"><br></div>
+
+  <!-- Tags -->
+  <div class="tags">  
+    <div class="tag">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+        <input type="checkbox" id="chkWiFi" class="mdl-checkbox__input" name="hasWifi" [(ngModel)]=hasWifi unchecked>
         <span class="mdl-checkbox__label">WiFi</span>
       </label>
     </div>
 
-    <div class="tags">
-      <label for="Computers" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" id="chkComputers" class="mdl-checkbox__input">
+    <div class="tag">   
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+        <input type="checkbox" id="chkComputers" class="mdl-checkbox__input" name="hasComputers" [(ngModel)]=hasComputers unchecked>
         <span class="mdl-checkbox__label">Computers</span>
       </label>
     </div>
 
-    <div class="tags">
-      <label for="Outlets" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" id="chkOutlets" class="mdl-checkbox__input">
+    <div class="tag">  
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+        <input type="checkbox" id="chkOutlets" class="mdl-checkbox__input" name="hasOutlets" [(ngModel)]=hasOutlets unchecked>
         <span class="mdl-checkbox__label">Outlets</span>
       </label>
     </div>
 
-    <div class="tags">
-      <label for="Whiteboard" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" id="chkWhiteboard" class="mdl-checkbox__input">
+    <div class="tag">  
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+        <input type="checkbox" id="chkWhiteboard" class="mdl-checkbox__input" name="hasWhiteboard" [(ngModel)]=hasWhiteboard unchecked>
         <span class="mdl-checkbox__label">Whiteboard</span>
       </label>
     </div>
 
-    <div class="tags">
-      <label for="Projector" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-        <input type="checkbox" id="chkProjector" class="mdl-checkbox__input">
+    <div class="tag">  
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+        <input type="checkbox" id="chkProjector" class="mdl-checkbox__input" name="hasProjector" [(ngModel)]=hasProjector unchecked> 
         <span class="mdl-checkbox__label">Projector</span>
       </label>   
-    </div> 
-
-  <div class="form-group" style="*margin-top: 60px">
-      <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="validate()">Create</button>
+    </div>
   </div>
 
-
+  <!-- Create Button -->
+  <div class="form-group" style="*margin-top: 60px">
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Create</button>
+  </div>
 </form>
-
-
-

@@ -20,11 +20,14 @@ import { BeaconPageComponent } from './beacon-page/beacon-page.component';
 import { RouterModule} from '@angular/router'
 import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from './login/login.component';
+import { PasswordComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
 import { UserDiscoveryComponent } from './user-discovery/user-discovery.component';
+
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyC6ySrInpH3svhfDbZDIWc3dhHAOvZW2kk",
@@ -47,6 +50,7 @@ export const firebaseConfig = {
     BeaconListComponent,
     BeaconPageComponent,
     LoginComponent,
+    PasswordComponent,
     RegisterComponent,
     LoginPageComponent,
     ProfileComponent,
@@ -55,6 +59,7 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    BootstrapModalModule,
 	MdButtonModule,
         RouterModule.forRoot([
         {path: '', component: MapComponent},
@@ -74,6 +79,9 @@ export const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule,
   ],
+  entryComponents: [
+    PasswordComponent
+    ],
   providers: [WebAPI],
   bootstrap: [AppComponent]
 })

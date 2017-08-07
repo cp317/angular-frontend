@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { User, RegisteredUser, GuestUser } from '../user';
+import { Beacon } from '../beacon';
+import { Chat } from '../chat';
 import * as firebase from 'firebase/app';
-
+//-----------------------------------------------------------------------------------------------------
 // Authors Martin Symington (OC) & Paul Hohbaum
 @Component({
     selector: 'app-chat-component',
 	templateUrl: './chat.component.html',
 	styleUrls: ['./chat.component.css']
 })
-
+//-----------------------------------------------------------------------------------------------------
 export class ChatComponent implements OnInit {
 	private database = firebase.database();
 	constructor () { }
 	ngOnInit() {
 	}
-
+//-----------------------------------------------------------------------------------------------------
 // Opens up the chatSidenav for chats and calls the population functions -OC
  openChat(){
 	document.getElementById("chatSidenav").style.width = "169px";
@@ -22,12 +25,13 @@ export class ChatComponent implements OnInit {
 	this.populateSidebarBeacon();
 	this.populateSidebarUser();
 }
+//-----------------------------------------------------------------------------------------------------
 // Closes the chatSidenav for chats and unpopulates them -OC
 closeChat(){
 	document.getElementById("chatSidenav").style.width = "0";
     this.unPopulateSidebar();
 }
-
+//-----------------------------------------------------------------------------------------------------
 /* Dummy functions, delete multi line comment when user authentication is working. -OC 
 // Populates the User Chat(s) for chatSidenav -OC
 populateSidebarUser(u:User){
@@ -52,6 +56,7 @@ populateSidebarUser(u:User){
 	} // End of loop -OC 
 	uElement.appendChild(uDivision); // Adds uDivision to uElement -OC
 }
+//-----------------------------------------------------------------------------------------------------
 // Populates the Beacon Chat(s) for chatSidenav -OC
 populateSidebarBeacon(u:User){
 	var bElement = document.getElementById("chatListBeacon"); // Main div being added to -OC
@@ -76,7 +81,7 @@ populateSidebarBeacon(u:User){
 	bElement.appendChild(bDivision); // Adds bDivision to bElement
 
 */
-
+//-----------------------------------------------------------------------------------------------------
 // Populates the User Chat(s) for chatSidenav, currently adds dummy text, delete code when user authentication is working -OC
 populateSidebarUser(){
 	var uElement = document.getElementById("chatListUser"); // Main div being added to -OC
@@ -99,7 +104,7 @@ populateSidebarUser(){
 	} // End of loop -OC
 	uElement.appendChild(uDivision); // Adds uDivision to uElement -OC
 }
-
+//-----------------------------------------------------------------------------------------------------
 // Populates the Beacon Chat(s) for chatSidenav, currently adds dummy text, delete code when user authentication is working -OC
 populateSidebarBeacon(){
 	var bElement = document.getElementById("chatListBeacon"); // Main div being added to -OC
@@ -119,19 +124,20 @@ populateSidebarBeacon(){
 		bPara.style.padding = "20px 5px"; // Stylizing dummy text -OC
 		//bPara.style.fontSize = "16px"; 
 		bPara.addEventListener("click", this.unPopulateSidebar); // For learning how to do things dynamically w/ buttons in JS -OC 
+		//bPara.addEventListener("click", this.unPopulateSidebar); // For learning how to do things dynamically w/ buttons in JS -OC 
 		var bNode = document.createTextNode("This is beacon testing");
 		bPara.appendChild(bNode); // Adds text to bPara -OC
 		bDivision.appendChild(bPara); // Adds bPara to bDivision -OC
 	} // End of loop -OC
 	bElement.appendChild(bDivision); // Adds bDivision to bElement -OC
 }
-
+//-----------------------------------------------------------------------------------------------------
 //IGNORE BUT DO NOT DELETE PL0X -OC
 testfunc(){
 	var temp = firebase.auth().currentUser;
 	console.log(temp);
 }
-
+//-----------------------------------------------------------------------------------------------------
 //Unpopulates the sidebar -Paul 
 // Updated -OC
 unPopulateSidebar(){
@@ -142,28 +148,62 @@ unPopulateSidebar(){
     bElement.removeChild(bDivision);
 	uElement.removeChild(uDivision);
 }
-
+//-----------------------------------------------------------------------------------------------------
 //Refreshes the sidebar, nearly instantly, A+ -Paul
 refreshSidebar(){
     this.closeChat();
     this.openChat();
-    console.log("Ni");
     console.log("Ahhhhh refreshing");
 }
 
 //Opens the chat popup box for users -Paul
-userChatPopupBox(currentUser,recipientUser){
-    var currentUser = currentUser; //The current user
-    var chatUser = chatUser; //Person the current user is talking to
+userChatPopupBox(currentUser:User,recipientUser:User){
+    
     
 }
-
+//-----------------------------------------------------------------------------------------------------
+/*//Finds the recipient user in the chat array -Paul
+findRecipientUser(currentUser: User,recipientUser:User){
+    var chats = currentUser.chats;
+    var recipientId = recipientUser.userId;
+    var i = 0;
+    var found = false;
+    
+    while (found = false) {
+        
+        var tempUser = chats[i];
+        
+        if (tempUser.userId == recipientId) {
+            
+        }
+        
+    }
+    if (found == false){
+        i = -1;
+    }
+    return i;
+}**/
+//-----------------------------------------------------------------------------------------------------
 //Opens the chat popup box for beacons -Paul
-beaconChatPopupBox(currentUser,beacon){
-    var currentUser = currentUser; //The current user
-    var beacon = beacon; //Person the current user is talking to
+beaconChatPopupBox(currentUser:User,beacon:Beacon){
+    var messages = beacon.chat.messages; //Gets the messages list from the beacon chat -Paul
+
+}
+//-----------------------------------------------------------------------------------------------------
+//Makes a button on the footer for a user chat -Paul
+userChatPopupButton(recipientUser: User){
+    var chatFooter = document.getElementById("chat-footer"); //Gets the footer element -Paul
+}
+//-----------------------------------------------------------------------------------------------------
+//Makes a button on the footer for a user chat -Paul
+beaconChatPopupButton(beacon: Beacon){
+    var chatFooter = document.getElementById("chat-footer"); //Gets the footer element -Paul
+    var beaconButton = document.createElement("button"); //Gets the child element -Paul
+    var beaconId = beacon.beaconId; //Gets the beacon ID -Paul
     
 }
+//-----------------------------------------------------------------------------------------------------
+
 
 /* Un-multiline comment when user authentication is ready -OC 
 // Creates the main button portion for Beacon chats when passed a Beacon object. -OC
@@ -171,12 +211,24 @@ beaconButtonCreation(b:Beacon){
 	var bElement = document.getElementById("beacon-part"); // Sets the main element to the div created prior --OC
 	var bButt = document.createElement("button");
 	bButt.style.padding = "20px 5px"; //Button size -OC 
-	bButt.addEventListener("click", beaconChatPopupBox(currentUser, beacon)); // Calls the proper function on click -OC
+	bButt.addEventListener("click", beaconChatPopupBox(beacon)); // Calls the proper function on click -OC
 	var cnDiv = document.createElement("div"); // Course Name Div retrieved from passed beacon -OC
-	var memDiv = document.createElement("div"); // Members Div retrieved from passed beacon -OC 
-	var trDiv = document.createElement("div"); // Time Remaining Div retrieved from passed beacon -OC
 	var courseName = document.createTextNode(b.course); // Course Name text -OC 
-	
+	cnDiv.appendChild(courseName); 
+	bButt.appendChild(cnDiv); // Course name is now inside button -OC
+	bElement.appendChild(bButt); // Adds button to sidebar
+}
+// Creates the main button portion for User chats when passed a User object. -OC
+userButtonCreation(u:User){
+	var uElement = document.getElementById("user-part"); // Sets the main element to the div created prior --OC
+	var uButt = document.createElement("button");
+	uButt.style.padding = "20px 5px"; //Button size -OC 
+	uButt.addEventListener("click", userChatPopupBox(recipientUser)); // Calls the proper function on click -OC
+	var unDiv = document.createElement("div"); // Course Name Div retrieved from passed beacon -OC
+	var uId = document.createTextNode(u.userId); // User ID text -OC 
+	unDiv.appendChild(uId); 
+	uButt.appendChild(unDiv); // User ID is now inside button -OC
+	uElement.appendChild(uButt); // Adds button to sidebar
 }
 */
 }
