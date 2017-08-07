@@ -74,13 +74,7 @@ export class WebAPI {
               {
                 if (!validSchoolNames.includes(s.toUpperCase()))
                 {
-<<<<<<< HEAD
-                  validSchoolNames.push(s);
-                  //console.log(s);
-=======
                   validSchoolNames.push(s.toUpperCase());
-                  console.log(s);
->>>>>>> 3e95708d93a9a4ab7da737879d762bc2dc7de0da
                 }
               }
             }

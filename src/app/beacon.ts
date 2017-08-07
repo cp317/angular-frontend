@@ -92,7 +92,6 @@ export class Beacon {
 		this.startTime = beacon.startTime,
 		this.tags = beacon.tags,
 		this.description = beacon.description
-
     this.webAPI.getUserById(beacon.host).then(h => {
       this.host = h;
     });
