@@ -69,36 +69,20 @@ export class BeaconSearchComponent {
 	}
 		
 	getFilterBeacons() {
-  console.log(this.schoolName);
 		this.webAPI.getBeacons(this.schoolName, this.courseName).then(res => {
-       console.log("here1");
       	for (var key in res) {
-          console.log("here2");
           var b = res[key];
-          console.log(b);
-          console.log(b.tags);
-          console.log(this.timeRemaining);
-          console.log(b.endTime);
-          console.log(b.startTime);
-          console.log(((b.endTime - b.startTime) / (1000 * 60 * 60)));
           if (this.timeRemaining >= ((b.endTime - b.startTime) / (1000 * 60 * 60))) {
-            console.log("here3");
             var t = 1;
-            for (var i = 0; i < this.tags.length; i++) 
-            {
-              console.log(this.tags[i]);
-              if (b.tags[i] > this.tags[i])
-              {
+            for (var i = 0; i < this.tags.length; i++) {
+              if (this.tags[i] > b.tags[i])
                 t = 0;
-              }
             }
             if (t == 1)
-            {
               this.beacons.push(b);
-            }
           }
      	}
-      console.log(this.beacons);
+       // console.log(this.beacons);
   	})
 	}
 }
