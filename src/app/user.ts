@@ -2,6 +2,7 @@
 import * as firebase from 'firebase/app';
 import { Beacon } from './beacon';
 import { Chat } from './chat';
+import { Md5 } from 'ts-md5/dist/md5';
 
 export class User
 {
@@ -92,6 +93,7 @@ export class RegisteredUser {
 	email:string;
 	biography:string;
 	school:string;
+	gravatar:string;
 	courses:string[] = [];
 
 	constructor(userId:string){
@@ -107,6 +109,7 @@ export class RegisteredUser {
 			this.lastName = user.lastName;
 			this.email = user.email;
 			this.user.profileImageURL = user.profileImageURL;
+			this.gravatar = user.gravatar;
 			this.school = user.school;
 			this.biography = user.biography;
 			if (typeof(user.chats) !== "undefined")
@@ -137,6 +140,7 @@ export class RegisteredUser {
 			lastName: this.lastName,
 			email: this.email,
 			profileImageURL: this.user.profileImageURL,
+			gravatar: this.gravatar,
 			school: this.school,
 			biography: this.biography,
 			courses: this.courses,
@@ -159,7 +163,15 @@ export class RegisteredUser {
 	}
 
 	getGravatar(){
-		return this.user.profileImageURL;
+		// If user is new then we will check and set their gravatar.
+		if (this.gravatar == ''){
+			let hash = this.email.trim();
+			hash = <string>Md5.hashStr(this.gravatar.toLowerCase());
+			this.gravatar = 'https://www.gravatar.com/avatar/' + hash + "?s=500";
+			this.storeUser();
+		}
+		//Otherwise just return the gravatar.
+		return this.gravatar;
 	}
 
 	getSchool(){
@@ -183,8 +195,12 @@ export class RegisteredUser {
 		this.storeUser();
 	}
 
-	setGravatar(gravatar: string){
-		this.user.profileImageURL = gravatar;
+	setGravatar(){
+		// If the user has changed their gravatar and wants to update it on Study Space.
+		let hash = this.email.trim();
+		hash = <string>Md5.hashStr(this.gravatar.toLowerCase());
+		this.gravatar = 'https://www.gravatar.com/avatar/' + hash + "?s=500"
+
 		this.storeUser();
 	}
 
