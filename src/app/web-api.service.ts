@@ -330,9 +330,9 @@ get_name_spl(school_name:string, variance:number, beacons:any[])
     return t;
 }
 
-  // inserts a beacon with the given attributes into the database
+  // inserts a beacon with the given attributes into the database 
   // returns the BeaconID of the newly created beacon
-  createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:number[], lat:number, lng:number):string
+  createBeacon(course:string, school:string, startTime:number, endTime:number, host:string, members:string[], tags:number[], description:string, lat:number, lng:number):string
   {
     // insert the beacon object into the database
     return this.database.ref('/beacon/').push({
@@ -343,6 +343,7 @@ get_name_spl(school_name:string, variance:number, beacons:any[])
   		host: host,
       members: members,
   		tags: tags,
+      description: description,
   		lat: lat,
   		lng: lng
   	  }).key;

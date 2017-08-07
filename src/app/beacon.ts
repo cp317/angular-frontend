@@ -56,6 +56,7 @@ export class Beacon {
   			host: this.host.user.userId,
   			tags: this.tags,
   			members: membersId,
+        description: this.description,
   			lat: this.lat,
   			lng: this.lng
   		  }).key;
@@ -71,6 +72,7 @@ export class Beacon {
         host: this.host.user.userId,
         tags: this.tags,
         members: membersId,
+        description: this.description,
         lat: this.lat,
         lng: this.lng
         });
@@ -139,9 +141,6 @@ export class Beacon {
 	}
 
 	// returns true if the given user is the host, and false otherwise
-	// zihua wang
-  //assigned to : wang7440@mylaurier.ca
-	// i use callback replaced  return because it will get nothing when you use return function
 	checkHost(user:RegisteredUser,callback)
 	{
     var flag:boolean;
@@ -161,40 +160,37 @@ export class Beacon {
 	}
 
 	// get the beacon ID
-	// Rongxin Yuan - 140589620
 	getBeaconId()
   {
 		return this.beaconId;
 	}
 
 	// get the Course code
-	// Rongxin Yuan - 140589620
 	getCourseCode(){
 		return this.course;
 	}
 
 	// get the Description
-	// Rongxin Yuan - 140589620
 	getDescription(){
 		return this.description;
 	}
+
 	// get the Start time
-	// Rongxin Yuan - 140589620
 	getStartTime(){
 		return this.startTime;
 	}
+
 	// get the End time
-	// Rongxin Yuan - 140589620
 	getEndTime(){
 		return this.endTime;
 	}
+
 	// add user to members
-	// Rongxin Yuan - 140589620
-	inviteUser(newUser){
+	addUser(newUser){
 		this.members.push(newUser);
 	}
+
 	// remove users
-	// Rongxin Yuan - 140589620
 	removeUser(user){
 		var index = this.members.indexOf(user);
     if (index != -1)
@@ -202,32 +198,28 @@ export class Beacon {
 		    this.members.splice(index, 1);
     }
 	}
+
   // get the host of the beacon
-  // zhan4770@mylaurier.ca
   getHost(){
     return this.host;
   }
 
   // get the location of the beacon
-  // zhan4770@mylaurier.ca
   getLocation(){
     return [this.lat, this.lng];
   }
 
   // get members
-  // zhan4770@mylaurier.ca
   getMembers(){
     return this.members;
   }
 
   // get tags
-  // zhan4770@mylaurier.ca
   getTags(){
     return this.tags;
   }
 
   // set the location
-  // zhan4770@mylaurier.ca
   setLocation(lat:number, lng:number){
     this.lat = lat;
     this.lng = lng;
@@ -235,21 +227,18 @@ export class Beacon {
   }
 
   // set the start time
-  // zhan4770@mylaurier.ca
   setStartTime(startTime:number){
     this.startTime = startTime;
     this.storeBeacon();
   }
 
   // set end time
-  // zhan4770@mylaurier.ca
   setEndTime(endTime:number){
     this.endTime = endTime;
     this.storeBeacon();
   }
 
   // set tags
-  // zhan4770@mylaurier.ca
   setTags(tags:number[]){
     this.tags = tags;
     this.storeBeacon();
