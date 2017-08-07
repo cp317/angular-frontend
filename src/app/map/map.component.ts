@@ -108,6 +108,21 @@ export class MapComponent implements OnInit {
     this.reverseGeocode();
   }
 
+  setMapCenter($event: any) {
+    this.lat = $event.lat;
+    this.lng = $event.lng;
+    this.webAPI.setPosition(this.lat, this.lng, null);
+    console.log($event);
+    return;
+  }
+
+  // returns the maps current center latitude and longitude
+  getMapCenter() {
+    //console.log(this.lat);
+    //console.log(this.lng);
+    return {lat: this.lat, lng: this.lng};
+  }
+
   // if user allows location, display current address in autocomplete search bar
   reverseGeocode() {
     // create new geocoder
@@ -123,13 +138,6 @@ export class MapComponent implements OnInit {
         // update search bar placeholder
         document.getElementsByName('search')[0].setAttribute('placeholder', this.address);
     })
-  }
-
-  // returns the maps current center latitude and longitude
-  getMapCenter() {
-    //console.log(this.lat);
-    //console.log(this.lng);
-    return {lat: this.lat, lng: this.lng};
   }
 
   // logs when the map has loaded
