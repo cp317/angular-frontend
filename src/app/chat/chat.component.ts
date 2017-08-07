@@ -20,8 +20,9 @@ export class ChatComponent implements OnInit {
 //-----------------------------------------------------------------------------------------------------
 // Opens up the chatSidenav for chats and calls the population functions -OC
  openChat(){
-	document.getElementById("chatSidenav").style.width = "169px";
 	document.getElementById("chatFooter").style.height = "100px";
+	document.getElementById("chatSidenav").style.width = "169px";
+	
 	// var temp = firebase.auth().currentUser; //uncomment when we have the ability to log in a user -OC 
 	this.populateSidebarBeacon();
 	this.populateSidebarUser();

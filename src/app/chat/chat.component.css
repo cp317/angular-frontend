@@ -68,7 +68,7 @@ html, body {
 	height: 100%;
 	width: 0;
 	position: fixed;
-	z-index: 1;
+	z-index: 3;
 	top: 0;
 	right: 0;
 	background-color: white; /* White background -OC */
@@ -88,7 +88,7 @@ html, body {
 	height: 0; /* Let's see what happens when we flip properties of the sidebar to make a footer simmilar -OC */
 	width: 100%;
 	position: fixed;
-	z-index: 1;
+	z-index: 0;
 	bottom: 0;
 	background-color: white; /* Except for this, thisis still white -OC */
 	overflow-y: hidden;
