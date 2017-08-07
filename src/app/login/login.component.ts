@@ -27,23 +27,14 @@ export class LoginComponent implements OnInit {
   }
   loginUser(email:string,password:string){
       //TODO: Replace with the data coming from the form
-      var user = firebase.auth().currentUser;
-      if(user.isAnonymous){
-          var credential = firebase.auth.EmailAuthProvider.credential(email, password)
-          firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
-            console.log("Anonymous account successfully upgraded", user);
-          }, function(error) {
-              console.log("Error upgrading anonymous account", error.message);
-          });
-          
-      }else{
+
         firebase.auth().signInWithEmailAndPassword(email, password).catch(
         function(error){
           var errorCode = error.stack;
           var errorMessage = error.message
           console.log(error.message)
         });
-      }
+      
 
   }
     loginGuest(){
