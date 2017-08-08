@@ -1,5 +1,6 @@
 .beacon-card.mdl-card {
-    width: 45%;
+    width: 46%;
+    height: 350px;
     float: left;
     margin: 1rem;
     position: relative;
