@@ -20,8 +20,8 @@ export class ChatComponent implements OnInit {
 //-----------------------------------------------------------------------------------------------------
 // Opens up the chatSidenav for chats and calls the population functions -OC
  openChat(){
-	document.getElementById("chatFooter").style.height = "60px";
-	document.getElementById("chatSidenav").style.width = "169px";
+	document.getElementById("chatFooter").style.height = "30px";
+	document.getElementById("chatSidenav").style.width = "172px";
 	
 	// var temp = firebase.auth().currentUser; //uncomment when we have the ability to log in a user -OC 
 	this.populateSidebarBeacon();
@@ -120,13 +120,13 @@ populateSidebarBeacon(){
 	bDivision.id = "beacon-part"; // id for div -OC
 	bDivision.style.fontSize = "20px"; 
 	bDivision.appendChild(bHeader); // Add bHeader to bDivision -OC
-	// Loops through adding dummy text -OC
-	var i;
-	for( i = 0; i < 10; i++){
+    // Loops through adding dummy text -OC
+    var i;
+	for( i = 0; i < 5; i++){
 		var bPara = document.createElement("button"); // Child of bDivision -OC
-		bPara.style.padding = "20px 5px"; // Stylizing dummy text -OC
+		bPara.style.padding = "10px 5px"; // Stylizing dummy text -OC
 		//bPara.style.fontSize = "16px"; 
-		bPara.addEventListener("click", this.unPopulateSidebar); // For learning how to do things dynamically w/ buttons in JS -OC 
+		bPara.addEventListener("click", this.beaconChatPopup); // For learning how to do things dynamically w/ buttons in JS -OC 
 		//bPara.addEventListener("click", this.unPopulateSidebar); // For learning how to do things dynamically w/ buttons in JS -OC 
 		var bNode = document.createTextNode("This is beacon testing");
 		bPara.appendChild(bNode); // Adds text to bPara -OC
@@ -188,24 +188,67 @@ findRecipientUser(currentUser: User,recipientUser:User){
 }**/
 //-----------------------------------------------------------------------------------------------------
 //Opens the chat popup box for beacons -Paul
-beaconChatPopupBox(currentUser:User,beacon:Beacon){
-    var messages = beacon.chat.messages; //Gets the messages list from the beacon chat -Paul
+//Function would take the beacon and the current user as parameters -Paul
+beaconChatPopup(){
+    //var headerText = beacon.course;
+    var cElement = document.getElementById("row"); 
+    var chatButton = document.createElement("button");
+    var chatBox = document.createElement("div");
+    var chatButtonText = document.createTextNode("Beacon ID goes here <--");
+    chatButton.appendChild(chatButtonText);
+    cElement.appendChild(chatButton);
+    chatBox.id = "chat-box";
+    chatButton.style.padding = "20px 10px";
+    chatButton.addEventListener("click", this.openPopupBox);
+}
 
-}
-//-----------------------------------------------------------------------------------------------------
-//Makes a button on the footer for a user chat -Paul
-userChatPopupButton(recipientUser: User){
-    var chatFooter = document.getElementById("chat-footer"); //Gets the footer element -Paul
-}
-//-----------------------------------------------------------------------------------------------------
-//Makes a button on the footer for a user chat -Paul
-beaconChatPopupButton(beacon: Beacon){
-    var chatFooter = document.getElementById("chat-footer"); //Gets the footer element -Paul
-    var beaconButton = document.createElement("button"); //Gets the child element -Paul
-    var beaconId = beacon.beaconId; //Gets the beacon ID -Paul
+//Opens a popup box, would take the beacon and the current user as parameters -Paul
+openPopupBox(){
     
+    document.getElementById("chat-box").style.height = "100px";
+    this.populatePopupBox();
 }
-//-----------------------------------------------------------------------------------------------------
+
+//This function would take the current user and beacon as parameters -Paul
+populatePopupBox(){
+    /*var messages = beacon.chat.messages;
+    var pBox = document.getElementById("PopupBox");
+    
+    for (var i = 0; i < messages.length; i++){
+        
+        if (messages[i].sender == currentUser){
+            var sentMssg = document.createElement("p");
+            sentMssg.style.background = "blue";
+            sentMssg.style.padding = "8px 3px";
+            pBox.appendChild(sentMssg);
+        }
+        
+        else {
+            var sentMssg = document.createElement("p");
+            sentMssg.style.background = "White";
+            sentMssg.style.padding = "8px 3px";
+            pBox.appendChild(sentMssg);
+        }
+        
+        
+    }
+    **/
+    //This is sample code for messages
+    var pBox = document.getElementById("PopupBox");
+    var sentMssg = document.createElement("p");
+    var mSentNode = document.createTextNode("This is sent message testing");
+    sentMssg.style.background = "blue";
+    sentMssg.style.padding = "8px 3px";
+    pBox.appendChild(mSentNode);
+    pBox.appendChild(sentMssg);
+    
+    var recMssg = document.createElement("p");
+    var mRecNode = document.createTextNode("This is recieved message testing");
+    recMssg.style.background = "White";
+    recMssg.style.padding = "8px 3px";
+    pBox.appendChild(mRecNode);
+    pBox.appendChild(recMssg);
+}
 
 
 /* Un-multiline comment when user authentication is ready -OC 

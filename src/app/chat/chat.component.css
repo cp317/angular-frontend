@@ -17,6 +17,17 @@ html, body {
 .chat-footer, .chatbar:after {
 	height: 5px;
 }
+
+.chat-box {
+    width: 60px;
+    position: fixed;
+    right: 202px;
+	z-index: 10;
+	bottom: 0;
+	background-color: blue; /* Except for this, thisis still white -OC */
+	overflow-y: hidden;
+	transition: 0.5s;
+}
 .chat-button {
     border: none;
     border-radius: 2px;
@@ -85,11 +96,17 @@ html, body {
 	height: 0; /* Let's see what happens when we flip properties of the sidebar to make a footer simmilar -OC */
 	width: 100%;
 	position: fixed;
+    right: 172px;
 	z-index: 10;
 	bottom: 0;
-	background-color: white; /* Except for this, thisis still white -OC */
+	background-color: whitesmoke; /* Except for this, thisis still white -OC */
 	overflow-y: hidden;
 	transition: 0.5s;
+}
+
+.collapsible-header {
+    color: white;
+    text-align: center;
 }
 
 .testbutton{
