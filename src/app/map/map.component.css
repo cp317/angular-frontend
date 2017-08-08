@@ -1,8 +1,10 @@
 agm-map {
-	height: 500px;
-	width: 500px;
-	position: absolute;
-	right: 20%;
+	width: 100%;	
+	height: 100%;
+}
+#mapDiv{
+	width: 100%;
+	height: 90vh;
 }
 
 #navButton{
@@ -12,4 +14,20 @@ agm-map {
 
 #searchBar{
 	margin-left: 2%;
+}
+
+#left-map{
+	width:45%;
+	height:100%;
+}
+
+#right-map{
+	width:45%;
+	height:100%;
+}
+
+#contain{
+	display: flex;
+	align-content: space-around;
+	justify-content: space-around;
 }

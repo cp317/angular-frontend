@@ -8,4 +8,5 @@ body {
     background: linear-gradient(#8EB4E6, #D5AAFF); /* Standard syntax */
     background-repeat:no-repeat;
     background-attachment: fixed;
+    width:100%;
 }

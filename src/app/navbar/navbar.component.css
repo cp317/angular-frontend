@@ -2,7 +2,7 @@ body{
   font-family: ariel, sans-serif;
 }
 #nav{
-  width: 90vw;
+  width: 90%;
   background-size: cover;
 }
 #nav_wrapper{
@@ -40,6 +40,6 @@ body{
 #flex-nav{
   display: flex;
   justify-content: center;
-  width:100vw;
+  width:100%;
   align-items: center;
 }
