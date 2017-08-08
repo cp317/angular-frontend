@@ -3,99 +3,111 @@
   <div class="center">
   <div class="contain">
     <form #f="ngForm" (ngSubmit)="create(f.value, f.valid)" novalidate class="form-horizontal text-center">
-      <!-- Need to have host autofilled to user's name -->
       <!-- Host details -->
+
       <div ngModelGroup="host">
         <!-- Host's first name -->
         <div class="mdl-textfield">
           <label class="mdl-textfield__label">First Name</label>
           <br>
           <input class="mdl-textfield__input" name="firstName" [(ngModel)]="beaconForm.host.firstName" #firstName="ngModel">
-          <!--show error only when field is not valid & it's dirty or form submited
-      <small [hidden]="firstName.valid || (firstName.pristine && !f.submitted)" class="text-danger"> Required field. </small> -->
         </div>
+
         <!-- Host's last name -->
         <div class="mdl-textfield">
           <label class="mdl-textfield__label" for="lastName">Last Name</label>
           <br>
           <input class="mdl-textfield__input" name="lastName" [(ngModel)]="beaconForm.host.lastName" #lastName="ngModel" required>
-          <!--show error only when field is not valid & it's dirty or form submited
-      <small [hidden]="lastName.valid || (lastName.pristine && !f.submitted)" class="text-danger"> Required field. </small> -->
         </div>
       </div>
+
       <!-- School Name -->
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="school">School</label>
         <br>
         <input class="mdl-textfield__input" name="school" [(ngModel)]="beaconForm.school" #school="ngModel" required>
       </div>
+
       <!-- Course Code -->
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="courseCode">Course Code</label>
         <br>
         <input class="mdl-textfield__input" name="courseCode" [(ngModel)]="beaconForm.courseCode" #courseCode="ngModel" required>
       </div>
+
       <!-- Start Time -->
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="startTime">Start Time</label>
         <br>
         <input class="mdl-textfield__input" name="startTime" type="datetime-local" [(ngModel)]="beaconForm.startTime" #startTime="ngModel" min="2017-08-01T00:00" max="2037-12-31T00:00">
       </div>
+
       <!-- End Time -->
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="endTime">End Time</label>
         <br>
         <input class="mdl-textfield__input" name="endTime" type="datetime-local" [(ngModel)]="beaconForm.endTime" #endTime="ngModel" min="2017-08-01T00:00" max="2037-12-31T00:00">
       </div>
+
       <!-- Latitude and Longitude-->
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="latBox">Latitude</label>
         <br>
-        <input class="mdl-textfield__input" id="latBox" name="lat" [(ngModel)]="beaconForm.lat">
+        <input class="mdl-textfield__input" id="latBox" name="lat" [(ngModel)]="lat">
       </div>
+
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="lngBox">Longitude</label>
         <br>
-        <input class="mdl-textfield__input" id="lngBox" name="lng" [(ngModel)]="beaconForm.lng">
+        <input class="mdl-textfield__input" id="lngBox" name="lng" [(ngModel)]="lng">
       </div>
+
+      <!-- Gets lat/lng from map center -->      
       <button input type="button" id="locButton" (click)="getLocation()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> Get Center Location From Map </button>
       <br>
+
+      <!-- Description -->
       <div class="mdl-textfield">
         <label class="mdl-textfield__label" for="desc">Description</label>
         <br>
         <textarea id="descBox" class="mdl-textfield__input" type="text" rows="5" id="desc" name="Description" [(ngModel)]="desc"></textarea>
       </div>
-      <!-- Tag label and spacing -->
+
       <!-- Tags -->
       <div class="tags">
         <div class="mdl-textfield">
           <label class="mdl-textfield__label">Tags</label>
           <br>
         </div>
+
         <div class="tag">
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
             <input type="checkbox" id="chkWiFi" class="mdl-switch__input" name="hasWifi" [(ngModel)]=hasWifi unchecked>
             <span class="mdl-checkbox__label">WiFi</span>
           </label>
         </div>
+
         <div class="tag">
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
             <input type="checkbox" id="chkComputers" class="mdl-switch__input" name="hasComputers" [(ngModel)]=hasComputers unchecked>
             <span class="mdl-checkbox__label">Computers</span>
           </label>
         </div>
+
         <div class="tag">
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
             <input type="checkbox" id="chkOutlets" class="mdl-switch__input" name="hasOutlets" [(ngModel)]=hasOutlets unchecked>
             <span class="mdl-checkbox__label">Outlets</span>
           </label>
         </div>
+
         <div class="tag">
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
             <input type="checkbox" id="chkWhiteboard" class="mdl-switch__input" name="hasWhiteboard" [(ngModel)]=hasWhiteboard unchecked>
             <span class="mdl-checkbox__label">Whiteboard</span>
           </label>
         </div>
+        
         <div class="tag">
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
             <input type="checkbox" id="chkProjector" class="mdl-switch__input" name="hasProjector" [(ngModel)]=hasProjector unchecked>
@@ -104,6 +116,7 @@
         </div>
       </div>
       <br>
+      
       <!-- Create Button -->
       <button id="createButton" type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Create Beacon</button>
       <button id="resetButton" type="reset" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" value="Reset">Clear</button>

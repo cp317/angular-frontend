@@ -15,6 +15,10 @@ export class BeaconCreateComponent implements OnInit {
   public beaconForm: BeaconForm;    // form model
   public submitted: boolean = false;
   private desc: string; 
+  // for showing users their lat/lng up to 6 decimal places
+  // lat/lng is internally stored with all decimal points
+  private lat: string;
+  private lng: string;
 
   constructor(private webAPI:WebAPI) { 
   }
@@ -48,18 +52,23 @@ export class BeaconCreateComponent implements OnInit {
 
     if (valid == true) {    
       this.submitted = true;
+      // Get values from form model
       var firstName = form.host.firstName;
       var lastName = form.host.lastName;
       var hostName = firstName + " " + lastName;
-
+      
+      //get date as new Date object
       var startDate = new Date(form.startTime);
       var endDate = new Date(form.endTime);
+      // convert date to unix time
       var startTime = startDate.getTime();
       var endTime = endDate.getTime();
+
       var members = [];
       var tags = [];
       form.description = this.desc;
       
+      // create the tags array
       if (form.hasComputers) {
         tags.push(1);
       } else{
@@ -90,12 +99,16 @@ export class BeaconCreateComponent implements OnInit {
         tags.push(0);
       }           
 
+      //create beacon by storing to database
       this.webAPI.createBeacon(form.courseCode, form.school, startTime, endTime, hostName, members, tags, form.description, form.lat, form.lng);
+      
+      //alert user beacon was created and reset form fields
       alert("Beacon created.")
       this.desc='';
       this.ngOnInit();
     }
     else {
+      //else alert user reason why the form was not valid
       alert(valid);
     }
 
@@ -104,6 +117,7 @@ export class BeaconCreateComponent implements OnInit {
 
   isValid(form: BeaconForm)
   {
+    //get form data
     var school = form.school;
     var courseCode = form.courseCode;
     var lat = form.lat;
@@ -116,7 +130,7 @@ export class BeaconCreateComponent implements OnInit {
     {
       return "Please enter a start and end time.";
     }
-
+    
     var startTime = startDate.getTime();
     var endTime = endDate.getTime();
 
@@ -151,6 +165,8 @@ export class BeaconCreateComponent implements OnInit {
     var location = this.webAPI.getMapCenter();
     this.beaconForm.lat = location.lat;
     this.beaconForm.lng = location.lng;
+    this.lat = location.lat.toFixed(5);
+    this.lng = location.lng.toFixed(5);
   }
 
 
