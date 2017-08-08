@@ -8,15 +8,9 @@ import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   constructor(private dialogService:DialogService) { }
-
-  ngOnInit() {
-      
-      
-
-  }
 
   attemptLogin(){
     var email = (<HTMLInputElement>document.getElementById("inputEmail3")).value;
@@ -25,6 +19,7 @@ export class LoginComponent implements OnInit {
     console.log(password)
     this.loginUser(email,password)
   }
+
   loginUser(email:string,password:string){
       //TODO: Replace with the data coming from the form
 
@@ -34,18 +29,8 @@ export class LoginComponent implements OnInit {
           var errorMessage = error.message
           console.log(error.message)
         });
-      
-
   }
-    loginGuest(){
-        firebase.auth().signInAnonymously().catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.stack;
-            var errorMessage = error.message;
-            console.log(error.message);;
-        
-            });
-}
+
     showConfirm() {
             let disposable = this.dialogService.addDialog(PasswordComponent, {
                 title:'Reset Your Password', 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -6,15 +6,18 @@ import * as firebase from 'firebase/app';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  loginGuest() {
+    firebase.auth().signInAnonymously().catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.stack;
+        var errorMessage = error.message;
+        console.log(error.message);;
+    });
   }
 
-  attemptRegistration()
-  {
+  attemptRegistration() {
     var valid = 1;
 
     // checks emails to make sure they match
