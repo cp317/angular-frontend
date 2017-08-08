@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone} from '@angular/core';
 
 import { Beacon } from '../beacon';
 
@@ -20,8 +20,8 @@ declare let componentHandler: any;
 export class BeaconCardsComponent implements OnInit {
   
   private beacons: Beacon[] = [];
-
-  constructor(private webAPI: WebAPI) { }
+  constructor(private webAPI: WebAPI,private zone:NgZone
+              ) { }
 
   ngOnInit() {
       this.getBeacons();
@@ -36,14 +36,18 @@ export class BeaconCardsComponent implements OnInit {
 
   setBeacons(beacons) {
     this.beacons = beacons;
-    return;
+    this.zone.run(() => {
+            console.log('forced a refresh');
+        });
   }
 
   joinBeacon(beacon: Beacon) {
     //let curUser: any = this.webAPI.getCurrentUser();
     //curUser.joinBeacon(beacon);
   }
-
+  trackBeacon(index: number, beacon: Beacon) {
+    return index;
+  }
 
 
 }

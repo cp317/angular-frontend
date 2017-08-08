@@ -4,84 +4,74 @@ last edited by mat younatan 8/6/2017
     - (adding) join beacon functionality
 
 -->
-<div class = "beacon-card mdl-card mdl-shadow--2dp" *ngFor="let beacon of beacons">
-    <!-- School -->
-    <div class="mdl-card__supporting-text">
-    {{beacon.school}}
-    </div>
-
-    <!-- Class -->
-	<div class="mdl-card__title mdl-card--expand">
+<div class="contain">
+    <div class="beacon-card mdl-card mdl-shadow--2dp" *ngFor="let beacon of beacons">
+      <!-- School -->
+      <div class="mdl-card__supporting-text">
+        {{beacon.school}}
+      </div>
+      <!-- Class -->
+      <div class="mdl-card__title mdl-card--expand">
         <h2 class="mdl-card__title-text">
             <strong>{{beacon.course}}</strong>
         </h2>
-    </div>
-
-    <div style="display: flex; justify-content: space-around;">
+      </div>
+      <div style="display: flex; justify-content: space-around;">
         <!-- Tooltips (aka Tags) -->
         <div *ngIf="beacon.tags[0]">
-            <img id="comp-tt" src="https://image.flaticon.com/icons/svg/263/263082.svg" style="width:30px;height:30px">
-            <div class="mdl-tooltip" data-mdl-for="comp-tt">
-                This location has computers
-            </div>
+          <img id="comp-tt" src="https://image.flaticon.com/icons/svg/263/263082.svg" style="width:30px;height:30px">
+          <div class="mdl-tooltip" data-mdl-for="comp-tt">
+            This location has computers
+          </div>
         </div>
-
         <div *ngIf="beacon.tags[1]">
-            <img id="outlet-tt" src="https://image.flaticon.com/icons/svg/125/125639.svg" style="width:30px;height:30px">
-            <div class="mdl-tooltip" data-mdl-for="outlet-tt">
-                This location has outlets
-            </div>
+          <img id="outlet-tt" src="https://image.flaticon.com/icons/svg/125/125639.svg" style="width:30px;height:30px">
+          <div class="mdl-tooltip" data-mdl-for="outlet-tt">
+            This location has outlets
+          </div>
         </div>
-
         <div *ngIf="beacon.tags[2]">
-            <img id="proj-tt" src="https://image.flaticon.com/icons/svg/462/462388.svg" style="width:30px;height:30px">
-            <div class="mdl-tooltip" data-mdl-for="proj-tt">
-                This location has a projector
-            </div>
+          <img id="proj-tt" src="https://image.flaticon.com/icons/svg/462/462388.svg" style="width:30px;height:30px">
+          <div class="mdl-tooltip" data-mdl-for="proj-tt">
+            This location has a projector
+          </div>
         </div>
-
         <div *ngIf="beacon.tags[3]">
-            <img id = "wbrd-tt" src="https://image.flaticon.com/icons/svg/43/43232.svg" style="width:30px;height:30px">
-            <div class="mdl-tooltip" data-mdl-for="wbrd-tt">
-                This location has a whiteboard
-            </div>
+          <img id="wbrd-tt" src="https://image.flaticon.com/icons/svg/43/43232.svg" style="width:30px;height:30px">
+          <div class="mdl-tooltip" data-mdl-for="wbrd-tt">
+            This location has a whiteboard
+          </div>
         </div>
-
         <div *ngIf="beacon.tags[4]">
-            <img id = "wifi-tt" src="https://image.flaticon.com/icons/svg/149/149193.svg" style="width:30px;height:30px">
-            <div class="mdl-tooltip" data-mdl-for="wifi-tt">
-                This location has WiFi
-            </div>
+          <img id="wifi-tt" src="https://image.flaticon.com/icons/svg/149/149193.svg" style="width:30px;height:30px">
+          <div class="mdl-tooltip" data-mdl-for="wifi-tt">
+            This location has WiFi
+          </div>
         </div>
-    </div>
-
-    <!-- Time progression bar -->
-    <div>
+      </div>
+      <!-- Time progression bar -->
+      <div>
         <div class="mdl-card__supporting-text">
-            Time Remaining:
+          Time Remaining:
         </div>
         <!-- Simple MDL Progress Bar -->
         <div class="bar">
-            <div id="time-bar" class="mdl-progress mdl-js-progress"></div>
+          <div id="time-bar" class="mdl-progress mdl-js-progress"></div>
         </div>
-    </div>
-
-        <!-- Distance -->
-    <div class="mdl-card__supporting-text">
+      </div>
+      <!-- Distance -->
+      <div class="mdl-card__supporting-text">
         Distance from you: {{beacon.distance}}km
-    </div>
-
-    <!-- Description -->
-    <div class="mdl-card__supporting-text">
+      </div>
+      <!-- Description -->
+      <div class="mdl-card__supporting-text">
         {{beacon.description}}
-    </div>
-
-
-
-    <!-- Buttons -->
-    <div class="mdl-card__actions mdl-card--border">
+      </div>
+      <!-- Buttons -->
+      <div class="mdl-card__actions mdl-card--border">
         <button (click)="joinBeacon(beacon)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            JOIN BEACON
+          JOIN BEACON
         </button>
+      </div>
     </div>
-</div>
+  </div>
