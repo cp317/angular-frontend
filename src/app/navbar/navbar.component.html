@@ -1,16 +1,18 @@
-<div id="nav">
+<div id=flex-nav>
+  <div id="nav">
     <div id="container-fluid">
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div id = "nav_wrapper">
-            <ul id="something"> <br>
-                <li><a routerLink="/map" routerLinkActive ="active">MAP</a></li>
-                <li><a routerLink="/user-discovery" routerLinkActive ="active">USER DISCOVERY</a></li>
-                <li><a routerLink="/login-page" routerLinkActive ="active">LOGIN</a></li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div id="nav_wrapper">
+        <ul id="something">
+          <br>
+          <li><a routerLink="/map" routerLinkActive="active">MAP</a></li>
+          <li><a routerLink="/user-discovery" routerLinkActive="active">USER DISCOVERY</a></li>
+          <li id="right-side"><a routerLink="/login-page" routerLinkActive="active">LOGIN</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
+  </div>
 </div>
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>

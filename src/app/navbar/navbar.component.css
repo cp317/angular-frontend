@@ -2,7 +2,7 @@ body{
   font-family: ariel, sans-serif;
 }
 #nav{
-  width: 100vw;
+  width: 90vw;
   background-size: cover;
 }
 #nav_wrapper{
@@ -12,7 +12,6 @@ body{
   filter: alpha (opacity=70);
 }
 #something{
-  padding: 0.15cm;
   border-bottom: 3px solid rgb(63,81,181);
 }
 #nav_wrapper ul li{
@@ -31,4 +30,16 @@ body{
   transition: all 0.8s;
   Color:white;
   padding: 10px;
+}
+
+#right-side{
+  float:right;
+  padding: 10px;
+}
+
+#flex-nav{
+  display: flex;
+  justify-content: center;
+  width:100vw;
+  align-items: center;
 }
