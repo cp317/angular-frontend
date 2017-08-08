@@ -2,6 +2,7 @@ body{
   font-family: ariel, sans-serif;
 }
 #nav{
+  width: 100vw;
   background-size: cover;
 }
 #nav_wrapper{

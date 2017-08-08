@@ -13,10 +13,7 @@ html, body {
 	/* equal to footer height -OC */
 	margin-bottom: -5px;
 }
-.chatbar:after {
-	content: "";
-	display: block;
-}
+
 .chat-footer, .chatbar:after {
 	height: 5px;
 }
@@ -68,7 +65,7 @@ html, body {
 	height: 100%;
 	width: 0;
 	position: fixed;
-	z-index: 3;
+	z-index: 10;
 	top: 0;
 	right: 0;
 	background-color: white; /* White background -OC */
@@ -88,7 +85,7 @@ html, body {
 	height: 0; /* Let's see what happens when we flip properties of the sidebar to make a footer simmilar -OC */
 	width: 100%;
 	position: fixed;
-	z-index: 0;
+	z-index: 10;
 	bottom: 0;
 	background-color: white; /* Except for this, thisis still white -OC */
 	overflow-y: hidden;

@@ -66,6 +66,7 @@ export const firebaseConfig = {
         {path: 'map', component: MapComponent},
         {path: 'user-discovery', component: UserDiscoveryComponent},
         {path: 'beacon-create', component: BeaconCreateComponent},
+        {path: 'login-page', component: LoginPageComponent},
         {path: 'profile', component: ProfileComponent},
         {path: '*other', component: MapComponent}
     ]),

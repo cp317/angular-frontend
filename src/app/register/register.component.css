@@ -14,3 +14,10 @@ input[type=password]{
     box-shadow: none;
     padding-bottom: 26px;
 }
+.center{
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
