@@ -9,7 +9,10 @@ import * as firebase from 'firebase/app';
 export class RegisterComponent {
 
   loginGuest() {
-    firebase.auth().signInAnonymously().catch(function(error) {
+    firebase.auth().signInAnonymously().then(function(user){
+        console.log('logged in as anon');
+        user.isAnonymous=true;
+    }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.stack;
         var errorMessage = error.message;
@@ -19,6 +22,7 @@ export class RegisterComponent {
 
   attemptRegistration() {
     var valid = 1;
+    var user = firebase.auth().currentUser;
 
     // checks emails to make sure they match
     var email = (<HTMLInputElement>document.getElementById("email")).value;
@@ -37,11 +41,21 @@ export class RegisterComponent {
     // if all the fields match, register the user
     if (valid == 1)
     {
-      this.registerUser(email,password);
+        
+        if(user.isAnonymous==true){
+            this.registerAnonUser(email,password);
+        }else{
+            this.registerUser(email,password);
+
+        }
+    
     }
   }
 
   registerUser(email:string, password:string){
+    var user = firebase.auth().currentUser;
+
+   
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(
         function(error){
           var errorCode = error.stack;
@@ -54,7 +68,6 @@ export class RegisterComponent {
 
           console.log(errorCode + " " + errorMessage);
         });
-      var user = firebase.auth().currentUser;
 
       if (user != null){
         //Add the user to the info database
@@ -70,6 +83,7 @@ export class RegisterComponent {
   				chats: null,
   				beacons: null});
       }
+      
   }
 
   registerAnonUser(email:string, password:string){
@@ -94,7 +108,6 @@ export class RegisterComponent {
         chats: null,
         beacons: null});
     }
-
   }
 
 }
