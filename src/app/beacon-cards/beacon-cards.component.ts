@@ -10,6 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+declare let componentHandler: any;
 @Component({
   selector: 'app-beacon-cards',
   templateUrl: './beacon-cards.component.html',
@@ -25,7 +26,8 @@ export class BeaconCardsComponent implements OnInit {
   ngOnInit() {
       this.getBeacons();
   }
-
+  ngAfterViewInit() {
+  }
   getBeacons() {
     this.webAPI.getBeacons(null,null).then(res => {
       this.beacons = res;

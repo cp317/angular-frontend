@@ -132,4 +132,5 @@ export class AppComponent {
   beaconDragEnd(b: Beacon, $event: MouseEvent) {
     console.log('dragEnd', b, $event);
   }
+  
 }

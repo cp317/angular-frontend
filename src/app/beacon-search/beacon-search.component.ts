@@ -4,6 +4,7 @@ import { WebAPI } from '../web-api.service';
 import { MapComponent } from '../map/map.component'
 import { BeaconCardsComponent } from '../beacon-cards/beacon-cards.component'
  
+declare let componentHandler: any; 
 @Component({
   selector: 'app-beacon-search',
   templateUrl: './beacon-search.component.html',
@@ -91,4 +92,7 @@ export class BeaconSearchComponent {
        this.cards.setBeacons(this.beacons);
   	})
 	}
+  ngAfterViewInit() {
+    componentHandler.upgradeDom(); // upgrade all mdl components
+  }
 }

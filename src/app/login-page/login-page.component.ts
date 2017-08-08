@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare let componentHandler: any; 
 
 @Component({
   selector: 'app-login-page',
@@ -11,5 +12,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ngAfterViewInit() {
+    componentHandler.upgradeDom(); // upgrade all mdl components
+  }
 }

@@ -1,5 +1,4 @@
 #user-search-panel {
-background:#FFF;
 border-right:2px solid #000;
 width:300px;
 }
@@ -33,8 +32,7 @@ width:128px;
 margin-top: 8px;
 display:flex;
 overflow:hidden;
-height: 600px;
-background-color: #969292;
+height: 90vh;
 }
 
 #user-search {
@@ -44,7 +42,6 @@ width:30%;
 }
 
 #user-search-background {
-background:#FFF;
 display:block;
 height:620px;
 padding:inherit;
@@ -65,11 +62,15 @@ overflow:hidden;
 width:100%;
 }
 
-.panels {
-background-color:#969292;
-}
+
 
 .search-title {
 margin:10px 0 0;
 text-align:center;
+}
+
+#learn-flexbox{
+	display:flex;
+	align-items: center;
+	justify-content: center;
 }

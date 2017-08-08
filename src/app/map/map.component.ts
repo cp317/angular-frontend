@@ -78,6 +78,7 @@ export class MapComponent implements OnInit {
         });
       });
     });
+
   }
 
   // display all beacons on the screen
@@ -191,4 +192,5 @@ export class MapComponent implements OnInit {
       console.log("Now showing search page.")
     }
   }
+
 }

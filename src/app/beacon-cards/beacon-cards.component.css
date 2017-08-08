@@ -25,3 +25,13 @@
 h3{
  
 }
+
+.bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#time-bar{
+    width: 90%;
+}

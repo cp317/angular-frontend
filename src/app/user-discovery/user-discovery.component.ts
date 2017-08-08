@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare let componentHandler: any; 
 
 @Component({
   selector: 'app-user-discovery',
@@ -11,5 +12,7 @@ export class UserDiscoveryComponent implements OnInit {
 
   ngOnInit() {
   }
-
+ngAfterViewInit() {
+    componentHandler.upgradeDom(); // upgrade all mdl components
+  }
 }
