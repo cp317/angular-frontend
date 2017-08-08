@@ -84,11 +84,7 @@ export class MapComponent implements OnInit {
   getBeacons() {
     this.webAPI.getBeacons(null,null).then(res =>
     {
-      for (var key in res)
-      {
-        this.beacons.push(new Beacon(key));
-      }
-      console.log(this.beacons);
+      this.beacons = res;
     });
   }
 

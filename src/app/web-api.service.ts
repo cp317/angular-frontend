@@ -109,9 +109,49 @@ export class WebAPI {
           }
         }
         //console.log(beacons);
+        beacons = this.beaconSort(beacons);
         resolve(beacons);
       });
     }).catch(err => console.log(err))
+  }
+
+  beaconSort(beacons)
+  {
+    var beaconArray = [];
+
+    for (var i in beacons)
+    {
+      beacons[i].distance = Math.sqrt(Math.pow(111 * Math.abs(this.lat - beacons[i].lat),2) + Math.pow(111 * Math.abs(this.lng - beacons[i].lng) * Math.cos(this.lat) * Math.PI / 180,2));
+
+      beacons[i].distance = Math.round(beacons[i].distance * 10) / 10;
+      if (beacons[i].distance >= 10)
+      {
+        beacons[i].distance = Math.round(beacons[i].distance);
+      }
+
+      var n = beaconArray.length;
+      var j = 0;
+
+      while (j < n && beaconArray[j].distance < beacons[i].distance)
+      {
+        j++
+      }
+
+      if (j == n)
+      {
+        beaconArray.push(beacons[i]);
+      }
+      else
+      {
+        beaconArray.splice(j, 0, beacons[i]);
+      }
+      
+    }
+    console.log(beacons);
+    console.log(beaconArray);
+
+    return beaconArray;
+
   }
 
   // function 1: get any school name that contains the given school name or is contained within the given school name
