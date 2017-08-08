@@ -19,15 +19,15 @@ declare let componentHandler: any;
 
 export class BeaconCardsComponent implements OnInit {
   
-  private beacons: Beacon[] = [];
-  constructor(private webAPI: WebAPI,private zone:NgZone
-              ) { }
+  private beacons: any[] = [];
+  constructor(private webAPI: WebAPI) { }
 
   ngOnInit() {
       this.getBeacons();
   }
   ngAfterViewInit() {
   }
+
   getBeacons() {
     this.webAPI.getBeacons(null,null).then(res => {
       this.beacons = res;
@@ -36,9 +36,7 @@ export class BeaconCardsComponent implements OnInit {
 
   setBeacons(beacons) {
     this.beacons = beacons;
-    this.zone.run(() => {
-            console.log('forced a refresh');
-        });
+
   }
 
   joinBeacon(beacon: Beacon) {

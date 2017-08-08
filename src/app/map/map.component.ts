@@ -91,6 +91,7 @@ export class MapComponent implements OnInit {
 
   setBeacons(beacons) {
     this.beacons = beacons;
+    console.log(this.beacons);
     return;
   }
 

@@ -27,9 +27,11 @@ form{
 }
 .tags{
     display: table-cell;
+    padding-bottom: 10px;
 }
 .tag{
     margin-left: 10px;
+    padding: 7px;
 }
 #locButton{
     background-color: #33691E;
@@ -50,4 +52,8 @@ form{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#desc{
+    height: 200px;
 }
