@@ -1,13 +1,13 @@
   <!-- <app-navbar></app-navbar> -->
 <!-- This is only a temporary class to help me construct the parent class feel free to chjange it later -->
 <div class ="search">
-	<h3>Filter Beacons</h3>
 
 	<form action="#">
 		<!--School filters -->
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 			<input class="mdl-textfield__input" type="text" name="schoolFilter" [(ngModel)]='schoolName'>
 			<label class="mdl-textfield__label" for="schoolFilter">School Name</label>
+
 		</div>
 		
 		<!--Course filters -->
@@ -61,7 +61,7 @@
 
 		<!--Button-->
 		<div>
-			<button id="search-button" class="mdl-button mdl-js-button mdl-js-ripple-effect" (click)="onApply()">Apply</button>
+			<button id="search-button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" (click)="onApply()">Apply</button>
 		</div>
 
 	</form>

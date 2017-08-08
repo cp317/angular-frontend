@@ -26,6 +26,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
 import { UserDiscoveryComponent } from './user-discovery/user-discovery.component';
+import { MdlModule } from '@angular-mdl/core';
+
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
@@ -61,6 +63,7 @@ export const firebaseConfig = {
     BrowserModule,
     BootstrapModalModule,
 	MdButtonModule,
+    MdlModule,
         RouterModule.forRoot([
         {path: '', component: MapComponent},
         {path: 'map', component: MapComponent},

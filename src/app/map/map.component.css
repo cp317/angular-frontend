@@ -18,7 +18,14 @@ agm-map {
 
 #left-map{
 	width:45%;
-	height:100%;
+	height:90vh; 	
+}
+
+#becards{
+	height: 600px;
+	width: 100%;
+	overflow: hidden;
+	overflow-y: scroll;
 }
 
 #right-map{
