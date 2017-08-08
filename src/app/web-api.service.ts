@@ -121,7 +121,7 @@ export class WebAPI {
 
     for (var i in beacons)
     {
-      beacons[i].distance = Math.sqrt(Math.pow(111 * Math.abs(this.lat - beacons[i].lat),2) + Math.pow(111 * Math.abs(this.lng - beacons[i].lng) * Math.cos(this.lat) * Math.PI / 180,2));
+      beacons[i].distance = Math.sqrt(Math.pow(111 * Math.abs(this.lat - beacons[i].lat),2) + Math.pow(111 * Math.abs(this.lng - beacons[i].lng) * Math.cos(this.lat * Math.PI / 180),2));
 
       beacons[i].distance = Math.round(beacons[i].distance * 10) / 10;
       if (beacons[i].distance >= 10)
