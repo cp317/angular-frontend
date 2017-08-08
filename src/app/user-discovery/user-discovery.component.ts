@@ -12,7 +12,7 @@ export class UserDiscoveryComponent implements OnInit {
 
   ngOnInit() {
   }
-ngAfterViewInit() {
+	ngAfterViewInit() {
     componentHandler.upgradeDom(); // upgrade all mdl components
   }
 }

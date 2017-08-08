@@ -44,4 +44,6 @@ export class BeaconCardsComponent implements OnInit {
     //curUser.joinBeacon(beacon);
   }
 
+
+
 }

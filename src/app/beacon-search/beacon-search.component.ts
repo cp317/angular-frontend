@@ -30,7 +30,11 @@ export class BeaconSearchComponent {
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
 	tags: number[];
-
+  ngOnInit() {
+  }
+  ngAfterViewInit() {
+    componentHandler.upgradeDom(); // upgrade all mdl components
+  }
 	onApply() {
 		//reset tags string
 		this.tags = [];
@@ -92,7 +96,5 @@ export class BeaconSearchComponent {
        this.cards.setBeacons(this.beacons);
   	})
 	}
-  ngAfterViewInit() {
-    componentHandler.upgradeDom(); // upgrade all mdl components
-  }
+
 }

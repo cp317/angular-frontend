@@ -5,8 +5,7 @@ h1{
     font-size:30px;
 }
 form{
-    margin-left: 90px;
-    width: 70%;
+    width: 620px;
 }
 .mdl-textfield__label{
     color: darkslategray;
@@ -40,4 +39,15 @@ form{
 }
 #createButton{
     background-color: #33691E;
+}
+.mdl-checkbox__label{
+    padding-left: 20px;
+}
+#flex-container{
+    width: 45vw;
+}
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
