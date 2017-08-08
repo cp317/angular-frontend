@@ -108,6 +108,7 @@ export class RegisterComponent {
         chats: null,
         beacons: null});
     }
+    alert("guest user registered");
   }
 
 }
