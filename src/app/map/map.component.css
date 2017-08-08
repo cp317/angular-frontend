@@ -1,8 +1,8 @@
 agm-map {
 	height: 500px;
-	width: 45vw;
+	width: 500px;
 	position: absolute;
-	right: 2.5%;
+	right: 20%;
 }
 
 #navButton{
