@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Beacon } from '../beacon';
 import { WebAPI } from '../web-api.service';
 import { MapComponent } from '../map/map.component'
 import { BeaconCardsComponent } from '../beacon-cards/beacon-cards.component'
- 
-declare let componentHandler: any; 
+
 @Component({
   selector: 'app-beacon-search',
   templateUrl: './beacon-search.component.html',
   styleUrls: ['./beacon-search.component.css'],
 })
+
 
 export class BeaconSearchComponent {
 
@@ -30,12 +30,8 @@ export class BeaconSearchComponent {
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
 	tags: number[];
-  ngOnInit() {
-  }
-  ngAfterViewInit() {
-    componentHandler.upgradeDom(); // upgrade all mdl components
-  }
-	onApply() {
+
+	apply() {
 		//reset tags string
 		this.tags = [];
     this.beacons = [];
@@ -96,5 +92,15 @@ export class BeaconSearchComponent {
        this.cards.setBeacons(this.beacons);
   	})
 	}
+
+  disable() {
+    var button = <HTMLButtonElement> document.getElementsByName("applyButton")[0];
+    button.setAttribute("disabled","");
+  }
+
+  enable() {
+    var button = <HTMLButtonElement> document.getElementsByName("applyButton")[0];
+    button.removeAttribute("disabled");
+  }
 
 }

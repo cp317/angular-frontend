@@ -8,7 +8,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { WebAPI } from './web-api.service';
-import { MdButtonModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -62,7 +61,6 @@ export const firebaseConfig = {
   imports: [
     BrowserModule,
     BootstrapModalModule,
-	MdButtonModule,
     MdlModule,
         RouterModule.forRoot([
         {path: '', component: MapComponent},

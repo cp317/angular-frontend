@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase/app';
+import { WebAPI } from '../web-api.service';
+import { User, RegisteredUser, GuestUser } from '../user';
 
 @Component({
   selector: 'app-register',
@@ -9,16 +11,32 @@ import * as firebase from 'firebase/app';
 export class RegisterComponent {
 
   loginGuest() {
-    firebase.auth().signInAnonymously().catch(function(error) {
+    firebase.auth().signInAnonymously().then(function(user){
+        console.log('logged in as anon');
+        user.isAnonymous=true;
+        firebase.database().ref('/user/' + user.uid).set({
+            firstName: null,
+            lastName: null,
+            email: null,
+            profileImageURL: null,
+            school: null,
+            biography: null,
+            courses: null,
+            chats: null,
+            beacons: null});
+    }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.stack;
         var errorMessage = error.message;
         console.log(error.message);;
     });
+    
+    alert("signed in as guest");
   }
 
   attemptRegistration() {
     var valid = 1;
+    var user = firebase.auth().currentUser;
 
     // checks emails to make sure they match
     var email = (<HTMLInputElement>document.getElementById("email")).value;
@@ -37,11 +55,21 @@ export class RegisterComponent {
     // if all the fields match, register the user
     if (valid == 1)
     {
-      this.registerUser(email,password);
+        
+        if(user.isAnonymous==true){
+            this.registerAnonUser(email,password);
+        }else{
+            this.registerUser(email,password);
+
+        }
+    
     }
   }
 
   registerUser(email:string, password:string){
+    var user = firebase.auth().currentUser;
+
+   
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(
         function(error){
           var errorCode = error.stack;
@@ -54,7 +82,6 @@ export class RegisterComponent {
 
           console.log(errorCode + " " + errorMessage);
         });
-      var user = firebase.auth().currentUser;
 
       if (user != null){
         //Add the user to the info database
@@ -70,20 +97,19 @@ export class RegisterComponent {
   				chats: null,
   				beacons: null});
       }
+      
   }
 
   registerAnonUser(email:string, password:string){
+    var user = firebase.auth().currentUser;
     var credential = firebase.auth.EmailAuthProvider.credential(email, password)
     firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
       console.log("Anonymous account successfully upgraded", user);
     }, function(error) {
         console.log("Error upgrading anonymous account", error.message);
     });
-
-    var user = firebase.auth().currentUser;
-    if (user != null){
-      //Add the user to the info database
-      firebase.database().ref('/user/' + user.uid).set({
+      this.getUserById(user.uid).then(guest=>{
+    firebase.database().ref('/user/' + user.uid).set({
         firstName: null,
         lastName: null,
         email: null,
@@ -91,10 +117,35 @@ export class RegisterComponent {
         school: null,
         biography: null,
         courses: null,
-        chats: null,
-        beacons: null});
-    }
+        chats: guest.chats,
+        beacons: guest.beacons});
+      });
+      //Add the user to info database
+      
+    
+    alert("guest user registered");
+  }
+    
+  getUserById(id:string):Promise<any>
+  {
+    return new Promise((resolve,reject) => {
+        firebase.database().ref("/user/" + id).once("value").then(function(b){
+        var user:any;
+        // if email is not null / undefined, create a RegisteredUser object with the given ID
+        if (b.child("email").val() != null && b.child("email") !== "undefined" )
+        {
+          user = new RegisteredUser(id);
+        }
+        // if email is null, create a GuestUser object with the given ID
+        else
+        {
+          user = new GuestUser(id);
+        }
 
+        // return the RegisteredUser / GuestUser object
+        resolve(user);
+      });
+    });
   }
 
 }
