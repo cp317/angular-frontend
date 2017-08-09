@@ -186,6 +186,7 @@ export class Beacon {
 
 	// add user to members
 	addUser(newUser){
+    newUser.user.addBeacon(this);
 		this.members.push(newUser);
 	}
 
@@ -194,7 +195,8 @@ export class Beacon {
 		var index = this.members.indexOf(user);
     if (index != -1)
     {
-		    this.members.splice(index, 1);
+      user.user.leaveBeacon(this);
+		  this.members.splice(index, 1);
     }
 	}
 
