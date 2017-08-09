@@ -5,14 +5,14 @@
 	<form action="#">
 		<!--School filters -->
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" type="text" name="schoolFilter" [(ngModel)]='schoolName'>
+			<input class="mdl-textfield__input" type="text" name="schoolFilter" [(ngModel)]='schoolName' (click)="enable();">
 			<label class="mdl-textfield__label" for="schoolFilter">School Name</label>
 
 		</div>
 		
 		<!--Course filters -->
 		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" type="text" name="courseFilter" [(ngModel)]='courseName'>
+			<input class="mdl-textfield__input" type="text" name="courseFilter" [(ngModel)]='courseName' (click)="enable();">
     		<label class="mdl-textfield__label" for="courseFilter">Course Name</label>
 		</div>
 
