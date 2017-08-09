@@ -10,7 +10,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
-declare let componentHandler: any;
 @Component({
   selector: 'app-beacon-cards',
   templateUrl: './beacon-cards.component.html',
@@ -25,24 +24,30 @@ export class BeaconCardsComponent implements OnInit {
   ngOnInit() {
       this.getBeacons();
   }
-  ngAfterViewInit() {
-  }
 
   getBeacons() {
+    var options = {  
+    weekday: "short", year: "numeric", month: "short",  
+    day: "numeric", hour: "2-digit", minute: "2-digit"}; 
     this.webAPI.getBeacons(null,null).then(res => {
       this.beacons = res;
+      var n = this.beacons.length;
+      for (var i = 0; i < n; i++) {
+        this.beacons[i].timeUntilActive = new Date(this.beacons[i].startTime).toLocaleTimeString("en-us", options);
+        this.beacons[i].timeRemaining = ((this.beacons[i].endTime - this.beacons[i].startTime) / (1000 * 60 *60)).toFixed(1);
+      }
     });
   }
 
   setBeacons(beacons) {
     this.beacons = beacons;
-
   }
 
   joinBeacon(beacon: Beacon) {
     //let curUser: any = this.webAPI.getCurrentUser();
     //curUser.joinBeacon(beacon);
   }
+
   trackBeacon(index: number, beacon: Beacon) {
     return index;
   }
