@@ -51,6 +51,9 @@ export class BeaconCardsComponent implements OnInit {
     // curUser.joinBeacon(beacon);
     var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
     leave.removeAttribute("disabled");
+          document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+        this.MaterialProgress.setProgress(50);
+  });
   }
 
   leaveBeacon(beacon) {
