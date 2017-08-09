@@ -10,6 +10,7 @@ import { BeaconCardsComponent } from '../beacon-cards/beacon-cards.component'
   styleUrls: ['./beacon-search.component.css'],
 })
 
+
 export class BeaconSearchComponent {
 
   constructor(
@@ -30,7 +31,7 @@ export class BeaconSearchComponent {
 	hasProjector: boolean;
 	tags: number[];
 
-	onApply() {
+	apply() {
 		//reset tags string
 		this.tags = [];
     this.beacons = [];
@@ -91,5 +92,15 @@ export class BeaconSearchComponent {
        this.cards.setBeacons(this.beacons);
   	})
 	}
+
+  disable() {
+    var button = <HTMLButtonElement> document.getElementsByName("applyButton")[0];
+    button.setAttribute("disabled","");
+  }
+
+  enable() {
+    var button = <HTMLButtonElement> document.getElementsByName("applyButton")[0];
+    button.removeAttribute("disabled");
+  }
 
 }
