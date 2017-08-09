@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component'
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
 import { UserDiscoveryComponent } from './user-discovery/user-discovery.component';
 import { MdlModule } from '@angular-mdl/core';
@@ -56,8 +57,9 @@ export const firebaseConfig = {
     RegisterComponent,
     LoginPageComponent,
     ProfileComponent,
-    UserProfileComponent,
-    BeaconCreateComponent,
+      UserProfileComponent,
+      UserEditComponent,
+        BeaconCreateComponent,
     UserDiscoveryComponent,
   ],
   imports: [
@@ -72,6 +74,7 @@ export const firebaseConfig = {
         {path: 'login-page', component: LoginPageComponent},
         { path: 'profile', component: ProfileComponent },
         { path: 'user-profile', component: UserProfileComponent },
+        { path: 'user-edit', component: UserEditComponent },
         {path: '*other', component: MapComponent}
     ]),
     AgmCoreModule.forRoot({
