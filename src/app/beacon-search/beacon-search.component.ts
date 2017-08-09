@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Beacon } from '../beacon';
 import { WebAPI } from '../web-api.service';
 import { MapComponent } from '../map/map.component'
 import { BeaconCardsComponent } from '../beacon-cards/beacon-cards.component'
- 
-declare let componentHandler: any; 
+
 @Component({
   selector: 'app-beacon-search',
   templateUrl: './beacon-search.component.html',
@@ -30,11 +29,7 @@ export class BeaconSearchComponent {
 	hasWhiteboard: boolean;
 	hasProjector: boolean;
 	tags: number[];
-  ngOnInit() {
-  }
-  ngAfterViewInit() {
-    componentHandler.upgradeDom(); // upgrade all mdl components
-  }
+
 	onApply() {
 		//reset tags string
 		this.tags = [];
