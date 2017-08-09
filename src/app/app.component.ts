@@ -85,7 +85,8 @@ export class AppComponent {
             flag = true;
           }
         }
-        callback(flag);
+              // callback(flag);
+        return callback(flag);
       });
 	}
 
