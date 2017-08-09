@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+﻿import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 import { AngularFireModule } from 'angularfire2';
@@ -23,6 +23,7 @@ import { PasswordComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BeaconCreateComponent } from './beacon-create/beacon-create.component'
 import { UserDiscoveryComponent } from './user-discovery/user-discovery.component';
 import { MdlModule } from '@angular-mdl/core';
@@ -55,6 +56,7 @@ export const firebaseConfig = {
     RegisterComponent,
     LoginPageComponent,
     ProfileComponent,
+    UserProfileComponent,
     BeaconCreateComponent,
     UserDiscoveryComponent,
   ],
@@ -68,7 +70,8 @@ export const firebaseConfig = {
         {path: 'user-discovery', component: UserDiscoveryComponent},
         {path: 'beacon-create', component: BeaconCreateComponent},
         {path: 'login-page', component: LoginPageComponent},
-        {path: 'profile', component: ProfileComponent},
+        { path: 'profile', component: ProfileComponent },
+        { path: 'user-profile', component: UserProfileComponent },
         {path: '*other', component: MapComponent}
     ]),
     AgmCoreModule.forRoot({
