@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Beacon } from '../beacon';
 
@@ -35,6 +35,7 @@ export class BeaconCardsComponent implements OnInit {
       for (var i = 0; i < n; i++) {
         this.beacons[i].timeUntilActive = new Date(this.beacons[i].startTime).toLocaleTimeString("en-us", options);
         this.beacons[i].timeRemaining = ((this.beacons[i].endTime - this.beacons[i].startTime) / (1000 * 60 *60)).toFixed(1);
+        this.beacons[i].index = i;
       }
     });
   }
@@ -43,14 +44,22 @@ export class BeaconCardsComponent implements OnInit {
     this.beacons = beacons;
   }
 
-  joinBeacon(beacon: Beacon) {
-    //let curUser: any = this.webAPI.getCurrentUser();
-    //curUser.joinBeacon(beacon);
+  joinBeacon(beacon) {
+    var button = <HTMLButtonElement>document.getElementsByName("joinButton")[beacon.index];
+    button.setAttribute("disabled","");
+    // let curUser: any = this.webAPI.getCurrentUser();
+    // curUser.joinBeacon(beacon);
+    var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
+    leave.removeAttribute("disabled");
   }
 
-  trackBeacon(index: number, beacon: Beacon) {
-    return index;
+  leaveBeacon(beacon) {
+    var button = <HTMLButtonElement>document.getElementsByName("joinButton")[beacon.index];
+    button.removeAttribute("disabled");
+    // let curUser: any = this.webAPI.getCurrentUser();
+    // curUser.leaveBeacon(beacon);
+    var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
+    leave.setAttribute("disabled","");
   }
-
 
 }

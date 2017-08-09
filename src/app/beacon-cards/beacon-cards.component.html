@@ -54,14 +54,11 @@ last edited by mat younatan 8/6/2017
         </div>
         <div class="mdl-card__supporting-text">
           Begins: {{beacon.timeUntilActive}}
-        </div>
-        <div class="mdl-card__supporting-text">
+          <p></p>
           Time Remaining: {{beacon.timeRemaining}}hrs
         </div>
-        <!-- Simple MDL Progress Bar -->
-        <div class="bar">
-          <div id="time-bar" class="mdl-progress mdl-js-progress"></div>
-        </div>
+       <!-- Simple MDL Progress Bar -->
+      <div id="p1" class="mdl-progress mdl-js-progress"></div>
       </div>
       <!-- Distance -->
       <div class="mdl-card__supporting-text">
@@ -73,8 +70,10 @@ last edited by mat younatan 8/6/2017
       </div>
       <!-- Buttons -->
       <div class="mdl-card__actions mdl-card--border">
-        <button (click)="joinBeacon(beacon)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-          JOIN BEACON
+        <button name="joinButton" (click)="joinBeacon(beacon)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> JOIN BEACON
+        </button>
+        <button name="leaveButton" style="float: right;" (click)="leaveBeacon(beacon)" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" disabled>
+          <i class="material-icons">clear</i>
         </button>
       </div>
     </div>
