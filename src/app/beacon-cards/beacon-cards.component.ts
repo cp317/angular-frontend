@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Beacon } from '../beacon';
 
-import { RegisteredUser } from '../user';
+import { User, RegisteredUser } from '../user';
 
 import { WebAPI } from '../web-api.service';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -47,8 +47,8 @@ export class BeaconCardsComponent implements OnInit {
   joinBeacon(beacon) {
     var button = <HTMLButtonElement>document.getElementsByName("joinButton")[beacon.index];
     button.setAttribute("disabled","");
-    // let curUser: any = this.webAPI.getCurrentUser();
-    // curUser.joinBeacon(beacon);
+    this.webAPI.getUserById(firebase.auth().currentUser.uid).then(res => 
+      {console.log(res)});
     var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
     leave.removeAttribute("disabled");
   }
@@ -56,8 +56,8 @@ export class BeaconCardsComponent implements OnInit {
   leaveBeacon(beacon) {
     var button = <HTMLButtonElement>document.getElementsByName("joinButton")[beacon.index];
     button.removeAttribute("disabled");
-    // let curUser: any = this.webAPI.getCurrentUser();
-    // curUser.leaveBeacon(beacon);
+    this.webAPI.getUserById(firebase.auth().currentUser.uid).then(res => 
+      {console.log(res)});
     var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
     leave.setAttribute("disabled","");
   }

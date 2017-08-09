@@ -19,17 +19,22 @@ export class LoginComponent {
     console.log(password)
     this.loginUser(email,password)
   }
-
   loginUser(email:string,password:string){
       //TODO: Replace with the data coming from the form
-
+      firebase.auth().onAuthStateChanged(function(user){
+        if(user && !user.isAnonymous){
+            alert("already signed in");
+        }else{
         firebase.auth().signInWithEmailAndPassword(email, password).catch(
         function(error){
           var errorCode = error.stack;
           var errorMessage = error.message
           console.log(error.message)
         });
-  }
+        }
+      });
+        }
+  
 
     showConfirm() {
             let disposable = this.dialogService.addDialog(PasswordComponent, {
@@ -42,12 +47,15 @@ export class LoginComponent {
                     }
                 });
         }
+
+
 }
 
 export interface PasswordModel {
   title:string;
   message:string;
 }
+
 @Component({  
     selector: 'confirm',
     template: `<div class="modal-dialog">

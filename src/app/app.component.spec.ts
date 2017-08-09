@@ -16,7 +16,7 @@ describe('AppComponent', () => {
 
 
  // checkEmail(email:string,callback)
-
+/*
   it('should return false if email does not already exists', async() => {
       component.checkEmail('afasfsafasf',function(a){
       expect(a).toBeFalsy();
@@ -32,3 +32,4 @@ describe('AppComponent', () => {
 
 
 });
+*/
