@@ -1,7 +1,5 @@
 
 import { Component, OnInit } from '@angular/core';
-import { RegisteredUser } from '../user';
-
 
 @Component({
   selector: 'app-user-profile',
@@ -11,12 +9,11 @@ import { RegisteredUser } from '../user';
 
 export class UserProfileComponent implements OnInit {
 	
-	private registeredUsers: registeredUser[] = [];
-	
-	constructor(){}
-	
-	ngOnInit(){
-	
+	constructor() {
+		
 	}
 	
+	ngOnInit(){
+		
+	}
 }
