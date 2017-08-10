@@ -11,6 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+declare let componentHandler: any; //there is a purpose for this, please stop removing it
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -79,6 +80,10 @@ export class MapComponent implements OnInit {
       });
     });
 
+  }
+
+  ngAfterViewInit() { //please dont remove this.
+    componentHandler.upgradeDom(); // upgrade all mdl components
   }
 
   // display all beacons on the screen
