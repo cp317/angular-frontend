@@ -1,4 +1,4 @@
-body{
+﻿body{
   font-family: ariel, sans-serif;
 }
 #nav{
@@ -24,6 +24,10 @@ body{
   color: Black;
   text-decoration: none;
 }
+input[type="text"] {
+  width: 200px;
+}
+
 
 #nav_wrapper ul li a:hover{
   background:rgb(63,81,181);
