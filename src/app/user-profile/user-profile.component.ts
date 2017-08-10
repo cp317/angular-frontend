@@ -1,5 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
+import { RegisteredUser } from '../user';
+
+import { WebAPI } from '../web-api.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,11 +12,19 @@ import { Component, OnInit } from '@angular/core';
 
 export class UserProfileComponent implements OnInit {
 	
-	constructor() {
-		
-	}
+	private registeredUsers: any[] = [];
+	
+	constructor(private webAPI: WebAPI){}
 	
 	ngOnInit(){
-		
+		this.getNames();
 	}
+	
+	getNames(){
+		this.webAPI.getCurrentUser().then(res => {
+		this.registeredUsers = res;
+		
+		});
+	}
+	
 }
