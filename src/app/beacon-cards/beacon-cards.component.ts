@@ -48,7 +48,7 @@ export class BeaconCardsComponent implements OnInit {
     var button = <HTMLButtonElement>document.getElementsByName("joinButton")[beacon.index];
     button.setAttribute("disabled","");
     this.webAPI.getUserById(firebase.auth().currentUser.uid).then(res => 
-      {console.log(res)});
+      {res.user.joinBeacon(beacon)});
     var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
     leave.removeAttribute("disabled");
   }
@@ -57,7 +57,7 @@ export class BeaconCardsComponent implements OnInit {
     var button = <HTMLButtonElement>document.getElementsByName("joinButton")[beacon.index];
     button.removeAttribute("disabled");
     this.webAPI.getUserById(firebase.auth().currentUser.uid).then(res => 
-      {console.log(res)});
+      {res.user.leaveBeacon(beacon)});
     var leave = <HTMLButtonElement>document.getElementsByName("leaveButton")[beacon.index];
     leave.setAttribute("disabled","");
   }
